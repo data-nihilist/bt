@@ -8,7 +8,6 @@ usersRouter.post("/", async (req, res) => {
   const { email, password, passwordConfirmation } = req.body;
   try {
     const persistedUser = await User.query().insertAndFetch({ email, password });
-    console.log(persistedUser)
     return req.login(persistedUser, () => {
       return res.status(201).json({ user: persistedUser });
     });
@@ -17,7 +16,7 @@ usersRouter.post("/", async (req, res) => {
     return res.status(422).json({ errors: error });
   }
 });
-
+//-------------------------------------------to see user data that's currently in backend
 usersRouter.get("/", async (req, res) => {
   try{
     const users = await User.query()
