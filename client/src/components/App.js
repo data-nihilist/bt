@@ -109,13 +109,13 @@ const App = (props) => {
             <hr className="mt-2 mb-2" />
             <div className="row gap-2 justify-center"><h1 className="mb-2">GRID SYSTEM</h1>
                 <h1 className="card-title col-12-xs col-5-sm col-3-xl">Greetings, Gamers</h1>
-                <p className="card-body">lorem ipsum dolor sit amet consectetur, adipsciing elite.</p>
+                <p className="card-body">PlayStation 5, or, "brick," is the superior current gen gaming console. That is all.</p>
               <div className="card col-12-xs col-5-sm col-3-xl gap-2 justify-flex-start">
-                <h1 className="card-title">Greetings, Gamers</h1>
-                <p className="card-body">lorem ipsum dolor sit amet consectetur, adipsciing elite.</p>
+                <h1 className="card-title">Shiddin' 'n' Farddin' Reaches $420mil opening night! And critics HATE it.</h1>
+                <p className="card-body">It has become rather exhausting having to keep up with dinner-party conversation, and avant-garde directors such as Ari Aster and Werner Herzog is to blame for it. We get it, Derek, LoTR didn't pass the Bechdal Test!</p>
               <div className="card col-12-xs col-5-sm col-3-xl gap-2">
-                <h1 className="card-title">Greetings, Gamers</h1>
-                <p className="card-body">lorem ipsum dolor sit amet consectetur, adipsciing elite.</p>
+                <h1 className="card-title">Top 10 Summer Hits</h1>
+                <p className="card-body">there are no nearby artists to include on our list! :c yet...</p>
               </div>
               </div>
               <h2 className="card-title">Greetings, Gamers</h2>
@@ -127,20 +127,20 @@ const App = (props) => {
               </div>
             </div>
             <div className="card col-12-xs col-5-sm col-3-xl gap-2">
-              <h1 className="card-title">Greetings, Gamers</h1>
-              <p className="card-body">lorem ipsum dolor sit amet consectetur, adipsciing elite.</p>
-              <h4 className="card-title">Greetings, Gamers</h4>
-              <h6 className="card-title">Greetings, Gamers</h6>
-              <p className="card-body">lorem ipsum dolor sit amet consectetur, adipsciing elite.</p>
+              <h1 className="card-title">"Too many sheep!"</h1>
+              <p className="card-body">Local authorities are perplexed by the recent surge in wild, feral sheep. Story continues on page 4A.</p>
+              <h4 className="card-title">Are YOU prepared for the Rapture?</h4>
+              <h6 className="card-title">"I miss my wife!"</h6>
+              <p className="card-body">Local man spends too much time counting nearby sheep rather than working on breakable toy.</p>
             </div>
           </div>
           <hr className="mt-2 mb-2" />
           {/*------------------------------------------------------------------------utilities*/}
           <div className="card"><h1>Utilities</h1>
           </div>
-          {/* <div className="responsive-test">
+          <div className="responsive-test">
                   <h1>Changing Colors</h1>
-                </div> */}
+                </div>
                 <hr className="mb-6"/>
         </Route>
         <Route exact path="/users/new" component={RegistrationForm} />
