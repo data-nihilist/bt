@@ -7,8 +7,38 @@
 *::after {
   box-sizing: border-box;
 }
-
 :root {
   -moz-tab-size: 4;
   tab-size: 4;
 }
+//------------------------------------------------above code was provided by LA
+
+//------------------variables & functions
+@import 'functions';
+@import 'variables';
+// We have now imported the variables we defined in our 'variables.scss' file!
+//    We've updated our file name, from 'variables.scss' to '_variables.scss' but 
+//    retained the ability to import! This means this file is now a 'partial' according to Sass.
+//        The '_' underscore tells our compiler not to constantly compile that file - just 'main.scss'!
+
+//----------------------base & layout
+@import 'base';
+// Order of imports matter!
+//    Sass looks from top to bottom.
+//      If we were to change so that 'rules' came before 'variables',
+//      then the rules wouldn't have any variables to reference!
+@import 'breakpoints';
+@import 'grid';
+
+//--------------------colors
+// import color partials here
+@import 'colors';
+
+//-------------------components (button, card, navbar)
+// import component partials here
+@import 'components/card';
+@import 'components/button';
+//----------------utilities (margin, padding, opacity)
+// import utility partials here
+@import 'utilities';
+//------------------------creating custom classes B)
