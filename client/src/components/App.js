@@ -137,10 +137,6 @@ const App = (props) => {
           <hr className="mt-2 mb-2" />
           {/*------------------------------------------------------------------------utilities*/}
           <div className="card"><h1>Utilities</h1>
-
-          <div>
-            <span><h1>ah</h1>Hey</span>
-          </div>
           </div>
           {/* <div className="responsive-test">
                   <h1>Changing Colors</h1>
