@@ -9,12 +9,19 @@ const VenueList = (props) => {
 
     const listOfVenues = venues.map(venue => {
         return (
-            <li
-            className="callout secondary"
-            key={venue.id}
-            >
-                {venue.name}
-            </li>
+            <div classname="card">
+                <ul>
+                    <li
+                    className="card-title"
+                    key={venue.id}
+                    >
+                        {venue.name}
+                    </li>
+                        <p className="card-body">
+                            {venue.location}
+                        </p>
+                </ul>
+            </div>
         )
     })
     let message = "Sign Up or Sign In to create a venue :D"
@@ -27,9 +34,13 @@ const VenueList = (props) => {
     }
     
     return(
-        <div>
-            <h1>Welcome to the Venue List: This is a list of Venues B)</h1>
+        <div className="card">
+            <h1 className="card-title">
+                Currently Active Venues
+            </h1>
+            <div className="card">
             {listOfVenues}
+            </div>
             {message}
         </div>
     )

@@ -102,7 +102,7 @@ const SignInForm = () => {
             </label>
           </div>
           <div>
-            <input type="submit" className="special-button bg-green ml- mt-1 mb-2" value="Sign In" />
+            <input type="submit" className="special-button bg-green mt-1 mb-2" value="Sign In" />
           </div>
         </form>
       </div>

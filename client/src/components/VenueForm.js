@@ -2,7 +2,7 @@ import React, { useState } from "react"
 import translateServerErrors from "../services/translateServerErrors.js";
 
 const VenueForm = (props) => {
-    
+
     const [venueRecord, setVenueRecord] = useState({
         hostId: props.signedInUser.id,
         name: "",
@@ -14,7 +14,7 @@ const VenueForm = (props) => {
     const [errors, setErrors] = useState({})
 
     const addVenue = async (formData) => {
-        try{
+        try {
             const newVenue = await fetch("/api/v1/venues", {
                 method: "POST",
                 headers: new Headers({
@@ -22,13 +22,13 @@ const VenueForm = (props) => {
                 }),
                 body: JSON.stringify(formData)
             })
-            if(!newVenue.ok) {
+            if (!newVenue.ok) {
                 if (newVenue.status === 422) {
                     const body = await newVenue.json()
                     const newErrors = translateServerErrors(body.errors)
                     return setErrors(newErrors)
                 } else {
-                    throw(new Error(`${newVenue.status} (${newVenue.statusText})`))
+                    throw (new Error(`${newVenue.status} (${newVenue.statusText})`))
                 }
             } else {
                 const body = await newVenue.json()
@@ -36,7 +36,7 @@ const VenueForm = (props) => {
                 setErrors({})
                 props.setVenues(venueData)
             }
-        }catch(error){
+        } catch (error) {
             console.error(`Error in fetch: ${error.message}`)
         }
     }
@@ -53,34 +53,43 @@ const VenueForm = (props) => {
         addVenue(venueRecord)
     }
 
-    return(
-        <div>
-            <h1>Ayyyyye it's the venue form :D</h1>
-            <form onSubmit={handleSubmit}>
-                <label htmlFor="name"> Venue Name
-                    <input
-                    id="name"
-                    type="text"
-                    name="name"
-                    value={venueRecord.name}
-                    onChange={handleInputChange}
-                    />
-                </label>
+    return (
+        <div className="bg-black">
+            <div className="card bg-black text-white">
+                <h1 className="card-title">Add Your Venue</h1>
+                <form className="card" onSubmit={handleSubmit}>
+                    <div className="mb-2">
+                        <label classname="card-body" htmlFor="name">
+                            Venue Name
+                            <input
+                                id="name"
+                                type="text"
+                                name="name"
+                                value={venueRecord.name}
+                                onChange={handleInputChange}
+                                className="card bg-black text-white"
+                            />
+                        </label>
+                    </div>
+                    <div className="mb-2">
+                        <label className="card-body" htmlFor="location">
+                            Venue Location
+                            <input
+                                id="location"
+                                type="text"
+                                name="location"
+                                value={venueRecord.location}
+                                onChange={handleInputChange}
+                                className="card bg-black text-white"
+                            />
+                        </label>
+                    </div>
 
-                <label htmlFor="location"> Venue Location
-                    <input
-                    id="location"
-                    type="text"
-                    name="location"
-                    value={venueRecord.location}
-                    onChange={handleInputChange}
-                    />                    
-                </label>
-
-                <div className="button-group">
-                <input className="button" type="submit" value="Create Venue"/>
-                </div>
-            </form>
+                    <div className="button-group">
+                        <input className="special-button bg-green mb-1" type="submit" value="Create Venue" />
+                    </div>
+                </form>
+            </div>
         </div>
     )
 }
