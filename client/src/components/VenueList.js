@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react"
 import VenueTile from "./VenueTile.js"
+import { Link } from "react-router-dom";
 
 const VenueList = (props) => {
 
@@ -13,10 +14,13 @@ const VenueList = (props) => {
             key={venue.id}
             className="callout"
             >
-                <VenueTile
-                    name={venue.name}
-                    location={venue.location}
-                />
+                <Link to={`/${venue.id}`}>
+                    <VenueTile
+                        id={venue.id}
+                        name={venue.name}
+                        location={venue.location}
+                    />
+                </Link>
             </div>
         )
     })
