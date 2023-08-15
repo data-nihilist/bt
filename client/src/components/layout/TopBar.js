@@ -12,7 +12,7 @@ const TopBar = ({ user }) => {
     <li 
     className="btn-complement-green"
     key="sign-up">
-      <Link to="/users/new" className="button">
+      <Link to="/users/new">
         Sign Up
       </Link>
     </li>,
