@@ -42,7 +42,7 @@ const WelcomePage = (props) => {
                         "yo yo yo from the welcome page"
                     </h1>
                     <div className="card-body">
-                        {signedInStatus}
+                        {message}
                     </div>
                 </div>
             </div>
