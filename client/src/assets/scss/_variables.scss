@@ -30,9 +30,6 @@ $colors: (
     "white": white,
 );
 
-.test-btn {
-    background-color: map-get($colors, "purple")
-}
 // examples for spacing variables
 $base-padding: 0.75rem;
 $base-margin: 0.75rem;

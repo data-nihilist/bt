@@ -68,6 +68,7 @@ const SignInForm = () => {
   return (
     <div className="bg-black">
       <div className="card bg-black text-white">
+        <div className="responsive-test"><h1>Hey Charlie ;)</h1></div>
         <h1 className="card-title">Sign In</h1>
         <form className="card" onSubmit={onSubmit}>
           <div className="mb-2">
