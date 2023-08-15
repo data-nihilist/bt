@@ -1,15 +1,148 @@
-@import "./foundation/settings";
-@import "~foundation-sites/scss/foundation";
-@include foundation-everything;
 // place global css here
 *,
 *::before,
 *::after {
   box-sizing: border-box;
 }
+
 :root {
   -moz-tab-size: 4;
   tab-size: 4;
 }
 
+//------------------------------------------------above code was provided by LA
+
+//------------------variables & functions
+@import 'functions';
+@import 'variables';
+// We have now imported the variables we defined in our 'variables.scss' file!
+//    We've updated our file name, from 'variables.scss' to '_variables.scss' but 
+//    retained the ability to import! This means this file is now a 'partial' according to Sass.
+//        The '_' underscore tells our compiler not to constantly compile that file - just 'main.scss'!
+
+//----------------------base & layout
 @import 'base';
+// Order of imports matter!
+//    Sass looks from top to bottom.
+//      If we were to change so that 'rules' came before 'variables',
+//      then the rules wouldn't have any variables to reference!
+@import 'breakpoints';
+@import 'grid';
+
+//--------------------colors
+// import color partials here
+@import 'colors';
+
+//-------------------components (button, card, navbar)
+// import component partials here
+@import 'components/card';
+@import 'components/button';
+//----------------utilities (margin, padding, opacity)
+// import utility partials here
+@import 'utilities';
+
+//------------------------creating custom classes B)
+@keyframes TransitioningBackground {
+  0% {
+    background-position: 1% 0%;
+  }
+
+  50% {
+    background-position: 99% 100%;
+  }
+
+  100% {
+    background-position: 1% 0%;
+  }
+}
+
+.special-button {
+  font-size: 1rem;
+  font-weight: 1000%;
+  color: rgb(255, 173, 248);
+  text-align: center;
+  width: 200px;
+  height: 60px;
+  border-radius: 5px;
+  // for 'shine' effect?'
+  overflow: hidden;
+  position: relative;
+  // background color shift?
+  background-image: (linear-gradient(270deg, black));
+  background-size: 400% 400%;
+  animation: TransitioningBackground 10s ease infinite;
+  // ease the button growth (on hover)
+  transition: 0.6s;
+
+  // psuedo-element shine animation left side
+  &::before {
+    content: '';
+    display: block;
+    position: absolute;
+    background: rgb(233, 227, 202); // dust color
+    width: 60px;
+    height: 100%;
+    top: 0;
+    filter: blur(30px);
+    transform: translateX(-100px) skewX(-15deg);
+  }
+
+  &::after {
+    content: '';
+    display: block;
+    position: absolute;
+    background: rgba(191, 191, 191, 0.926);
+    width: 30px;
+    height: 100%;
+    top: 0;
+    filter: blur(5px);
+    transform: translateX(-100px) skewX(-15deg);
+  }
+
+  // grow button and change background gradient on hover
+  &:hover {
+    background-image: (linear-gradient(to left, #fb0000, #ffb300, #f6ff00, #2bff00, #003ffe, #ea00ff, #eeee, #0000));
+    width: 215px;
+    height: 75px;
+    cursor: pointer;
+
+    // pseudo-elements for right- and left-side shine animations
+    &::before,
+    &::after {
+      transform: translateX(300px) skewX(-15deg);
+      transition: 0.7s;
+    }
+  }
+}
+
+$grid__bp--md: 768;
+$grid__cols: 12;
+
+.garrettsGodBox {
+
+  max-width: $grid__bp--md * 1px;
+  margin: 0 auto;
+
+  &--fluid {
+    margin: 0;
+    max-width: 100%;
+  }
+
+  &__row {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+  }
+
+  @for $i from 1 through $grid__cols {
+    &__col-sm-#{$i} {
+      flex-basis: (100 / ($grid__cols / $i)) * 1%;
+    }
+  }
+
+  @for $i from 1 through $grid__cols {
+    &__col-md-#{$i} {
+      flex-basis: (100 / ($grid__cols / $i)) * 1%;
+    }
+  }
+}

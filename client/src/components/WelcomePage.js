@@ -34,12 +34,14 @@ const WelcomePage = (props) => {
     }
 
     return(
-        <div>
-            <h1>
-                "yo yo yo from the welcome page"
-            </h1>
-            <div>
-                {signedInStatus}
+        <div className="card container">
+            <div className="card bg-black text-white">
+                <h1 className="bg-black text-white card-title-justify">
+                    "yo yo yo from the welcome page"
+                </h1>
+                <div className="card-body">
+                    {signedInStatus}
+                </div>
             </div>
         </div>
     )

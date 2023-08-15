@@ -94,51 +94,75 @@ const RegistrationForm = () => {
   }
 
   return (
-    <div className="grid-container">
-      <h1>Register</h1>
-      <form onSubmit={onSubmit}>
-      <div>
-          <label>
-            Username
-            <input type="text" name="username" value={userPayload.username} onChange={onInputChange} />
-            <FormError error={errors.username} />
-          </label>
-        </div>
+    <div className="bg-black">
+      <div className="card bg-black text-white">
+        <h1 className="card-title">Sign Up</h1>
+        <form className="card" onSubmit={onSubmit}>
+        <div className="mb-2">
+            <label className="card-body">
+              Username
+              <input
+                type="text"
+                name="username"
+                value={userPayload.username}
+                onChange={onInputChange}
+                className="card bg-black text-white"
+                />
+                <div className="text-info">
+                  <FormError error={errors.username} />
+                </div>
+            </label>
+          </div>
+          <div className="mb-2">
+            <label className="card-body">
+              Email
+              <input
+                type="text"
+                name="email"
+                value={userPayload.email}
+                onChange={onInputChange}
+                className="card bg-black text-white"
+                />
+              <div className="text-info">
+                <FormError error={errors.email} />
+              </div>
+            </label>
+          </div>
+          <div className="mb-2">
+            <label className="card-body">
+              Password
+              <input
+                type="password"
+                name="password"
+                value={userPayload.password}
+                onChange={onInputChange}
+                className="card bg-black text-white"
+              />
+              <div className="text-info">
+                <FormError error={errors.password} />
+              </div>
+            </label>
+          </div>
+          <div className="mb-2">
+            <label className="card-body">
+              Confirm Password
+              <input
+                type="password"
+                name="passwordConfirmation"
+                value={userPayload.passwordConfirmation}
+                onChange={onInputChange}
+                className="card bg-black"
+              />
+              <div className="text-info">
+                <FormError error={errors.passwordConfirmation} />
+              </div>
+            </label>
+          </div>
         <div>
-          <label>
-            Email
-            <input type="text" name="email" value={userPayload.email} onChange={onInputChange} />
-            <FormError error={errors.email} />
-          </label>
-        </div>
-        <div>
-          <label>
-            Password
-            <input
-              type="password"
-              name="password"
-              value={userPayload.password}
-              onChange={onInputChange}
-            />
-            <FormError error={errors.password} />
-          </label>
-        </div>
-        <div>
-          <label>
-            Password Confirmation
-            <input
-              type="password"
-              name="passwordConfirmation"
-              value={userPayload.passwordConfirmation}
-              onChange={onInputChange}
-            />
-            <FormError error={errors.passwordConfirmation} />
-          </label>
-        </div>
-        <div>
-          <input type="submit" className="button" value="Register" />
+          <input type="submit" className="special-button bg-green mt-1 mb-2" value="Sign Up" />
         </div>
       </form>
+        </div>
     </div>
   );
 };

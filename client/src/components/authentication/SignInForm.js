@@ -41,15 +41,15 @@ const SignInForm = () => {
             "Content-Type": "application/json",
           })
         })
-        if(!response.ok) {
+        if (!response.ok) {
           const errorMessage = `${response.status} (${response.statusText})`
           const error = new Error(errorMessage)
-          throw(error)
+          throw (error)
         }
         const userData = await response.json()
         setShouldRedirect(true)
       }
-    } catch(err) {
+    } catch (err) {
       console.error(`Error in fetch: ${err.message}`)
     }
   }
@@ -66,32 +66,45 @@ const SignInForm = () => {
   }
 
   return (
-    <div className="grid-container" onSubmit={onSubmit}>
-      <h1>Sign In</h1>
-      <form>
-        <div>
-          <label>
-            Email
-            <input type="text" name="email" value={userPayload.email} onChange={onInputChange} />
-            <FormError error={errors.email} />
-          </label>
-        </div>
-        <div>
-          <label>
-            Password
-            <input
-              type="password"
-              name="password"
-              value={userPayload.password}
-              onChange={onInputChange}
-            />
-            <FormError error={errors.password} />
-          </label>
-        </div>
-        <div>
-          <input type="submit" className="button" value="Sign In" />
-        </div>
-      </form>
+    <div className="bg-black">
+      <div className="card bg-black text-white">
+        <h1 className="card-title">Sign In</h1>
+        <form className="card" onSubmit={onSubmit}>
+          <div className="mb-2">
+            <label className="card-body">
+              Email
+              <input
+                type="text"
+                name="email"
+                value={userPayload.email}
+                onChange={onInputChange}
+                className="card bg-black text-white"
+              />
+              <div className="text-info">
+                <FormError error={errors.email} />
+              </div>
+            </label>
+          </div>
+          <div className="mb-2">
+            <label className="card-body">
+              Password
+              <input
+                type="password"
+                name="password"
+                value={userPayload.password}
+                onChange={onInputChange}
+                className="card bg-black text-white"
+              />
+              <div className="text-info">
+              <FormError error={errors.password} />
+              </div>
+            </label>
+          </div>
+          <div>
+            <input type="submit" className="special-button bg-green ml- mt-1 mb-2" value="Sign In" />
+          </div>
+        </form>
+      </div>
     </div>
   );
 };
