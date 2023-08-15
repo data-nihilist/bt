@@ -48,10 +48,19 @@ const VenueForm = (props) => {
         })
     }
 
+    const clearForm = (event) => {
+        setVenueRecord({
+            name: "",
+            location: ""
+        })
+    }
+
     const handleSubmit = (event) => {
         event.preventDefault()
         addVenue(venueRecord)
+        clearForm()
     }
+
 
     return(
         <div>
