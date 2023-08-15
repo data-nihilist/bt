@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react"
 import VenueList from "./VenueList"
+import VenueForm from "./VenueForm"
 
 
 const WelcomePage = (props) => {
@@ -23,14 +24,14 @@ const WelcomePage = (props) => {
     useEffect(() => {
         getVenues()
     }, [])
-    
-    let signedInStatus = <h2>You're not signed in!</h2>
-    if(signedInUser){
-        signedInStatus = <VenueList
-                            venues={venues}
-                            signedInUser={signedInUser}
-                            setVenues={setVenues}
-                        />
+
+    let message = "Sign Up or Sign In to create a venue :D"
+    if(signedInUser) {
+    message =   <VenueForm
+                    signedInUser={signedInUser}
+                    venues={venues}
+                    setVenues={setVenues}
+                />
     }
 
     return(
@@ -38,9 +39,16 @@ const WelcomePage = (props) => {
             <h1>
                 "yo yo yo from the welcome page"
             </h1>
-            <div>
-                {signedInStatus}
-            </div>
+                <div>
+                <VenueList
+                    venues={venues}
+                    signedInUser={signedInUser}
+                    setVenues={setVenues}
+                />
+                </div>
+                <div>
+                    {message}
+                </div>
         </div>
     )
 }

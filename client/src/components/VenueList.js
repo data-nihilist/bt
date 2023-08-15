@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react"
-import VenueForm from "./VenueForm.js"
+import VenueTile from "./VenueTile.js"
 
 const VenueList = (props) => {
 
@@ -9,28 +9,24 @@ const VenueList = (props) => {
 
     const listOfVenues = venues.map(venue => {
         return (
-            <li
-            className="callout secondary"
+            <div
             key={venue.id}
+            className="callout"
             >
-                {venue.name}
-            </li>
+                <VenueTile
+                    name={venue.name}
+                    location={venue.location}
+                />
+            </div>
         )
     })
-    let message = "Sign Up or Sign In to create a venue :D"
-    if(signedInUser) {
-    message =   <VenueForm
-                    signedInUser={signedInUser}
-                    venues={venues}
-                    setVenues={props.setVenues}
-                />
-    }
     
     return(
         <div>
             <h1>Welcome to the Venue List: This is a list of Venues B)</h1>
-            {listOfVenues}
-            {message}
+            <ul>
+                {listOfVenues}
+            </ul>
         </div>
     )
 }
