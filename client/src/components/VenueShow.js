@@ -8,54 +8,54 @@ const VenueShow = (props) => {
         hostId: null,
         shows: [] // yet to build out this model/component-tree/migration
     })
-    
+
     const venueId = props.match.params.id
 
     const getVenue = async () => {
-        try{
+        try {
             const response = await fetch(`/api/v1/venues/${venueId}`)
-            if(!response.ok) {
-                throw(new Error(`${response.status} (${response.statusText})`))
+            if (!response.ok) {
+                throw (new Error(`${response.status} (${response.statusText})`))
             }
             const body = await response.json()
             setVenue(body.venue)
-        }catch(error){
+        } catch (error) {
             console.error(`Error in fetch: ${error.message}`)
         }
     }
 
     useEffect(() => {
-    getVenue()
+        getVenue()
     }, [])
 
     let message;
-    if(currentUser){
-        message = "thank you for signing in :)"
-        if(currentUser.id === venue.hostId) {
-            message = "your venue awaits! We should have shows..."
+    if (currentUser) {
+        message = "thank you for signing in :)" // some component that encourages active users to become a host
+        if (currentUser.id === venue.hostId) {
+            message = "your venue awaits! We should have shows..." // button that will lead to a show form page for this venue
         } else {
-            message = "heeeey this ain't your venue! Thats okay :)"
+            message = "heeeey this ain't your venue! Thats okay :)" // same as first iteration
         }
     } else {
-        message = "you aren't signed in!"
+        message = "you aren't signed in!" // some component encouraging non-active users to signup
     }
-    console.log(message)
-    return(
+
+    return (
         <div>
             <h1>
                 {venue.name}
             </h1>
             <h1>
-            {venue.location}
+                {venue.location}
             </h1>
             <h1>
-            {venue.hostId}
+                {venue.hostId}
             </h1>
             <h1>
-            {venue.shows}
+                {venue.shows}
             </h1>
             <h2>
-            {message}
+                {message}
             </h2>
         </div>
     )

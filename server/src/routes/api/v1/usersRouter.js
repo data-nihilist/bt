@@ -12,16 +12,15 @@ usersRouter.post("/", async (req, res) => {
       return res.status(201).json({ user: persistedUser });
     });
   } catch (error) {
-    console.log(error);
     return res.status(422).json({ errors: error });
   }
 });
 //-------------------------------------------to see user data that's currently in backend
 usersRouter.get("/", async (req, res) => {
-  try{
+  try {
     const users = await User.query()
     return res.status(200).json({ users })
-  }catch(error){
+  } catch (error) {
     return res.status(500).json({ errors: error })
   }
 })
