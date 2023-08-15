@@ -1,14 +1,12 @@
-import React, { useState, useEffect } from "react"
-import VenueForm from "./VenueForm.js"
+import React from "react"
+import VenueTile from "./VenueTile.js"
+import { Link } from "react-router-dom";
 
 const VenueList = (props) => {
 
-    const signedInUser = props.signedInUser
-
-    const venues = props.venues
-
-    const listOfVenues = venues.map(venue => {
+    const listOfVenues = props.venues.map(venue => {
         return (
+<<<<<<< HEAD
             <div classname="card">
                 <ul>
                     <li
@@ -42,6 +40,29 @@ const VenueList = (props) => {
             {listOfVenues}
             </div>
             {message}
+=======
+            <div
+                key={venue.id}
+                className="callout"
+            >
+                <Link to={`/${venue.id}`}>
+                    <VenueTile
+                        id={venue.id}
+                        name={venue.name}
+                        location={venue.location}
+                    />
+                </Link>
+            </div>
+        )
+    })
+
+    return (
+        <div>
+            <h1>Currently Active Venues B)</h1>
+            <ul>
+                {listOfVenues}
+            </ul>
+>>>>>>> d3442e3679365f68601c7e64206467366c8f5356
         </div>
     )
 }

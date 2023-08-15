@@ -1,5 +1,5 @@
 import React, { useState } from "react"
-import translateServerErrors from "../services/translateServerErrors.js";
+import translateServerErrors from "../services/translateServerErrors";
 
 const VenueForm = (props) => {
 
@@ -48,11 +48,20 @@ const VenueForm = (props) => {
         })
     }
 
+    const clearForm = (event) => {
+        setVenueRecord({
+            name: "",
+            location: ""
+        })
+    }
+
     const handleSubmit = (event) => {
         event.preventDefault()
         addVenue(venueRecord)
+        clearForm()
     }
 
+<<<<<<< HEAD
     return (
         <div className="bg-black">
             <div className="card bg-black text-white">
@@ -90,6 +99,37 @@ const VenueForm = (props) => {
                     </div>
                 </form>
             </div>
+=======
+
+    return (
+        <div>
+            <h1>Add Your Venue To The List!</h1>
+            <form onSubmit={handleSubmit}>
+                <label htmlFor="name"> Venue Name
+                    <input
+                        id="name"
+                        type="text"
+                        name="name"
+                        value={venueRecord.name}
+                        onChange={handleInputChange}
+                    />
+                </label>
+
+                <label htmlFor="location"> Venue Location
+                    <input
+                        id="location"
+                        type="text"
+                        name="location"
+                        value={venueRecord.location}
+                        onChange={handleInputChange}
+                    />
+                </label>
+
+                <div className="button-group">
+                    <input className="button" type="submit" value="Create Venue" />
+                </div>
+            </form>
+>>>>>>> d3442e3679365f68601c7e64206467366c8f5356
         </div>
     )
 }
