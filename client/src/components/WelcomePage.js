@@ -34,56 +34,18 @@ const WelcomePage = (props) => {
     }
 
     return (
-        // <div>
-        //     <div className="card container">
-        //         <div className="card bg-black text-white">
-        // //             <h1 className="bg-black text-white card-title-justify">
-        // //                 "yo yo yo from the welcome page"
-        // //             </h1>
-        // //             <div className="card-body">
-        // //                 {signedInStatus}
-        // //             </div>
-        // //         </div>
-        //     // </div>
-            <div className="bg-black text-white">
-                <div className="card-sm item-1">
-                    1
-                </div>
-                <div className="card-sm item-1 bg-black text-white">
-                    2
-                </div>
-                <div className="card-sm item-1 bg-black text-white">
-                    3
-                </div>
-                <div className="card-sm item-1 bg-black text-white">
-                    4
-                </div>
-                <div className="card-sm item-1 bg-black text-white">
-                    5
-                </div>
-                <div className="card-sm item-1 bg-black text-white">
-                    6
-                </div>
-                <div className="card-sm item-1 bg-black text-white">
-                    7
-                </div>
-                <div className="card-sm item-1 bg-black text-white">
-                    8
-                </div>
-                <div className="card-sm item-1 bg-black text-white">
-                    9
-                </div>
-                <div className="card-sm item-1 bg-black text-white">
-                    10
-                </div>
-                <div className="card-sm item-1 bg-black text-white">
-                    11
-                </div>
-                <div className="card-sm item-1 bg-black text-white">
-                    12
+        <div>
+            <div className="card container">
+                <div className="card bg-black text-white">
+                    <h1 className="bg-black text-white card-title-justify">
+                        "yo yo yo from the welcome page"
+                    </h1>
+                    <div className="card-body">
+                        {signedInStatus}
+                    </div>
                 </div>
             </div>
-            // </div>
+            </div>
     )
 }
 
