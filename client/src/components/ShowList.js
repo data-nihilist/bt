@@ -1,28 +1,22 @@
 import React from "react"
+import ShowTile from "./ShowTile.js"
 
 const ShowList = ({shows}) => {
 
     const upcomingShows = shows.map((show) => {
         return (
-            <ul>
-                <li
-                    className="callout"
-                    key={show.id}
-                >
-                    <h1>
-                        {show.title}
-                    </h1>
-                    <h3>
-                        {show.date}
-                    </h3>
-                </li>
-            </ul>
+            <ShowTile
+            key={show.id}
+            title={show.title}
+            date={show.date}
+            />
         )
     })
+
     return(
-        <div>
+        <ul className="callout">
             {upcomingShows}
-        </div>
+        </ul>
     )
 }
 

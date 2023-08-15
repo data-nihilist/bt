@@ -41,23 +41,6 @@ const VenueShow = (props) => {
         message = "you aren't signed in!" // some component encouraging non-active users to signup
     }
 
-    // const relatedShows = venue.shows.map((show) => {
-    //     return (
-    //         <li
-    //             className="callout"
-    //             key={show.id}
-    //         >
-    //             <h1>
-    //                 {show.title}
-    //             </h1>
-    //             <h3>
-    //                 {show.date}
-    //             </h3>
-    //         </li>
-    //     )
-    // })
-
-
     return (
         <div>
             <h1>
