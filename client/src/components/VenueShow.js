@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react"
+import ShowList from "./ShowList.js"
 
 const VenueShow = (props) => {
     const currentUser = props.user
@@ -48,12 +49,15 @@ const VenueShow = (props) => {
             <h1>
                 {venue.location}
             </h1>
-            <h1>
-                {venue.hostId}
-            </h1>
-            <h1>
-                {venue.shows}
-            </h1>
+            <hr></hr>
+            <ul>
+                <h1>
+                    Upcoming Shows @{venue.name}
+                </h1>
+                <ShowList
+                shows={venue.shows}
+                />
+            </ul>
             <h2>
                 {message}
             </h2>

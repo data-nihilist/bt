@@ -26,6 +26,7 @@ venuesRouter.get("/:id", async (req, res) => {
     const venueId = req.params.id
     try{
         const venue = await Venue.query().findById(venueId)
+        venue.shows = await venue.$relatedQuery("shows")
         return res.status(200).json({venue})
     }catch(error){
         return res.status(500).json({errors: error})
