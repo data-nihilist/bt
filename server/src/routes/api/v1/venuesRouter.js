@@ -22,4 +22,14 @@ venuesRouter.post("/", async (req, res) => {
         }
 })
 
+venuesRouter.get("/:id", async (req, res) => {
+    const venueId = req.params.id
+    try{
+        const venue = await Venue.query().findById(venueId)
+        return res.status(200).json({venue})
+    }catch(error){
+        return res.status(500).json({errors: error})
+    }
+})
+
 export default venuesRouter

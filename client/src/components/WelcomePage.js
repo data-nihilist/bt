@@ -7,48 +7,48 @@ const WelcomePage = (props) => {
     const signedInUser = props.user
 
     const [venues, setVenues] = useState([])
-    
+
     const getVenues = async () => {
-        try{
+        try {
             const response = await fetch("/api/v1/venues")
-            if(!response.ok) {
-                throw(new Error(`${response.status} (${response.statusText})`))
+            if (!response.ok) {
+                throw (new Error(`${response.status} (${response.statusText})`))
             }
             const responseBody = await response.json()
             setVenues(responseBody.venues)
-        }catch(error){
+        } catch (error) {
             console.error(`Error in fetch: ${error.message}`)
         }
     }
-    
+
     useEffect(() => {
         getVenues()
     }, [])
 
     let message = "Sign Up or Sign In to create a venue :D"
-    if(signedInUser) {
-    message =   <VenueForm
-                    signedInUser={signedInUser}
-                    venues={venues}
-                    setVenues={setVenues}
-                />
+    if (signedInUser) {
+        message = <VenueForm
+            signedInUser={signedInUser}
+            venues={venues}
+            setVenues={setVenues}
+        />
     }
 
-    return(
+    return (
         <div>
             <h1>
-                "yo yo yo from the welcome page"
+                Get.To.The.Gig.
             </h1>
-                <div>
+            <div>
                 <VenueList
-                    venues={venues}
                     signedInUser={signedInUser}
+                    venues={venues}
                     setVenues={setVenues}
                 />
-                </div>
-                <div>
-                    {message}
-                </div>
+            </div>
+            <div>
+                {message}
+            </div>
         </div>
     )
 }
