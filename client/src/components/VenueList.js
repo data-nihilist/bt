@@ -21,9 +21,14 @@ const VenueList = (props) => {
         )
     })
 
+    let message = "Currently Active Venues B)"
+    if(listOfVenues.length === 0){
+        message = "Aw jeez... looks like nobody is throwing any shows :c"
+    }
+
     return (
         <div>
-            <h1>Currently Active Venues B)</h1>
+            <h1>{message}</h1>
             <ul>
                 {listOfVenues}
             </ul>
