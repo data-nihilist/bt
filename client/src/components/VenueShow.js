@@ -68,10 +68,10 @@ const VenueShow = (props) => {
                 shows={venueShows}
                 />
             </ul>
-            <h2>
-                {message}
-                {componentToRender}
-            </h2>
+            { currentUser 
+                && currentUser.id === venue.hostId 
+                && <ShowForm venue={venue} shows={venueShows} setVenueShows={setVenueShows} />
+            }
         </div>
     )
 }

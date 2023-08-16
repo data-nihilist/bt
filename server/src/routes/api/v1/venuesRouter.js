@@ -1,13 +1,15 @@
 import express from "express"
 import Venue from "../../../models/Venue.js"
 import venueShowsRouter from "./venueShowsRouter.js"
+import VenueSerializer from "../../../db/serializers/VenueSerializer.js"
 
 const venuesRouter = new express.Router()
 
 venuesRouter.get("/", async (req, res) => {
     try{
         const venues = await Venue.query()
-        return res.status(200).json({venues})
+        const serializedVenues = await VenueSerializer.summarize(venues)
+        return res.status(200).json({ venues: serializedVenues})
     }catch(error){
         return res.status(500).json({errors: error})
     }
@@ -27,8 +29,10 @@ venuesRouter.get("/:id", async (req, res) => {
     const venueId = req.params.id
     try{
         const venue = await Venue.query().findById(venueId)
-        venue.shows = await venue.$relatedQuery("shows")
-        return res.status(200).json({venue})
+        // venue.shows = await venue.$relatedQuery("shows")
+        // return res.status(200).json({venue})
+        const serializedVenue = await VenueSerializer.withRelated(venue)
+        return res.status(200).json({ venue: serializedVenue })
     }catch(error){
         return res.status(500).json({errors: error})
     }
