@@ -15,11 +15,10 @@ venuesRouter.get("/", async (req, res) => {
 
 venuesRouter.post("/", async (req, res) => {
     const body = req.body
-    console.log(body)
         try{
             const newVenue = await Venue.query().insertAndFetch(body)
             return res.status(201).json({ newVenue })
-        }catch(error){
+        }catch(error) {
             return res.status(500).json({ errors: error })
         }
 })

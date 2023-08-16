@@ -24,8 +24,8 @@ const VenueForm = (props) => {
             if (!newVenue.ok) {
                 if (newVenue.status === 422) {
                     const body = await newVenue.json()
-                    const newErrors = translateServerErrors(body.errors)
-                    return setErrors(newErrors)
+                    errors = translateServerErrors(body.errors)
+                    return setErrors(errors)
                 } else {
                     throw (new Error(`${newVenue.status} (${newVenue.statusText})`))
                 }
@@ -87,7 +87,7 @@ const VenueForm = (props) => {
 
                 <div className="button-group">
                     <input className="button" type="submit" value="Create Venue" />
-                    <input className="button" type="button" onClick={clearForm} value="Clear Form" />
+                    <input className="button" type="button" onClick={clearForm} value="Reset" />
                 </div>
             </form>
         </div>
