@@ -4,7 +4,7 @@ import VenueForm from "./VenueForm"
 
 
 const WelcomePage = (props) => {
-    const signedInUser = props.user
+    const currentUser = props.user
 
     const [venues, setVenues] = useState([])
 
@@ -26,9 +26,9 @@ const WelcomePage = (props) => {
     }, [])
 
     let message = "Sign Up or Sign In to create a venue :D"
-    if (signedInUser) {
+    if (currentUser) {
         message = <VenueForm
-            signedInUser={signedInUser}
+            currentUser={currentUser}
             venues={venues}
             setVenues={setVenues}
         />

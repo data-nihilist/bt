@@ -1,14 +1,15 @@
 import React, { useState, useEffect } from "react"
+import ShowList from "./ShowList.js"
+import ShowForm from "./ShowForm.js"
 
 const VenueShow = (props) => {
-    const currentUser = props.user
     const [venue, setVenue] = useState({
         name: "",
         location: "",
         hostId: null,
-        shows: [] // yet to build out this model/component-tree/migration
     })
-
+    const [venueShows, setVenueShows] = useState([])
+    
     const venueId = props.match.params.id
 
     const getVenue = async () => {
@@ -19,27 +20,37 @@ const VenueShow = (props) => {
             }
             const body = await response.json()
             setVenue(body.venue)
+            setVenueShows(body.venue.shows)
         } catch (error) {
             console.error(`Error in fetch: ${error.message}`)
         }
     }
-
+    
     useEffect(() => {
         getVenue()
     }, [])
-
+    
+//----------------------------------------------------------registered user && venue ownership confirmation
+    const currentUser = props.user    
     let message;
+    let currentUserId = null
+    let componentToRender;
     if (currentUser) {
-        message = "thank you for signing in :)" // some component that encourages active users to become a host
-        if (currentUser.id === venue.hostId) {
-            message = "your venue awaits! We should have shows..." // button that will lead to a show form page for this venue
-        } else {
-            message = "heeeey this ain't your venue! Thats okay :)" // same as first iteration
+        // some component that encourages active and registered users to become a host
+        message = "Thank you for signing in :) This either isn't your venue OR... you should be a host (create a venue)!"
+        currentUserId = currentUser.id
+        if(currentUserId === venue.hostId) {
+            message = "your venue awaits, m'lord! It's showtime B)"
+            componentToRender = <ShowForm
+            venue={venue}
+            shows={venueShows}
+            setVenueShows={setVenueShows}
+            />
         }
     } else {
-        message = "you aren't signed in!" // some component encouraging non-active users to signup
+            message = "Next time you're online, consider signing up so you can throw a show of your own!"
     }
-
+//--------------------------------------------------------------------------------------------------------
     return (
         <div>
             <h1>
@@ -48,14 +59,18 @@ const VenueShow = (props) => {
             <h1>
                 {venue.location}
             </h1>
-            <h1>
-                {venue.hostId}
-            </h1>
-            <h1>
-                {venue.shows}
-            </h1>
+            <hr></hr>
+            <ul>
+                <h1>
+                    Upcoming Shows @{venue.name}
+                </h1>
+                <ShowList
+                shows={venueShows}
+                />
+            </ul>
             <h2>
                 {message}
+                {componentToRender}
             </h2>
         </div>
     )

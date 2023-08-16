@@ -2,9 +2,8 @@ import React, { useState } from "react"
 import translateServerErrors from "../services/translateServerErrors";
 
 const VenueForm = (props) => {
-
     const [venueRecord, setVenueRecord] = useState({
-        hostId: props.signedInUser.id,
+        hostId: props.currentUser.id,
         name: "",
         location: "",
     })
@@ -25,8 +24,8 @@ const VenueForm = (props) => {
             if (!newVenue.ok) {
                 if (newVenue.status === 422) {
                     const body = await newVenue.json()
-                    const newErrors = translateServerErrors(body.errors)
-                    return setErrors(newErrors)
+                    errors = translateServerErrors(body.errors)
+                    return setErrors(errors)
                 } else {
                     throw (new Error(`${newVenue.status} (${newVenue.statusText})`))
                 }
@@ -67,7 +66,7 @@ const VenueForm = (props) => {
                 <h1 className="card-title">Add Your Venue</h1>
                 <form className="card" onSubmit={handleSubmit}>
                     <div className="mb-2">
-                        <label classname="card-body" htmlFor="name">
+                        <label className="card-body" htmlFor="name">
                             Venue Name
                             <input
                                 id="name"
@@ -94,7 +93,8 @@ const VenueForm = (props) => {
                     </div>
 
                     <div className="button-group">
-                        <input className="special-button bg-green mb-1" type="submit" value="Create Venue" />
+                        <input className="button" type="submit" value="Create Venue" />
+                        <input className="button" type="button" onClick={clearForm} value="Reset" />
                     </div>
                 </form>
             </div>

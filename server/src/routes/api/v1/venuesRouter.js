@@ -1,5 +1,6 @@
 import express from "express"
 import Venue from "../../../models/Venue.js"
+import venueShowsRouter from "./venueShowsRouter.js"
 
 const venuesRouter = new express.Router()
 
@@ -17,7 +18,7 @@ venuesRouter.post("/", async (req, res) => {
         try{
             const newVenue = await Venue.query().insertAndFetch(body)
             return res.status(201).json({ newVenue })
-        }catch(error){
+        }catch(error) {
             return res.status(500).json({ errors: error })
         }
 })
@@ -26,10 +27,13 @@ venuesRouter.get("/:id", async (req, res) => {
     const venueId = req.params.id
     try{
         const venue = await Venue.query().findById(venueId)
+        venue.shows = await venue.$relatedQuery("shows")
         return res.status(200).json({venue})
     }catch(error){
         return res.status(500).json({errors: error})
     }
 })
+
+venuesRouter.use("/:venueId/shows", venueShowsRouter)
 
 export default venuesRouter
