@@ -19,7 +19,8 @@ const TopBar = ({ user }) => {
   ];
 
   const authenticatedListItems = [
-    <li key="sign-out">
+    <li key="sign-out"
+    className="justify-flex-end">
       <SignOutButton />
     </li>,
   ];
@@ -27,7 +28,7 @@ const TopBar = ({ user }) => {
   return (
     <div className="card bg-black text-white">
       <div className="font-md row">
-          <div className="btn-complement-green">
+          <div className=" row justify-center btn-complement-green">
             <Link to="/">GTTG</Link>
           </div>
       <ul className="ml-top-bar">{user ? authenticatedListItems : unauthenticatedListItems}</ul>

@@ -35,10 +35,10 @@ const WelcomePage = (props) => {
     }
 
     return (
-        <div>
+        <div className="row gap-2 justify-flex-end">
             <div className="card container">
                 <div className="card bg-black text-white">
-                    <h1 className="bg-black text-white card-title-justify">
+                    <h1 className="bg-black text-white card-title">
                         "yo yo yo from the welcome page"
                     </h1>
                     <div className="card-body">
