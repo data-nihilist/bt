@@ -2,9 +2,8 @@ import React, { useState } from "react"
 import translateServerErrors from "../services/translateServerErrors";
 
 const VenueForm = (props) => {
-
     const [venueRecord, setVenueRecord] = useState({
-        hostId: props.signedInUser.id,
+        hostId: props.currentUser.id,
         name: "",
         location: "",
     })
@@ -88,6 +87,7 @@ const VenueForm = (props) => {
 
                 <div className="button-group">
                     <input className="button" type="submit" value="Create Venue" />
+                    <input className="button" type="button" onClick={clearForm} value="Clear Form" />
                 </div>
             </form>
         </div>
