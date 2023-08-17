@@ -1,19 +1,19 @@
 import React from "react"
 
-const ShowTile = ({id, title, date, image}) => {
+const ShowTile = ({ title, date, image, doors }) => {
     return (
-        <li
-        key={id}
-        className="callout"
-        >
+        <>
             <h1>
                 {title}
             </h1>
-            <img src={image} />
+            <img src={image} className="imageTile" />
             <h4>
                 {date}
             </h4>
-        </li>
+            <h1>
+                DOORS @ {doors}
+            </h1>
+        </>
     )
 }
 
