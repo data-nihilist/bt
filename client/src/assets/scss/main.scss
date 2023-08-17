@@ -11,3 +11,15 @@
   -moz-tab-size: 4;
   tab-size: 4;
 }
+.imageShow {
+  object-fit:fill;
+  // height: 1100px;
+  // width: 850px;
+  border-radius: 100px;
+}
+
+.imageTile {
+  object-fit: scale-down;
+  width: 200px;
+  height: 200px;
+}

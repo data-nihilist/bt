@@ -4,8 +4,8 @@ import getClientIndexPath from "../config/getClientIndexPath.js";
 const router = new express.Router();
 
 const clientRoutes = [
-  "/",
-  "/:id",
+  "/venues",
+  "/venues/:id",
   "/:venueId/shows",
   "/user-sessions/new",
   "/users/new"

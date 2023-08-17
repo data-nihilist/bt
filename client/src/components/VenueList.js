@@ -10,7 +10,7 @@ const VenueList = (props) => {
                 key={venue.id}
                 className="callout"
             >
-                <Link to={`/${venue.id}`}>
+                <Link to={`/venues/${venue.id}`}>
                     <VenueTile
                         id={venue.id}
                         name={venue.name}

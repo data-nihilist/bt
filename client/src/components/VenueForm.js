@@ -7,17 +7,15 @@ const VenueForm = (props) => {
         hostId: props.currentUser.id,
         name: "",
         location: "",
-        image: "",
+        image: ""
     })
-
-    const venues = props.venues
 
     const [errors, setErrors] = useState({})
 
     const addVenue = async () => {
         const venueFormData = new FormData();
         venueFormData.append("hostId", venueRecord.hostId)
-        venueFormData.append("name", venueRecord.name);
+        venueFormData.append("name", venueRecord.name)
         venueFormData.append("location", venueRecord.location)
         venueFormData.append("image", venueRecord.image)
 
@@ -43,34 +41,6 @@ const VenueForm = (props) => {
         }
     }
 
-    // const addVenue = async (formData) => {
-    //     try {
-    //         const newVenue = await fetch("/api/v1/venues", {
-    //             method: "POST",
-    //             headers: new Headers({
-    //                 "Content-Type": "application/json",
-    //             }),
-    //             body: JSON.stringify(formData)
-    //         })
-    //         if (!newVenue.ok) {
-    //             if (newVenue.status === 422) {
-    //                 const body = await newVenue.json()
-    //                 errors = translateServerErrors(body.errors)
-    //                 return setErrors(errors)
-    //             } else {
-    //                 throw (new Error(`${newVenue.status} (${newVenue.statusText})`))
-    //             }
-    //         } else {
-    //             const body = await newVenue.json()
-    //             const venueData = venues.concat(body.newVenue)
-    //             setErrors({})
-    //             props.setVenues(venueData) ***
-    //         }
-    //     } catch (error) {
-    //         console.error(`Error in fetch: ${error.message}`)
-    //     }
-    // }
-
     const handleInputChange = (event) => {
         setVenueRecord({
             ...venueRecord,
@@ -90,15 +60,13 @@ const VenueForm = (props) => {
             ...venueRecord,
             image: acceptedVenueImage[0],
         })
-        console.log(venueRecord.image)
     }
 
     const handleSubmit = (event) => {
         event.preventDefault()
         addVenue()
-        // clearForm()
+        clearForm()
     }
-
 
     return (
         <div>

@@ -3,7 +3,7 @@ import ShowSerializer from "./ShowSerializer.js"
 class VenueSerializer {
     static async summarize(array) {
         const serializedVenues = array.map((venue) => {
-            const requiredAttributes = [
+            const desiredAttributes = [
                 "id",
                 "name",
                 "location",
@@ -12,7 +12,7 @@ class VenueSerializer {
             ];
     
             let serializedVenue = {};
-            for (const attribute of requiredAttributes) {
+            for (const attribute of desiredAttributes) {
                 serializedVenue[attribute] = venue[attribute]
             }
 
@@ -24,7 +24,7 @@ class VenueSerializer {
 
     static async withRelated(venue) {
 
-            const requiredAttributes = [
+            const desiredAttributes = [
                 "id",
                 "name",
                 "location",
@@ -33,7 +33,7 @@ class VenueSerializer {
             ];
     
             let serializedVenue = {};
-            for (const attribute of requiredAttributes) {
+            for (const attribute of desiredAttributes) {
                 serializedVenue[attribute] = venue[attribute]
             }
 

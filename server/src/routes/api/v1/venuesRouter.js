@@ -15,15 +15,6 @@ venuesRouter.get("/", async (req, res) => {
         return res.status(500).json({errors: error})
     }
 })
-// venuesRouter.post("/", async (req, res) => {
-    // const body = req.body
-    //     try{
-    //         const newVenue = await Venue.query().insertAndFetch(body)
-    //         return res.status(201).json({ newVenue })
-    //     }catch(error) {
-    //         return res.status(500).json({ errors: error })
-    //     }
-// })
 
 venuesRouter.post("/", uploadImage.single("image"), async (req, res) => {
     try{
@@ -32,10 +23,9 @@ venuesRouter.post("/", uploadImage.single("image"), async (req, res) => {
             ...body,
             image: req.file.location,
         }
-        console.log(req.file.location)
         const newVenue = await Venue.query().insertAndFetch(data);
-        console.log(newVenue)
-        return res.status(201).json({ newVenue })
+        const serializedVenue = await VenueSerializer.summarize(newVenue)
+        return res.status(201).json({ newVenue: serializedVenue })
     } catch(error) {
         return res.status(500).json({ errors: error })
     }
@@ -45,8 +35,6 @@ venuesRouter.get("/:id", async (req, res) => {
     const venueId = req.params.id
     try{
         const venue = await Venue.query().findById(venueId)
-        // venue.shows = await venue.$relatedQuery("shows")
-        // return res.status(200).json({venue})
         const serializedVenue = await VenueSerializer.withRelated(venue)
         return res.status(200).json({ venue: serializedVenue })
     }catch(error){

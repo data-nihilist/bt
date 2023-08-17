@@ -29,7 +29,6 @@ const WelcomePage = (props) => {
     if (currentUser) {
         message = <VenueForm
             currentUser={currentUser}
-            venues={venues}
             setVenues={setVenues}
         />
     }
