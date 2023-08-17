@@ -6,39 +6,32 @@ const VenueList = (props) => {
 
     const listOfVenues = props.venues.map(venue => {
         return (
-            <div classname="card">
-                <ul>
-                    <li
-                    className="card-title"
-                    key={venue.id}
-                    >
-                        {venue.name}
-                    </li>
-                        <p className="card-body">
-                            {venue.location}
-                        </p>
-                </ul>
+            <div
+                className="callout"
+            >
+                    <Link to={`/venues/${venue.id}`}>
+                        <VenueTile
+                            id={venue.id}
+                            name={venue.name}
+                            location={venue.location}
+                            image={venue.image}
+                        />
+                    </Link>
             </div>
         )
     })
-    let message = "Sign Up or Sign In to create a venue :D"
-    if(signedInUser) {
-    message =   <VenueForm
-                    signedInUser={signedInUser}
-                    venues={venues}
-                    setVenues={props.setVenues}
-                />
+
+    let message = "Currently Active Venues B)"
+    if (listOfVenues.length === 0) {
+        message = "Aw jeez... looks like nobody is throwing any shows :c"
     }
-    
-    return(
-        <div className="card">
-            <h1 className="card-title">
-                Currently Active Venues
-            </h1>
-            <div className="card">
-            {listOfVenues}
+
+    return (
+        <div>
+            <h1>{message}</h1>
+            <div>
+                {listOfVenues}
             </div>
-            {message}
         </div>
     )
 }

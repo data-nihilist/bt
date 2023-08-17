@@ -7,9 +7,10 @@ const VenueShow = (props) => {
         name: "",
         location: "",
         hostId: null,
+        image: ""
     })
     const [venueShows, setVenueShows] = useState([])
-    
+
     const venueId = props.match.params.id
 
     const getVenue = async () => {
@@ -25,13 +26,13 @@ const VenueShow = (props) => {
             console.error(`Error in fetch: ${error.message}`)
         }
     }
-    
+
     useEffect(() => {
         getVenue()
     }, [])
-    
-//----------------------------------------------------------registered user && venue ownership confirmation
-    const currentUser = props.user    
+
+    //----------------------------------------------------------registered user && venue ownership confirmation
+    const currentUser = props.user
     let message;
     let currentUserId = null
     let componentToRender;
@@ -39,18 +40,18 @@ const VenueShow = (props) => {
         // some component that encourages active and registered users to become a host
         message = "Thank you for signing in :) This either isn't your venue OR... you should be a host (create a venue)!"
         currentUserId = currentUser.id
-        if(currentUserId === venue.hostId) {
+        if (currentUserId === venue.hostId) {
             message = "your venue awaits, m'lord! It's showtime B)"
             componentToRender = <ShowForm
-            venue={venue}
-            shows={venueShows}
-            setVenueShows={setVenueShows}
+                venue={venue}
+                shows={venueShows}
+                setVenueShows={setVenueShows}
             />
         }
     } else {
-            message = "Next time you're online, consider signing up so you can throw a show of your own!"
+        message = "Next time you're online, consider signing up so you can throw a show of your own!"
     }
-//--------------------------------------------------------------------------------------------------------
+    //--------------------------------------------------------------------------------------------------------
     return (
         <div>
             <h1>
@@ -59,19 +60,22 @@ const VenueShow = (props) => {
             <h1>
                 {venue.location}
             </h1>
+            <div className="imageShow">
+                <img src={venue.image} />
+            </div>
             <hr></hr>
             <ul>
                 <h1>
                     Upcoming Shows @{venue.name}
                 </h1>
                 <ShowList
-                shows={venueShows}
+                    shows={venueShows}
                 />
             </ul>
-            <h2>
-                {message}
-                {componentToRender}
-            </h2>
+            {currentUser
+                && currentUser.id === venue.hostId
+                && <ShowForm venue={venue} shows={venueShows} setVenueShows={setVenueShows} />
+            }
         </div>
     )
 }

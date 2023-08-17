@@ -115,40 +115,22 @@
   }
 }
 
-$grid__bp--md: 768;
-$grid__cols: 12;
-
-.garrettsGodBox {
-
-  max-width: $grid__bp--md * 1px;
-  margin: 0 auto;
-
-  &--fluid {
-    margin: 0;
-    max-width: 100%;
-  }
-
-  &__row {
-    display: flex;
-    flex-wrap: wrap;
-    width: 100%;
-  }
-
-  @for $i from 1 through $grid__cols {
-    &__col-sm-#{$i} {
-      flex-basis: (100 / ($grid__cols / $i)) * 1%;
-    }
-  }
-
-  @for $i from 1 through $grid__cols {
-    &__col-md-#{$i} {
-      flex-basis: (100 / ($grid__cols / $i)) * 1%;
-    }
-  }
-}
 
 .item-1 {
   position: absolute;
   top: 0px;
   // left: 0px;
+}
+
+.imageShow {
+  object-fit:fill;
+  // height: 1100px;
+  // width: 850px;
+  border-radius: 100px;
+}
+
+.imageTile {
+  object-fit: scale-down;
+  width: 200px;
+  height: 200px;
 }

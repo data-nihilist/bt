@@ -11,7 +11,8 @@ class Venue extends Model {
             required: ["name", "location"],
             properties: {
                 name: { type: "string" },
-                location: { type: "string" }
+                location: { type: "string" },
+                image: { type: "string" }
             }
         }
     }

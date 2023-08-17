@@ -29,8 +29,8 @@ const App = (props) => {
     <Router>
       <TopBar user={currentUser} />
       <Switch>
-        <Route exact path="/:id" render={(props) => <VenueShow user={currentUser} {...props} />} />
-        <Route exact path="/" render={(props) => <WelcomePage user={currentUser} {...props} />} />
+        <Route exact path="/venues" render={(props) => <WelcomePage user={currentUser} {...props} />} />
+        <Route exact path="/venues/:id" render={(props) => <VenueShow user={currentUser} {...props} />} />
         <Route exact path="/users/new" component={RegistrationForm} />
         <Route exact path="/user-sessions/new" component={SignInForm} />
       </Switch>
