@@ -20,7 +20,7 @@ const development = {
 
 const production = {
   ...development,
-  s3Bucket: { name: process.env.S3_BUCKET_PRODUCTION }
+  s3Bucket: { name: process.env.S3_BUCKET_DEVELOPMENT }
 }
 
 const config = { production, development }

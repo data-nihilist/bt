@@ -24,7 +24,7 @@ venuesRouter.post("/", uploadImage.single("image"), async (req, res) => {
             image: req.file.location,
         }
         const newVenue = await Venue.query().insertAndFetch(data);
-        const serializedVenue = await VenueSerializer.summarize(newVenue)
+        const serializedVenue = VenueSerializer.withRelated(newVenue)
         return res.status(201).json({ newVenue: serializedVenue })
     } catch(error) {
         return res.status(500).json({ errors: error })
