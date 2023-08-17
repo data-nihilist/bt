@@ -9,6 +9,7 @@ const ShowList = ({shows}) => {
             key={show.id}
             title={show.title}
             date={show.date}
+            image={show.image}
             />
         )
     })

@@ -1,6 +1,6 @@
 import React from "react"
 
-const ShowTile = ({id, title, date}) => {
+const ShowTile = ({id, title, date, image}) => {
     return (
         <li
         key={id}
@@ -9,6 +9,7 @@ const ShowTile = ({id, title, date}) => {
             <h1>
                 {title}
             </h1>
+            <img src={image} />
             <h4>
                 {date}
             </h4>
