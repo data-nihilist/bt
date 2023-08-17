@@ -52,7 +52,6 @@ const VenueShow = (props) => {
         message = "Next time you're online, consider signing up so you can throw a show of your own!"
     }
     //--------------------------------------------------------------------------------------------------------
-    console.log(venue)
     return (
         <div>
             <h1>

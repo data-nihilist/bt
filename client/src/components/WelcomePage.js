@@ -30,6 +30,7 @@ const WelcomePage = (props) => {
         message = <VenueForm
             currentUser={currentUser}
             setVenues={setVenues}
+            venues={venues}
         />
     }
 
@@ -45,9 +46,9 @@ const WelcomePage = (props) => {
                     setVenues={setVenues}
                 />
             </div>
-            <div>
+            <h1>
                 {message}
-            </div>
+            </h1>
         </div>
     )
 }

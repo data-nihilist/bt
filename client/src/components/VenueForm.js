@@ -11,6 +11,7 @@ const VenueForm = (props) => {
     })
 
     const [errors, setErrors] = useState({})
+    const [redirect, shouldRedirect] = useState(false)
 
     const addVenue = async () => {
         const venueFormData = new FormData();
@@ -36,6 +37,7 @@ const VenueForm = (props) => {
                     throw (new Error(`${newVenue.status} (${newVenue.statusText})`))
                 }
             }
+            shouldRedirect(true)
         } catch (error) {
             console.error(`Error in fetch: ${error.message}`)
         }
@@ -52,6 +54,7 @@ const VenueForm = (props) => {
         setVenueRecord({
             name: "",
             location: "",
+            image: ""
         })
     }
     
@@ -66,6 +69,10 @@ const VenueForm = (props) => {
         event.preventDefault()
         addVenue()
         clearForm()
+    }
+
+    if (redirect) {
+        location.href = `/venues/${props.venues.length + 1}`;
     }
 
     return (
