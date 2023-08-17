@@ -15,6 +15,7 @@ const VenueList = (props) => {
                         id={venue.id}
                         name={venue.name}
                         location={venue.location}
+                        image={venue.image}
                     />
                 </Link>
             </div>

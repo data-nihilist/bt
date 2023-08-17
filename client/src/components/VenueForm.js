@@ -1,44 +1,75 @@
 import React, { useState } from "react"
 import translateServerErrors from "../services/translateServerErrors";
+import Dropzone from "react-dropzone"
 
 const VenueForm = (props) => {
     const [venueRecord, setVenueRecord] = useState({
         hostId: props.currentUser.id,
         name: "",
         location: "",
+        image: "",
     })
 
     const venues = props.venues
 
     const [errors, setErrors] = useState({})
 
-    const addVenue = async (formData) => {
+    const addVenue = async () => {
+        const venueFormData = new FormData();
+        venueFormData.append("hostId", venueRecord.hostId)
+        venueFormData.append("name", venueRecord.name);
+        venueFormData.append("location", venueRecord.location)
+        venueFormData.append("image", venueRecord.image)
+
         try {
             const newVenue = await fetch("/api/v1/venues", {
                 method: "POST",
-                headers: new Headers({
-                    "Content-Type": "application/json",
-                }),
-                body: JSON.stringify(formData)
-            })
+                headers: {
+                    Accept: "image/jpeg",
+                },
+                body: venueFormData
+            });
             if (!newVenue.ok) {
                 if (newVenue.status === 422) {
-                    const body = await newVenue.json()
-                    errors = translateServerErrors(body.errors)
-                    return setErrors(errors)
+                    const body = await response.json()
+                    const newErrors = translateServerErrors(body.error);
+                    return setErrors(newErrors)
                 } else {
                     throw (new Error(`${newVenue.status} (${newVenue.statusText})`))
                 }
-            } else {
-                const body = await newVenue.json()
-                const venueData = venues.concat(body.newVenue)
-                setErrors({})
-                props.setVenues(venueData)
             }
         } catch (error) {
             console.error(`Error in fetch: ${error.message}`)
         }
     }
+
+    // const addVenue = async (formData) => {
+    //     try {
+    //         const newVenue = await fetch("/api/v1/venues", {
+    //             method: "POST",
+    //             headers: new Headers({
+    //                 "Content-Type": "application/json",
+    //             }),
+    //             body: JSON.stringify(formData)
+    //         })
+    //         if (!newVenue.ok) {
+    //             if (newVenue.status === 422) {
+    //                 const body = await newVenue.json()
+    //                 errors = translateServerErrors(body.errors)
+    //                 return setErrors(errors)
+    //             } else {
+    //                 throw (new Error(`${newVenue.status} (${newVenue.statusText})`))
+    //             }
+    //         } else {
+    //             const body = await newVenue.json()
+    //             const venueData = venues.concat(body.newVenue)
+    //             setErrors({})
+    //             props.setVenues(venueData) ***
+    //         }
+    //     } catch (error) {
+    //         console.error(`Error in fetch: ${error.message}`)
+    //     }
+    // }
 
     const handleInputChange = (event) => {
         setVenueRecord({
@@ -50,14 +81,22 @@ const VenueForm = (props) => {
     const clearForm = (event) => {
         setVenueRecord({
             name: "",
-            location: ""
+            location: "",
         })
+    }
+    
+    const handleVenueImageUpload = (acceptedVenueImage) => {
+    setVenueRecord({
+            ...venueRecord,
+            image: acceptedVenueImage[0],
+        })
+        console.log(venueRecord.image)
     }
 
     const handleSubmit = (event) => {
         event.preventDefault()
-        addVenue(venueRecord)
-        clearForm()
+        addVenue()
+        // clearForm()
     }
 
 
@@ -84,7 +123,16 @@ const VenueForm = (props) => {
                         onChange={handleInputChange}
                     />
                 </label>
-
+                <Dropzone onDrop={handleVenueImageUpload}>
+                    {({ getRootProps, getInputProps }) => (
+                        <section>
+                            <div {...getRootProps()}>
+                                <input {...getInputProps()} />
+                                <p className="button">Add Picture (optional)</p>
+                            </div>
+                        </section>
+                    )}
+                </Dropzone>
                 <div className="button-group">
                     <input className="button" type="submit" value="Create Venue" />
                     <input className="button" type="button" onClick={clearForm} value="Reset" />

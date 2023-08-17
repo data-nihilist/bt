@@ -7,7 +7,8 @@ class VenueSerializer {
                 "id",
                 "name",
                 "location",
-                "hostId"
+                "hostId",
+                "image"
             ];
     
             let serializedVenue = {};
@@ -27,7 +28,8 @@ class VenueSerializer {
                 "id",
                 "name",
                 "location",
-                "hostId"
+                "hostId",
+                "image"
             ];
     
             let serializedVenue = {};

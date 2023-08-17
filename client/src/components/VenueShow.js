@@ -7,6 +7,7 @@ const VenueShow = (props) => {
         name: "",
         location: "",
         hostId: null,
+        image: ""
     })
     const [venueShows, setVenueShows] = useState([])
     
@@ -51,8 +52,10 @@ const VenueShow = (props) => {
             message = "Next time you're online, consider signing up so you can throw a show of your own!"
     }
 //--------------------------------------------------------------------------------------------------------
+console.log(venue)
     return (
         <div>
+            <img src={venue.image} />
             <h1>
                 {venue.name}
             </h1>

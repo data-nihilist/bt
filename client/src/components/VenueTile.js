@@ -1,6 +1,6 @@
 import React from "react"
 
-const VenueTile = ({name, location}) => {
+const VenueTile = ({name, location, image}) => {
     return(
         <div>
             <h2>
