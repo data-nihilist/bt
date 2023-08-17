@@ -2,7 +2,7 @@ class ShowSerializer {
     static async summarize(array) {
         const serializedShows = await Promise.all(
             array.map( async (show) => {
-                const requiredAttributes = ["id", "title", "date", "venueId", "hostId"]
+                const requiredAttributes = ["id", "title", "date", "venueId", "hostId", "image"]
 
                 let serializedShow = {}
                 for(const attribute of requiredAttributes) {

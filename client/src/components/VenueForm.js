@@ -30,7 +30,7 @@ const VenueForm = (props) => {
             });
             if (!newVenue.ok) {
                 if (newVenue.status === 422) {
-                    const body = await response.json()
+                    const body = await newVenue.json()
                     const newErrors = translateServerErrors(body.error);
                     return setErrors(newErrors)
                 } else {
