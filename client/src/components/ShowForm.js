@@ -6,6 +6,7 @@ const ShowForm = (props) => {
     const [showRecord, setShowRecord] = useState({
         title: "",
         date: "",
+        doors: "",
         image: ""
     })
 
@@ -14,38 +15,11 @@ const ShowForm = (props) => {
 
     const [errors, setErrors] = useState({})
 
-    // const addShowToVenue = async (formData) => {
-    //     try{
-    //         const newShow = await fetch(`/api/v1/venues/${venue.id}/shows`, {
-    //             method: "POST",
-    //             headers: new Headers({
-    //                 "Content-Type": "application/json",
-    //             }),
-    //             body: JSON.stringify(formData)
-    //         })
-    //         if(!newShow.ok) {
-    //             if (newShow.status === 422) {
-    //                 const body = await newShow.json()
-    //                 errors = translateServerErrors(body.errors)
-    //                 return setErrors(errors)
-    //             } else {
-    //                 throw (new Error(`${newShow.status} (${newShow.statusText})`))
-    //             }
-    //         } else {
-    //             const body = await newShow.json()
-    //             const showData = shows.concat(body.newShow)
-    //             setErrors({})
-    //             props.setVenueShows(showData)
-    //         }
-    //     }catch(error){
-    //         console.error(`Error in fetch: ${error.message}`)
-    //     }
-    // }
-
     const addShowToVenue = async () => {
         const showFormData = new FormData();
         showFormData.append("title", showRecord.title)
         showFormData.append("date", showRecord.date)
+        showFormData.append("doors", showRecord.doors)
         showFormData.append("image", showRecord.image)
 
         try {
@@ -82,6 +56,7 @@ const ShowForm = (props) => {
         setShowRecord({
             title: "",
             date: "",
+            doors: "",
             image: ""
         })
     }
@@ -99,6 +74,30 @@ const ShowForm = (props) => {
         addShowToVenue()
         clearForm()
     }
+//-----------------------------------------------------DOORS
+    const times = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12"];
+    const timeOptionsPM = times.map((time) => {
+        return(
+            <>
+                <option value={`${time}AM`}>{`${time} PM`}</option>
+            </>
+        )
+    })
+    const timeOptionsAM = times.map((time) => {
+        return(
+            <>
+                <option value={`${time}PM`}>{`${time} AM`}</option>
+            </>
+        )
+    })
+//     <input
+//     id="doors"
+//     type="text"
+//     name="doors"
+//     value={showRecord.doors}
+//     onChange={handleInputChange}
+// />
+//----------------------------------------------------------
 
     return (
         <div>
@@ -122,6 +121,13 @@ const ShowForm = (props) => {
                         value={showRecord.date}
                         onChange={handleInputChange}
                     />
+                </label>
+                <label htmlFor="doors">DOORS @
+                <select name="doors" id="doors">
+                    <option value="">--Select Time--</option>
+                    {timeOptionsPM}
+                    {timeOptionsAM}
+                </select>
                 </label>
                 <Dropzone onDrop={handleShowImageUpload}>
                     {({ getRootProps, getInputProps }) => (

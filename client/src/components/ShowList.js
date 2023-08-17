@@ -10,14 +10,15 @@ const ShowList = ({shows}) => {
             title={show.title}
             date={show.date}
             image={show.image}
+            doors={show.doors}
             />
         )
     })
 
     return(
-        <ul className="callout">
+        <div className="callout">
             {upcomingShows}
-        </ul>
+        </div>
     )
 }
 
