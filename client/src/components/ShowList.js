@@ -1,23 +1,31 @@
 import React from "react"
 import ShowTile from "./ShowTile.js"
 
-const ShowList = ({shows}) => {
+const ShowList = ({ shows }) => {
 
     const upcomingShows = shows.map((show) => {
         return (
-            <ShowTile
-            key={show.id}
-            title={show.title}
-            date={show.date}
-            image={show.image}
-            doors={show.doors}
-            />
+            <div>
+                    <li
+                        key={show.id}
+                    >
+                        <ShowTile
+                            title={show.title}
+                            date={show.date}
+                            image={show.image}
+                            doors={show.doors}
+                        />
+                        <hr></hr>
+                    </li>
+            </div>
         )
     })
 
-    return(
+    return (
         <div className="callout">
-            {upcomingShows}
+            <ul>
+                {upcomingShows}
+            </ul>
         </div>
     )
 }

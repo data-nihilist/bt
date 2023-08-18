@@ -69,9 +69,11 @@ const VenueShow = (props) => {
                 <h1>
                     Upcoming Shows @{venue.name}
                 </h1>
-                <ShowList
-                    shows={venueShows}
-                />
+                <ul>
+                    <ShowList
+                        shows={venueShows}
+                    />
+                </ul>
             </>
             {currentUser
                 && currentUser.id === venue.hostId
