@@ -5,12 +5,12 @@ import uploadImage from "../../../db/services/uploadImage.js"
 
 const venueShowsRouter = new express.Router({mergeParams: true})
 
-venueShowsRouter.get("/", async (req, res) => {
-    console.log(req.params)
+venueShowsRouter.get("/:id", async (req, res) => {
+    const showId = req.params.id
     try{
-        const shows = await Show.query()
-        const serializedShows = await ShowSerializer.summarize(shows)
-        return res.status(200).json({serializedShows})
+        const show = await Show.query().findById(showId)
+        const serializedShow = await ShowSerializer.getInfo(show)
+        return res.status(200).json({serializedShow})
     }catch(error){
         return res.status(500).json({errors: error})
     }

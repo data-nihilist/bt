@@ -2,8 +2,7 @@ import React from "react"
 import ShowTile from "./ShowTile.js"
 import { Link } from "react-router-dom"
 
-const ShowList = ({ venueId, shows}) => {
-
+const ShowList = ({venueId, shows}) => {
     const upcomingShows = shows.map((show) => {
         return (
             <div>
@@ -17,6 +16,7 @@ const ShowList = ({ venueId, shows}) => {
                             date={show.date}
                             image={show.image}
                             doors={show.doors}
+                            shows={shows}
                         />
                     </Link>
                         <hr></hr>

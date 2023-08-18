@@ -12,14 +12,32 @@ class ShowSerializer {
                     "doors"
                 ]
 
-                let serializedShow = {}
+                let serializedShows = {}
                 for (const attribute of requiredAttributes) {
-                    serializedShow[attribute] = show[attribute]
+                    serializedShows[attribute] = show[attribute]
                 }
-                return serializedShow
+                return serializedShows
             })
         );
         return serializedShows
+    }
+
+    static async getInfo(show) {
+        const requiredAttributes = [
+            "id",
+            "title",
+            "date",
+            "venueId",
+            "hostId",
+            "image",
+            "doors"
+        ]
+
+        let serializedShow = {}
+        for (const attribute of requiredAttributes) {
+            serializedShow[attribute] = show[attribute]
+        }
+        return serializedShow
     }
 }
 
