@@ -41,6 +41,6 @@ venuesRouter.get("/:id", async (req, res) => {
     }
 })
 
-venuesRouter.use("/:venueId/shows", venueShowsRouter)
+venuesRouter.use("/:id/shows", venueShowsRouter)
 
 export default venuesRouter

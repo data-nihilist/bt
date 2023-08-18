@@ -6,6 +6,7 @@ import uploadImage from "../../../db/services/uploadImage.js"
 const venueShowsRouter = new express.Router({mergeParams: true})
 
 venueShowsRouter.get("/", async (req, res) => {
+    console.log(req.params)
     try{
         const shows = await Show.query()
         const serializedShows = await ShowSerializer.summarize(shows)
@@ -25,10 +26,7 @@ venueShowsRouter.post("/", uploadImage.single("image"), async (req, res) => {
             ...body,
             image: req.file.location,
         }
-<<<<<<< HEAD
-=======
         console.log("I'm the show you're looking for!: ", data)
->>>>>>> 91c5d1031174c5b07c63d68b6a09c1a9bb3f261b
         const newShow = await Show.query().insertAndFetch(data)
         console.log("The new show will use me!", data)
         console.log("I'm the new show!", newShow)
@@ -38,8 +36,5 @@ venueShowsRouter.post("/", uploadImage.single("image"), async (req, res) => {
     }
 })
 
-venueShowsRouter.get("/:id", async (req, res) => {
-    console.log("yo yo yo, I love salami")
-})
 
 export default venueShowsRouter
