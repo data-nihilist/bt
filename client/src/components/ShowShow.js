@@ -34,9 +34,14 @@ const ShowShow = (props) => {
 
     console.log(show)
     return (
-        <h1>
-            I freakin love salami
-        </h1>
+        <div>
+            <h1>
+                {show.title}
+            </h1>
+            <img src={show.image}/>
+            <h2>Doors @ {show.doors}</h2>
+            <h3>{show.date}</h3>
+        </div>
     )
 }
 
