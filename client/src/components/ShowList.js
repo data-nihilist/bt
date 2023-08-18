@@ -9,22 +9,27 @@ const ShowList = ({ venueId, shows}) => {
     const upcomingShows = shows.map((show) => {
         return (
             <div>
-                <Link to={`/venues/${venueId}/${show.id}`}>
-                    <ShowTile
+                    <li
                         key={show.id}
-                        title={show.title}
-                        date={show.date}
-                        image={show.image}
-                    />
-                </Link>
+                    >
+                        <ShowTile
+                            title={show.title}
+                            date={show.date}
+                            image={show.image}
+                            doors={show.doors}
+                        />
+                        <hr></hr>
+                    </li>
             </div>
         )
     })
 
-    return(
-        <ul className="callout">
-            {upcomingShows}
-        </ul>
+    return (
+        <div className="callout">
+            <ul>
+                {upcomingShows}
+            </ul>
+        </div>
     )
 }
 

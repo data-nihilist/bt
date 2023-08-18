@@ -20,11 +20,15 @@ venueShowsRouter.post("/", uploadImage.single("image"), async (req, res) => {
         const body = req.body;
         body.hostId = req.user.id
         body.venueId = req.params.venueId
-        console.log(body)
+        console.log("I will become a show! ", body)
         const data = {
             ...body,
             image: req.file.location,
         }
+<<<<<<< HEAD
+=======
+        console.log("I'm the show you're looking for!: ", data)
+>>>>>>> 91c5d1031174c5b07c63d68b6a09c1a9bb3f261b
         const newShow = await Show.query().insertAndFetch(data)
         console.log("The new show will use me!", data)
         console.log("I'm the new show!", newShow)
