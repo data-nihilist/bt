@@ -51,6 +51,7 @@ const VenueShow = (props) => {
     } else {
         message = "Next time you're online, consider signing up so you can throw a show of your own!"
     }
+    console.log(venue)
     //--------------------------------------------------------------------------------------------------------
     return (
         <div>
@@ -64,14 +65,16 @@ const VenueShow = (props) => {
                 <img src={venue.image} />
             </div>
             <hr></hr>
-            <ul>
+            <>
                 <h1>
                     Upcoming Shows @{venue.name}
                 </h1>
-                <ShowList
-                    shows={venueShows}
-                />
-            </ul>
+                <ul>
+                    <ShowList
+                        shows={venueShows}
+                    />
+                </ul>
+            </>
             {currentUser
                 && currentUser.id === venue.hostId
                 && <ShowForm venue={venue} shows={venueShows} setVenueShows={setVenueShows} />

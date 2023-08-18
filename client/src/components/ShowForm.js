@@ -6,6 +6,7 @@ const ShowForm = (props) => {
     const [showRecord, setShowRecord] = useState({
         title: "",
         date: "",
+        doors: "",
         image: ""
     })
 
@@ -14,39 +15,12 @@ const ShowForm = (props) => {
 
     const [errors, setErrors] = useState({})
 
-    // const addShowToVenue = async (formData) => {
-    //     try{
-    //         const newShow = await fetch(`/api/v1/venues/${venue.id}/shows`, {
-    //             method: "POST",
-    //             headers: new Headers({
-    //                 "Content-Type": "application/json",
-    //             }),
-    //             body: JSON.stringify(formData)
-    //         })
-    //         if(!newShow.ok) {
-    //             if (newShow.status === 422) {
-    //                 const body = await newShow.json()
-    //                 errors = translateServerErrors(body.errors)
-    //                 return setErrors(errors)
-    //             } else {
-    //                 throw (new Error(`${newShow.status} (${newShow.statusText})`))
-    //             }
-    //         } else {
-    //             const body = await newShow.json()
-    //             const showData = shows.concat(body.newShow)
-    //             setErrors({})
-    //             props.setVenueShows(showData)
-    //         }
-    //     }catch(error){
-    //         console.error(`Error in fetch: ${error.message}`)
-    //     }
-    // }
-
     const addShowToVenue = async () => {
         const showFormData = new FormData();
         showFormData.append("title", showRecord.title)
         showFormData.append("date", showRecord.date)
         showFormData.append("image", showRecord.image)
+        showFormData.append("doors", showRecord.doors)
 
         try {
             const newShow = await fetch(`/api/v1/venues/${venue.id}/shows`, {
@@ -82,6 +56,7 @@ const ShowForm = (props) => {
         setShowRecord({
             title: "",
             date: "",
+            doors: "",
             image: ""
         })
     }
@@ -120,6 +95,15 @@ const ShowForm = (props) => {
                         type="text"
                         name="date"
                         value={showRecord.date}
+                        onChange={handleInputChange}
+                    />
+                </label>
+                <label htmlFor="doors">DOORS @
+                    <input
+                        id="doors"
+                        type="text"
+                        name="doors"
+                        value={showRecord.doors}
                         onChange={handleInputChange}
                     />
                 </label>

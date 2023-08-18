@@ -8,12 +8,14 @@ class Show extends Model {
     static get jsonSchema() {
         return {
             type: "object",
-            required: ["title", "date", "venueId", "hostId"],
+            required: ["title", "date", "venueId", "hostId", "image", "doors"],
             properties: {
                 title: { type: "string", minLength: 1 },
                 date: { type: ["string", "integer"] },
                 venueId: { type: ["string", "integer" ]},
-                hostId: { type: ["string", "integer" ]}
+                hostId: { type: ["string", "integer" ]},
+                image: { type: "string" },
+                doors: { type: ["string", "integer"], minLength: 1 }
             }
         }
     }
