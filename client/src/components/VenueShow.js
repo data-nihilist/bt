@@ -69,6 +69,7 @@ const VenueShow = (props) => {
                     Upcoming Shows @{venue.name}
                 </h1>
                 <ShowList
+                    venueId={venueId}
                     shows={venueShows}
                 />
             </ul>

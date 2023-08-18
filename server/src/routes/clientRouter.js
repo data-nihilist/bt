@@ -7,6 +7,7 @@ const clientRoutes = [
   "/venues",
   "/venues/:id",
   "/:venueId/shows",
+  "/venues/:id/:id",
   "/user-sessions/new",
   "/users/new"
 ];

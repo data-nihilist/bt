@@ -25,12 +25,17 @@ venueShowsRouter.post("/", uploadImage.single("image"), async (req, res) => {
             ...body,
             image: req.file.location,
         }
-        console.log(data)
         const newShow = await Show.query().insertAndFetch(data)
+        console.log("The new show will use me!", data)
+        console.log("I'm the new show!", newShow)
         return res.status(201).json({ newShow })
     } catch(error) {
         return res.status(500).json({ errors: error })
     }
+})
+
+venueShowsRouter.get("/:id", async (req, res) => {
+    console.log("yo yo yo, I love salami")
 })
 
 export default venueShowsRouter
