@@ -74,30 +74,24 @@ const ShowForm = (props) => {
         addShowToVenue()
         clearForm()
     }
-//-----------------------------------------------------DOORS
-    const times = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12"];
-    const timeOptionsPM = times.map((time) => {
-        return(
-            <>
-                <option value={`${time}AM`}>{`${time} PM`}</option>
-            </>
-        )
-    })
-    const timeOptionsAM = times.map((time) => {
-        return(
-            <>
-                <option value={`${time}PM`}>{`${time} AM`}</option>
-            </>
-        )
-    })
-//     <input
-//     id="doors"
-//     type="text"
-//     name="doors"
-//     value={showRecord.doors}
-//     onChange={handleInputChange}
-// />
-//----------------------------------------------------------
+    //-----------------------------------------------------DOORS
+    // const times = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12"];
+    // const timeOptionsPM = times.map((time) => {
+    //     return(
+    //         <>
+    //             <option value={`${time}AM`}>{`${time} PM`}</option>
+    //         </>
+    //     )
+    // })
+    // const timeOptionsAM = times.map((time) => {
+    //     return(
+    //         <>
+    //             <option value={`${time}PM`}>{`${time} AM`}</option>
+    //         </>
+    //     )
+    // })
+
+    //----------------------------------------------------------
 
     return (
         <div>
@@ -123,11 +117,13 @@ const ShowForm = (props) => {
                     />
                 </label>
                 <label htmlFor="doors">DOORS @
-                <select name="doors" id="doors">
-                    <option value="">--Select Time--</option>
-                    {timeOptionsPM}
-                    {timeOptionsAM}
-                </select>
+                    <input
+                        id="doors"
+                        type="text"
+                        name="doors"
+                        value={showRecord.doors}
+                        onChange={handleInputChange}
+                    />
                 </label>
                 <Dropzone onDrop={handleShowImageUpload}>
                     {({ getRootProps, getInputProps }) => (

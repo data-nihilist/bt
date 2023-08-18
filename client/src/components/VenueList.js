@@ -27,9 +27,9 @@ const VenueList = (props) => {
     }
 
     return (
-        <div>
+        <div className="card container">
             <h1>{message}</h1>
-            <div>
+            <div className="card">
                 {listOfVenues}
             </div>
         </div>

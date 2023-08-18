@@ -29,7 +29,7 @@ const TopBar = ({ user }) => {
     <div className="card bg-black text-white">
       <div className="font-md row">
           <div className=" row justify-center btn-complement-green">
-            <Link to="/">GTTG</Link>
+            <Link to="/venues">GTTG</Link>
           </div>
       <ul className="ml-top-bar">{user ? authenticatedListItems : unauthenticatedListItems}</ul>
       </div>

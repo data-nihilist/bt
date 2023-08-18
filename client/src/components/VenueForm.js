@@ -105,9 +105,9 @@ const VenueForm = (props) => {
                                 className="card bg-black text-white"
                             />
                         </label>
-                        <Dropzone onDrop={handleVenueImageUpload}>
+                        <Dropzone onDrop={handleVenueImageUpload} className="special-button">
                             {({ getRootProps, getInputProps }) => (
-                                <section>
+                                <section className="special-button">
                                     <div {...getRootProps()}>
                                         <input {...getInputProps()} />
                                         <p className="button">Add Picture (optional)</p>
@@ -117,8 +117,8 @@ const VenueForm = (props) => {
                         </Dropzone>
                     </div>
                     <div className="button-group">
-                        <input className="button" type="submit" value="Create Venue" />
-                        <input className="button" type="button" onClick={clearForm} value="Reset" />
+                        <input className="special-button" type="submit" value="Create Venue" />
+                        <input className="special-button" type="button" onClick={clearForm} value="Reset" />
                     </div>
                 </form>
             </div>

@@ -35,20 +35,25 @@ const WelcomePage = (props) => {
     }
 
     return (
-        <div className="row gap-2 justify-flex-end">
-            <div className="card container">
-                <div className="card bg-black text-white">
-                    <h1 className="bg-black text-white card-title">
-                        "yo yo yo from the welcome page"
-                    </h1>
-                    <div className="card-body">
-                        {message}
+        <div className="bg-black">
+            <div className="row gap-2 justify-flex-end">
+                <div className="card container">
+                    <div className="card bg-black text-white">
+                        <h1 className="bg-black text-white card-title">
+                            "yo yo yo from the welcome page"
+                        </h1>
+                        <div className="card card-body">
+                            <VenueList
+                                currentUser={currentUser}
+                                venues={venues}
+                                setVenues={setVenues}
+                            />                    </div>
                     </div>
                 </div>
+                <h1>
+                    {message}
+                </h1>
             </div>
-            <h1>
-                {message}
-            </h1>
         </div>
     )
 }
