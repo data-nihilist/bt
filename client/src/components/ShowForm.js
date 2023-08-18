@@ -72,7 +72,7 @@ const ShowForm = (props) => {
     const handleSubmit = (event) => {
         event.preventDefault()
         addShowToVenue()
-        clearForm()
+        // clearForm()
     }
 
     return (

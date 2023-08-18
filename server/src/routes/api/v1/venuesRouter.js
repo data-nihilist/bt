@@ -41,6 +41,11 @@ venuesRouter.get("/:id", async (req, res) => {
     }
 })
 
-venuesRouter.use("/:venueId/shows", venueShowsRouter)
+venuesRouter.get(":id/shows", async (req, res) => {
+    const venueId = req.params.id
+    console.log(venueId)
+})
+
+venuesRouter.use("/:id/shows", venueShowsRouter)
 
 export default venuesRouter
