@@ -9,6 +9,10 @@ import getDatabaseUrl from "./config/getDatabaseUrl.cjs";
 //   web: { host: process.env.HOST || "0.0.0.0", port: process.env.PORT || 3000 }
 // };
 const development = {
+  redirectUri: { key: process.env.REDIRECT_URI },
+  clientId: { key: process.env.CLIENT_ID },
+  clientSecret: { key: process.env.CLIENT_SECRET },
+  authUrl: { key: process.env.AUTH_URL },
   awsAccess: { key: process.env.AWS_ACCESS_KEY },
   awsSecret: { key: process.env.AWS_SECRET_KEY },
   s3Bucket: { name: process.env.S3_BUCKET_DEVELOPMENT },
