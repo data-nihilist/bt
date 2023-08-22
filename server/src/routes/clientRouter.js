@@ -33,7 +33,7 @@ router.get(clientRoutes, (req, res) => {
 
 //-----------------------------------------SPOTIFY STUFF
 
-router.post('/login', (req, res) => {
+router.post('/venues', (req, res) => {
   const { code } = req.body
   const spotifyApi = new SpotifyWebApi({
     redirectUri: config.redirectUri.key,

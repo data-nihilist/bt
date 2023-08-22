@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react"
+import Playlist from "./spotify/Playlist.js"
 
 const ShowShow = (props) => {
     const venueId = props.match.params.venueId
@@ -14,12 +15,12 @@ const ShowShow = (props) => {
 
 
     const getShow = async () => {
-        try{
+        try {
             const response = await fetch(`/api/v1/venues/${venueId}/${showId}`)
             const body = await response.json()
             const showData = body.serializedShow
             setShow(showData)
-        }catch(error){
+        } catch (error) {
             console.error(`Error in fetch: ${error.message}`)
         }
     }
@@ -33,9 +34,12 @@ const ShowShow = (props) => {
             <h1>
                 {show.title}
             </h1>
-            <img src={show.image}/>
+            <img src={show.image} />
             <h2>Doors @ {show.doors}</h2>
             <h3>{show.date}</h3>
+            <div>
+                <Playlist />
+            </div>
         </div>
     )
 }
