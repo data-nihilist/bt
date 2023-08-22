@@ -8,26 +8,26 @@ class Track extends Model {
     static get jsonSchema() {
         return {
             type: "object",
-            required: ["artist", "title", "uri", "albumUrl", "showId"],
+            required: ["artist", "title", "uri", "albumUrl", "userId"],
             properties: {
                 artist: { type: "string" },
                 title: { type: "string" },
                 uri: { type: "string" },
                 albumUrl: { type: "string" },
-                showId: { type: ["integer", "string"] }
+                userId: { type: ["integer", "string"] }
             }
         }
     }
 
     static get relationMappings() {
-        const { Show } = require("./index.js")
-        return {
-            shows: {
+        const { User } = require("./index.js")
+    return {
+            user: {
                 relation: Model.BelongsToOneRelation,
-                modelClass: Show,
+                modelClass: User,
                 join: {
-                    from: "tracks.showId",
-                    to: "shows.id"
+                    from: "tracks.userId",
+                    to: "users.id"
                 }
             }
         }

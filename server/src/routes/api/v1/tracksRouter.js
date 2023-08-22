@@ -4,9 +4,11 @@ import Track from "../../../models/Track.js"
 const tracksRouter = new express.Router()
 
 tracksRouter.post("/", async (req, res) => {
-    console.log(req.body)
+    const {artist, title, uri, albumUrl } = req.body
+    const userId = req.user.id
     try{
-        
+        const persistedTrack = await Track.query().insertAndFetch({ artist, title, uri, albumUrl, userId })
+        return res.status(201).json({persistedTrack})
     }catch(error){
         return res.status(500).json({ errors: error })
     }

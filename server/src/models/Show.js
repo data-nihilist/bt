@@ -21,7 +21,7 @@ class Show extends Model {
     }
 
     static get relationMappings() {
-        const { Venue, User, Track } = require("./index.js")
+        const { Venue, User } = require("./index.js")
         return {
             venue: {
                 relation: Model.BelongsToOneRelation,
@@ -37,14 +37,6 @@ class Show extends Model {
                 join: {
                     from: "shows.hostId",
                     to: "users.id"
-                }
-            },
-            tracks: {
-                relation: Model.HasManyRelation,
-                modelClass: Track,
-                join: {
-                    from: "shows.id",
-                    to: "tracks.showId"
                 }
             }
         }
