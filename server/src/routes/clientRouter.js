@@ -13,7 +13,8 @@ const clientRoutes = [
   "/user-sessions/new",
   "/users/new",
   "/login",
-  "/refresh"
+  "/refresh",
+  "/"
 ];
 
 const authedClientRoutes = ["/profile"];

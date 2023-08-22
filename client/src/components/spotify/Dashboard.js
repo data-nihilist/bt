@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react"
 import useAuth from "./useAuth.js"
 import SpotifyWebApi from 'spotify-web-api-node'
 import TrackSearchResult from "./TrackSearchResult"
+import Playlist from "./Playlist.js"
 
 const spotifyApi = new SpotifyWebApi({
     clientId: "99671371d9c947e981592b87c1a601db"
@@ -11,7 +12,7 @@ export default function Dashboard({ code }) {
     const accessToken = useAuth(code)
     const [search, setSearch] = useState("")
     const [searchResults, setSearchResults] = useState([])
-
+    
     useEffect(() => {
         if (!accessToken) return
         spotifyApi.setAccessToken(accessToken)
@@ -23,7 +24,7 @@ export default function Dashboard({ code }) {
 
         let cancel = false
         spotifyApi.searchTracks(search).then(res => {
-            if(cancel) return
+            if (cancel) return
             setSearchResults(res.body.tracks.items.map(track => {
                 const smallestAlbumImage = track.album.images.reduce((smallest,
                     image) => {
@@ -55,6 +56,9 @@ export default function Dashboard({ code }) {
 
     return (
         <div>
+            <div>
+                <Playlist />
+            </div>
             <form onSubmit={handleSubmit}>
                 <label htmlFor="search">
                     <input
@@ -75,8 +79,8 @@ export default function Dashboard({ code }) {
                 <>
                     {searchResults.map(track => (
                         <TrackSearchResult
-                        key={track.uri}
-                        track={track}
+                            key={track.uri}
+                            track={track}
                         />
                     ))}
                 </>
