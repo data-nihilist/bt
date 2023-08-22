@@ -4,6 +4,11 @@ const TrackSearchResult = ({ track }) => {
     const source = "https://open.spotify.com/track/"
     const detail = track.uri.split(":")
     const link = source.concat(detail[2])
+
+    const saveTrack = (event) => {
+    
+    }
+
     return (
         <div>
             <div
@@ -22,6 +27,9 @@ const TrackSearchResult = ({ track }) => {
                     <p className="text-grey">
                         {track.artist}
                     </p>
+                    <div className="button-group">
+                        <input className="button" type="button" onClick={saveTrack} value="Add Track To Playlist" />
+                    </div>
             </div>
         </div>
     )

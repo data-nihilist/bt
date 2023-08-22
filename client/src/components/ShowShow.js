@@ -11,11 +11,7 @@ const ShowShow = (props) => {
         image: "",
         doors: ""
     })
-    // console.log(props.match.params.venueId)
-    // related bands state here
-    // console.log(props)
-    // console.log(showId)
-    // console.log(props.match.params)
+
 
     const getShow = async () => {
         try{
@@ -32,7 +28,6 @@ const ShowShow = (props) => {
         getShow()
     }, [])
 
-    console.log(show)
     return (
         <div>
             <h1>
