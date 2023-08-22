@@ -5,8 +5,24 @@ const TrackSearchResult = ({ track }) => {
     const detail = track.uri.split(":")
     const link = source.concat(detail[2])
 
-    const saveTrack = (event) => {
-    
+    const saveTrack = async (trackData) => {
+        try{
+            const response = await fetch(`/api/v1/tracks`, {
+                method: "POST",
+                headers: new Headers({
+                    "Content-Type": "application/json",
+                }),
+                body: JSON.stringify(trackData)
+            })
+            if(!response.ok) {
+                throw(new Error(`${response.status} (${response.statusText})`))
+            } else {
+                const responseBody = await response.json()
+                console.log(responseBody)
+            }
+        }catch(error){
+            console.error(`Error in fetch: ${error.message}`)
+        }
     }
 
     return (
