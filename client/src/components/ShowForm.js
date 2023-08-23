@@ -30,7 +30,6 @@ const ShowForm = (props) => {
                 },
                 body: showFormData
             })
-            console.log(newShow)
             if (!newShow.ok) {
                 if (newShow.status === 422) {
                     const body = await newShow.json()

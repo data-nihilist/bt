@@ -15,7 +15,7 @@ class VenueSerializer {
             for (const attribute of desiredAttributes) {
                 serializedVenue[attribute] = venue[attribute]
             }
-
+            serializedVenue.shows = venue.$relatedQuery("shows")
             return serializedVenue;
         })
 
