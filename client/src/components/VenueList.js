@@ -2,19 +2,18 @@ import React from "react"
 import VenueTile from "./VenueTile.js"
 import { Link } from "react-router-dom";
 
-const VenueList = (props) => {
+const VenueList = ({ venues }) => {
 
-    const listOfVenues = props.venues.map(venue => {
+    const listOfVenues = venues.map(venue => {
         return (
-            <div
-                className="callout"
-            >
+            <div>
                     <Link to={`/venues/${venue.id}`}>
                         <VenueTile
                             id={venue.id}
                             name={venue.name}
                             location={venue.location}
                             image={venue.image}
+                            shows={venue.shows}
                         />
                     </Link>
             </div>

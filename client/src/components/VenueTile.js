@@ -1,22 +1,23 @@
 import React from "react"
 
-const VenueTile = ({ id, name, location, image }) => {
+const VenueTile = ({ name, location, shows }) => {
+
+    const showFlyers = shows.map((show) => {
+        return (
+            <img className = "imageTile" src={show.image} />
+        )
+    })
+
     return (
-        <div>
-            <li
-            key={id}
-            >
-            <div className="imageTile">
-                <img src={image} />
+            <div className="callout">
+                    <h2>
+                        {name}
+                    </h2>
+                    <p>
+                        {location}
+                    </p>
+                {showFlyers}
             </div>
-            <h2>
-                {name}
-            </h2>
-            <p>
-                {location}
-            </p>
-            </li>
-        </div>
     )
 }
 

@@ -55,7 +55,7 @@ export default function Dashboard({ code }) {
     }
 
     return (
-        <div>
+        <div className = "callout" >
             <form onSubmit={handleSubmit}>
                 <label htmlFor="search">
                     <input

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react"
-import Spotify from "./Spotify.js"
 import Playlist from "./spotify/Playlist.js"
+import { Link } from "react-router-dom"
 
 const ShowPlayGround = (props) => {
     const [shows, setShows] = useState([])
@@ -98,6 +98,7 @@ const ShowPlayGround = (props) => {
     const showsToDisplay = shows.map(show => {
         return (
             <ul>
+                <Link to={`/venues/${show.hostId}/${show.id}`} >
                 <li
                     key={show.id}
                 >
@@ -115,6 +116,7 @@ const ShowPlayGround = (props) => {
                 <Playlist
                     tracks={show.tracks}
                 />
+                </Link>
             </ul>
         )
     })

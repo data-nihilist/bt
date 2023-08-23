@@ -17,6 +17,7 @@ const WelcomePage = (props) => {
             }
             const responseBody = await response.json()
             setVenues(responseBody.venues)
+            console.table(responseBody.venues[0].shows)
         } catch (error) {
             console.error(`Error in fetch: ${error.message}`)
         }
@@ -26,31 +27,34 @@ const WelcomePage = (props) => {
         getVenues()
     }, [])
 
-    let message = "Sign Up or Sign In to create a venue :D"
+    let venueForm = "Sign In to create a venue and/or contribute to GTTG's available tracks :D"
     if (currentUser) {
-        message = <VenueForm
+        venueForm = <VenueForm
             currentUser={currentUser}
             setVenues={setVenues}
             venues={venues}
         />
     }
 
+    let spotify;
+    if (currentUser) {
+        spotify = <Spotify />
+    }
+
     return (
-        <div>
+        <div className="callout">
             <h1>
                 Get.To.The.Gig.
             </h1>
-            <Spotify />
-            <div>
+            <div className="callout">
                 <VenueList
-                    currentUser={currentUser}
                     venues={venues}
-                    setVenues={setVenues}
                 />
             </div>
-            <h1>
-                {message}
-            </h1>
+            <div className="callout">
+                {venueForm}
+            </div>
+            <div className="callout">{spotify}</div>
         </div>
     )
 }

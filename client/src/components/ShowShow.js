@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react"
 import Playlist from "./spotify/Playlist.js"
+import { Link } from "react-router-dom"
 
 const ShowShow = (props) => {
     const venueId = props.match.params.venueId
@@ -31,19 +32,39 @@ const ShowShow = (props) => {
     useEffect(() => {
         getShow()
     }, [])
+
+    const currentUser = props.user
+    console.log(currentUser)
+    console.log(show.hostId)
+
+        const playgroundButton = (
+            <div className="callout button-group">
+                <Link to="/showplayground">
+                    <input className="button" type="button" value="Add Tracks To Your Show!"/>
+                </Link>
+            </div>
+        )
+
+        
+    
+
     return (
         <div>
             <h1>
                 {show.title}
             </h1>
-            <img src={show.image} />
             <h2>Doors @ {show.doors}</h2>
-            <h3>{show.date}</h3>
+                {`${show.title}'s Playlist`}
             <div>
                 <Playlist
                 tracks={tracks}
                 />
             </div>
+            <img src={show.image} />
+            <h3>{show.date}</h3>
+            {currentUser
+                && currentUser.id === show.hostId
+                && playgroundButton}
         </div>
     )
 }
