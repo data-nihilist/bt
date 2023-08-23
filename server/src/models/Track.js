@@ -20,14 +20,34 @@ class Track extends Model {
     }
 
     static get relationMappings() {
-        const { User } = require("./index.js")
+        const { Show, Vibe } = require("./index.js")
     return {
-            user: {
-                relation: Model.BelongsToOneRelation,
-                modelClass: User,
+            // users: {
+            //     relation: Model.BelongsToOneRelation,
+            //     modelClass: User,
+            //     join: {
+            //         from: "tracks.userId",
+            //         to: "users.id"
+            //     }
+            // },
+            shows: {
+                relation: Model.ManyToManyRelation,
+                modelClass: Show,
                 join: {
-                    from: "tracks.userId",
-                    to: "users.id"
+                    from: "tracks.id",
+                    through: {
+                        from: "vibes.trackId",
+                        to: "vibes.showId",
+                    },
+                    to: "shows.id"
+                }
+            },
+            vibe: {
+                relation: Model.BelongsToOneRelation,
+                modelClass: Vibe,
+                join: {
+                    from: "tracks.id",
+                    to: "vibes.trackId"
                 }
             }
         }

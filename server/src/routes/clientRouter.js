@@ -14,7 +14,8 @@ const clientRoutes = [
   "/users/new",
   "/login",
   "/refresh",
-  "/"
+  "/",
+  "/showplayground"
 ];
 
 const authedClientRoutes = ["/profile"];
