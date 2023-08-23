@@ -9,8 +9,8 @@ const venuesRouter = new express.Router()
 venuesRouter.get("/", async (req, res) => {
     try{
         const venues = await Venue.query()
-        const serializedVenues = await VenueSerializer.summarize(venues)
-        return res.status(200).json({ venues: serializedVenues})
+        const serializedVenues = await VenueSerializer.withShows(venues)
+        return res.status(200).json({ venues: serializedVenues })
     }catch(error){
         return res.status(500).json({errors: error})
     }

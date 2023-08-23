@@ -52,6 +52,7 @@ const VenueShow = (props) => {
                 <ShowList
                     venueId={venueId}
                     shows={venueShows}
+                    currentUser={currentUser}
                 />
             </>
             {currentUser

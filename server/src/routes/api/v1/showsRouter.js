@@ -5,8 +5,9 @@ import ShowSerializer from "../../../db/serializers/ShowSerializer.js"
 const showsRouter = new express.Router()
 
 showsRouter.get("/", async (req, res) => {
+    const userId = req.user.id
     try{
-        const shows = await Show.query()
+        const shows = await Show.query().where({ hostId: userId })
         const serializedShows = await ShowSerializer.summarize(shows)
         return res.status(200).json({ shows: serializedShows })
     }catch(error){

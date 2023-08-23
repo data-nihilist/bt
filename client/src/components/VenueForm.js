@@ -76,7 +76,7 @@ const VenueForm = (props) => {
     }
 
     return (
-        <div>
+        <div className = "callout">
             <h1>Add Your Venue To The List!</h1>
             <form onSubmit={handleSubmit}>
                 <label htmlFor="name"> Venue Name
