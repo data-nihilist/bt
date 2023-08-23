@@ -13,6 +13,8 @@ const ShowShow = (props) => {
         doors: ""
     })
 
+    const [tracks, setTracks] = useState([])
+
 
     const getShow = async () => {
         try {
@@ -20,6 +22,7 @@ const ShowShow = (props) => {
             const body = await response.json()
             const showData = body.serializedShow
             setShow(showData)
+            setTracks(showData.tracks)
         } catch (error) {
             console.error(`Error in fetch: ${error.message}`)
         }
@@ -28,7 +31,6 @@ const ShowShow = (props) => {
     useEffect(() => {
         getShow()
     }, [])
-
     return (
         <div>
             <h1>
@@ -38,7 +40,9 @@ const ShowShow = (props) => {
             <h2>Doors @ {show.doors}</h2>
             <h3>{show.date}</h3>
             <div>
-                <Playlist />
+                <Playlist
+                tracks={tracks}
+                />
             </div>
         </div>
     )

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react"
 import VenueList from "./VenueList"
 import VenueForm from "./VenueForm"
+import Spotify from "./Spotify.js"
 
 
 const WelcomePage = (props) => {
@@ -39,6 +40,7 @@ const WelcomePage = (props) => {
             <h1>
                 Get.To.The.Gig.
             </h1>
+            <Spotify />
             <div>
                 <VenueList
                     currentUser={currentUser}
