@@ -14,11 +14,12 @@ class ShowSerializer {
                     "doors"
                 ]
 
-                let serializedShows = {}
+                let serializedShow = {}
                 for (const attribute of requiredAttributes) {
-                    serializedShows[attribute] = show[attribute]
+                    serializedShow[attribute] = show[attribute]
                 }
-                return serializedShows
+                serializedShow.tracks = await show.$relatedQuery("tracks")
+                return serializedShow
             })
         );
         return serializedShows

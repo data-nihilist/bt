@@ -1,12 +1,14 @@
 import express from "express"
 import Show from "../../../models/Show.js"
+import ShowSerializer from "../../../db/serializers/ShowSerializer.js"
 
 const showsRouter = new express.Router()
 
 showsRouter.get("/", async (req, res) => {
     try{
         const shows = await Show.query()
-        return res.status(200).json({ shows })
+        const serializedShows = await ShowSerializer.summarize(shows)
+        return res.status(200).json({ shows: serializedShows })
     }catch(error){
         return res.status(500).json({ errors: error })
     }

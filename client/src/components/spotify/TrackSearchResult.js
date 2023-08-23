@@ -16,8 +16,6 @@ const TrackSearchResult = ({ track }) => {
             })
             if(!response.ok) {
                 throw(new Error(`${response.status} (${response.statusText})`))
-            } else {
-                const responseBody = await response.json()
             }
         }catch(error){
             console.error(`Error in fetch: ${error.message}`)

@@ -56,9 +56,6 @@ export default function Dashboard({ code }) {
 
     return (
         <div>
-            <div>
-                <Playlist />
-            </div>
             <form onSubmit={handleSubmit}>
                 <label htmlFor="search">
                     <input
