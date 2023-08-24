@@ -8,6 +8,7 @@ import tracksRouter from "./api/v1/tracksRouter.js"
 import showsRouter from "./api/v1/showsRouter.js"
 import vibesRouter from "./api/v1/vibesRouter.js"
 import artistsRouter from "./api/v1/artistsRouter.js"
+import lineupsRouter from "./api/v1/lineupsRouter.js"
 
 const rootRouter = new express.Router();
 rootRouter.use("/", clientRouter);
@@ -21,5 +22,6 @@ rootRouter.use("/api/v1/tracks", tracksRouter);
 rootRouter.use("/api/v1/shows", showsRouter)
 rootRouter.use("/api/v1/vibes", vibesRouter)
 rootRouter.use("/api/v1/artists", artistsRouter)
+rootRouter.use("/api/v1/lineups", lineupsRouter)
 
 export default rootRouter;
