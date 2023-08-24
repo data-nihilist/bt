@@ -15,7 +15,9 @@ const clientRoutes = [
   // "/login",
   "/refresh",
   "/",
-  "/showplayground"
+  "/showplayground",
+  "/artists",
+  "/artists/:id"
 ];
 
 const authedClientRoutes = ["/profile"];
