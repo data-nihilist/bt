@@ -7,8 +7,8 @@ const TrackTile = ({ track }) => {
 
     return (
         <>
-            <a href={`${link}`} target="_blank">
-                <img key={track.id} src={track.albumUrl} />
+            <a href={`${link}`} target="_blank" className="pl-1">
+                <img key={track.id} src={track.albumUrl} className="card"/>
             </a>
         </>
 

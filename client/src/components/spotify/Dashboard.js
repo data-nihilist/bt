@@ -12,7 +12,7 @@ export default function Dashboard({ code }) {
     const accessToken = useAuth(code)
     const [search, setSearch] = useState("")
     const [searchResults, setSearchResults] = useState([])
-    
+
     useEffect(() => {
         if (!accessToken) return
         spotifyApi.setAccessToken(accessToken)
@@ -52,12 +52,13 @@ export default function Dashboard({ code }) {
 
     const handleSubmit = (event) => {
         event.preventDefault()
+        setSearch("")
     }
 
     return (
-        <div className = "callout" >
-            <form onSubmit={handleSubmit}>
-                <label htmlFor="search">
+        <div className="bg-black" >
+            <form onSubmit={handleSubmit} className="card">
+                <label htmlFor="search" className="card-body">
                     <input
                         id="search"
                         type="text"
@@ -65,22 +66,21 @@ export default function Dashboard({ code }) {
                         value={search}
                         onChange={handleInputChange}
                         placeholder="Search Songs/Artists"
+                        className="bg-black card text-white"
                     />
                 </label>
-                <div className="button-group">
-                    <input className="button" type="submit" value="Search" />
-                </div>
+                <input className="bg-black text-white btn-gray" type="submit" value="Clear Search" />
             </form>
 
-            <div style={{ overflowY: "auto" }}>
-                <>
+            <div className="container" style={{ overflowY: "auto" }}>
+                <div className="card">
                     {searchResults.map(track => (
                         <TrackSearchResult
                             key={track.uri}
                             track={track}
                         />
                     ))}
-                </>
+                </div>
             </div>
         </div>
     )

@@ -37,35 +37,43 @@ const ShowShow = (props) => {
     console.log(currentUser)
     console.log(show.hostId)
 
-        const playgroundButton = (
-            <div className="callout button-group">
-                <Link to="/showplayground">
-                    <input className="button" type="button" value="Add Tracks To Your Show!"/>
-                </Link>
-            </div>
-        )
+    const playgroundButton = (
+        <div className="mt-4 pb-2">
+            <Link to="/showplayground">
+                <input className="special-button" type="button" value="Add Tracks To Your Show!" />
+            </Link>
+        </div>
+    )
 
-        
-    
+
+
 
     return (
-        <div>
-            <h1>
-                {show.title}
-            </h1>
-            <h2>Doors @ {show.doors}</h2>
-                {`${show.title}'s Playlist`}
-            <div>
-                <Playlist
-                tracks={tracks}
-                />
+        <div className="bg-black">
+            <div className="card bg-black text-white">
+                <div className="card">
+                    <h1 className="card-title bg-black text-white">
+                        {show.title}
+                    </h1>
+                    <h3>{show.date}</h3>
+                    <h2>Doors @ {show.doors}</h2>
+                </div>
+                <div className="container">
+                    <img src={show.image} />
+                    <div className="card">
+                    <h4>{`${show.title}'s Playlist`}</h4>
+                        <Playlist
+                            tracks={tracks}
+                        />
+                    </div>
+                        <>
+                            {currentUser
+                                && currentUser.id === show.hostId
+                                && playgroundButton}
+                        </>
+                    </div>
+                </div>
             </div>
-            <img src={show.image} />
-            <h3>{show.date}</h3>
-            {currentUser
-                && currentUser.id === show.hostId
-                && playgroundButton}
-        </div>
     )
 }
 

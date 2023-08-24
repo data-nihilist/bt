@@ -5,13 +5,13 @@ import SignOutButton from "../authentication/SignOutButton";
 const TopBar = ({ user }) => {
   const unauthenticatedListItems = [
     <li
-    className="btn-complement-green mr-1"
-    key="sign-in">
+      className="btn-complement-purple mr-1"
+      key="sign-in">
       <Link to="/user-sessions/new">Sign In</Link>
     </li>,
-    <li 
-    className="btn-complement-green"
-    key="sign-up">
+    <li
+      className="btn-complement-purple"
+      key="sign-up">
       <Link to="/users/new">
         Sign Up
       </Link>
@@ -20,18 +20,20 @@ const TopBar = ({ user }) => {
 
   const authenticatedListItems = [
     <li key="sign-out"
-    className="justify-flex-end">
+      className="justify-flex-end">
       <SignOutButton />
     </li>,
   ];
+  const titleHeader = "Get.To.The.Gig."
 
   return (
     <div className="card bg-black text-white">
       <div className="font-md row">
-          <div className=" row justify-center btn-complement-green">
-            <Link to="/venues">GTTG</Link>
-          </div>
-      <ul className="ml-top-bar">{user ? authenticatedListItems : unauthenticatedListItems}</ul>
+        <div className=" row justify-center btn-complement-purple">
+          <Link to="/venues">GTTG</Link>
+        </div>
+
+        <ul className="ml-top-bar">{user ? authenticatedListItems : unauthenticatedListItems}</ul>
       </div>
     </div>
   );

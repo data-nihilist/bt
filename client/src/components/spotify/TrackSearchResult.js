@@ -6,7 +6,7 @@ const TrackSearchResult = ({ track }) => {
     const link = source.concat(detail[2])
 
     const saveTrack = async () => {
-        try{
+        try {
             const response = await fetch(`/api/v1/tracks`, {
                 method: "POST",
                 headers: new Headers({
@@ -14,18 +14,18 @@ const TrackSearchResult = ({ track }) => {
                 }),
                 body: JSON.stringify(track)
             })
-            if(!response.ok) {
-                throw(new Error(`${response.status} (${response.statusText})`))
+            if (!response.ok) {
+                throw (new Error(`${response.status} (${response.statusText})`))
             }
-        }catch(error){
+        } catch (error) {
             console.error(`Error in fetch: ${error.message}`)
         }
     }
 
     return (
-        <div>
+        <div className="container responsive-test">
             <div
-                className="callout"
+                className="card"
                 style={{ cursor: "pointer" }}
             >
                 <a href={`${link}`} target="_blank">
@@ -34,15 +34,15 @@ const TrackSearchResult = ({ track }) => {
                         style={{ height: '64px', width: '64px' }}
                     />
                 </a>
-                    <h2>
-                        {track.title}
-                    </h2>
-                    <p className="text-grey">
-                        {track.artist}
-                    </p>
-                    <div className="button-group">
-                        <input className="button" type="button" onClick={saveTrack} value="Add Track To Playlist" />
-                    </div>
+                <h2>
+                    {track.title}
+                </h2>
+                <p className="text-grey">
+                    {track.artist}
+                </p>
+                <div className="button-group">
+                    <input className="bg-black text-white" type="button" onClick={saveTrack} value="Add Track To Playlist" />
+                </div>
             </div>
         </div>
     )

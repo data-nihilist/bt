@@ -5,7 +5,7 @@ import { Link } from "react-router-dom"
 const ShowPlayGround = (props) => {
     const [shows, setShows] = useState([])
     const [tracks, setTracks] = useState([])
-
+    console.log(tracks)
     const getShows = async () => {
         try {
             const response = await fetch("/api/v1/shows")
@@ -46,8 +46,8 @@ const ShowPlayGround = (props) => {
 
     const trackOptions = tracks.map((track) => {
         return (
-            <option key={track.id}>
-                {track.title.concat(` - ${track.artist}`)}
+            <option key={track.uri}>
+                {track.title}
             </option>
         )
     })
@@ -60,12 +60,11 @@ const ShowPlayGround = (props) => {
         event.preventDefault()
         setShowData(event.currentTarget.value)
     }
-
+    console.log(showData)
+    console.log(trackData)
     const showTrackData = (event) => {
         event.preventDefault()
-        const trackTitleData = event.currentTarget.value.split(" ")
-        const trackTitle = (trackTitleData[0])
-        setTrackData(trackTitle)
+        setTrackData(event.currentTarget.value)
     }
 
     const trueData = {
@@ -82,6 +81,7 @@ const ShowPlayGround = (props) => {
                 }),
                 body: JSON.stringify(trueData)
             })
+            console.log(trueData)
             if (!response.ok) {
                 throw (new Error(`${response.status} (${response.statusText})`))
             }
@@ -97,41 +97,46 @@ const ShowPlayGround = (props) => {
 
     const showsToDisplay = shows.map(show => {
         return (
-            <ul>
-                <Link to={`/venues/${show.hostId}/${show.id}`} >
-                <li
-                    key={show.id}
-                >
-                    <h1>
-                        {show.title}
-                    </h1>
-                    <h2>
-                        {show.date}
-                    </h2>
-                    <h3>
-                        {show.doors}
-                    </h3>
-                    <img src={show.image} />
-                </li>
-                <Playlist
-                    tracks={show.tracks}
-                />
-                </Link>
-            </ul>
+            <div className="bg-black text-white card container">
+
+                <ul>
+                    <li
+                        key={show.id}
+                    >
+                        <h1>
+                            {show.title}
+                        </h1>
+                        <h2>
+                            {show.date}
+                        </h2>
+                        <h3>
+                            {show.doors}
+                        </h3>
+                        <Link to={`/venues/${show.hostId}/${show.id}`} >
+                            <img src={show.image} />
+                        </Link>
+                    </li>
+                    <div className="card container">
+                        <Playlist
+                            tracks={show.tracks}
+                        />
+                    </div>
+                </ul>
+            </div>
         )
     })
 
     return (
-        <div>
+        <div className="bg-black text-white">
             <form onSubmit={handleSubmit}>
-                <select onInput={showShowData} >
+                Show Select <select onInput={showShowData} className="card bg-black text-white" >
                     {showOptions}
                 </select>
-                <select onInput={showTrackData} >
+                Track Select <select onInput={showTrackData} className="card bg-black text-white" >
                     {trackOptions}
                 </select>
                 <div className="button-group">
-                    <input className="button" type="submit" value="Add Track To Show's Playlist" />
+                    <input className="btn-complement-yellow" type="submit" value="Add Track To Show's Playlist" />
                 </div>
             </form>
             {showsToDisplay}
