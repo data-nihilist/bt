@@ -25,7 +25,7 @@ const ShowForm = (props) => {
         try {
             const newShow = await fetch(`/api/v1/venues/${venue.id}/shows`, {
                 method: "POST",
-                heades: {
+                headers: {
                     Accept: "image/jpeg",
                 },
                 body: showFormData
@@ -75,52 +75,60 @@ const ShowForm = (props) => {
     }
 
     return (
-        <div>
-            <h1>Add Shows To Your Venue!</h1>
-            <form onSubmit={handleSubmit}>
-                <label htmlFor="title"> Show title
-                    <input
-                        id="title"
-                        type="text"
-                        name="title"
-                        value={showRecord.title}
-                        onChange={handleInputChange}
-                    />
-                </label>
+        <div className="bg-black">
+            <div className="card bg-black text-white">
+                <h1 className="card-title">Add Shows To Your Venue!</h1>
+                <form className="card" onSubmit={handleSubmit}>
+                    <div className="mb-2">
 
-                <label htmlFor="date"> Show date
-                    <input
-                        id="date"
-                        type="text"
-                        name="date"
-                        value={showRecord.date}
-                        onChange={handleInputChange}
-                    />
-                </label>
-                <label htmlFor="doors">DOORS @
-                    <input
-                        id="doors"
-                        type="text"
-                        name="doors"
-                        value={showRecord.doors}
-                        onChange={handleInputChange}
-                    />
-                </label>
-                <Dropzone onDrop={handleShowImageUpload}>
-                    {({ getRootProps, getInputProps }) => (
-                        <section>
-                            <div {...getRootProps()}>
-                                <input {...getInputProps()} />
-                                <p className="button">Add Picture (optional)</p>
-                            </div>
-                        </section>
-                    )}
-                </Dropzone>
-                <div className="button-group">
-                    <input className="button" type="submit" value="Add Show" />
-                    <input className="button" type="button" onClick={clearForm} value="Reset" />
-                </div>
-            </form>
+                        <label className="card-body" htmlFor="title"> Show title
+                            <input
+                                id="title"
+                                type="text"
+                                name="title"
+                                value={showRecord.title}
+                                onChange={handleInputChange}
+                                className="card bg-black text-white mb-2"
+                            />
+                        </label>
+
+                        <label className="card-body" htmlFor="date"> Show date
+                            <input
+                                id="date"
+                                type="text"
+                                name="date"
+                                value={showRecord.date}
+                                onChange={handleInputChange}
+                                className="card bg-black text-white mb-2"
+                            />
+                        </label>
+                        <label className="card-body" htmlFor="doors">DOORS @
+                            <input
+                                id="doors"
+                                type="text"
+                                name="doors"
+                                value={showRecord.doors}
+                                onChange={handleInputChange}
+                                className="card bg-black text-white"
+                            />
+                        </label>
+                        <Dropzone onDrop={handleShowImageUpload}>
+                            {({ getRootProps, getInputProps }) => (
+                                <section className="">
+                                    <div {...getRootProps()}>
+                                        <input {...getInputProps()} />
+                                        <input className="btn-complement-yellow mb-2 mt-2" value="Add Picture (optional)" />
+                                    </div>
+                                </section>
+                            )}
+                        </Dropzone>
+                        <div className="button-group">
+                            <input className="btn-complement-purple" type="submit" value="Add Show" />
+                            <input className="btn-complement-red" type="button" onClick={clearForm} value="Reset Fields" />
+                        </div>
+                    </div>
+                </form>
+            </div>
         </div>
     )
 }

@@ -7,21 +7,21 @@ const SignOutButton = () => {
   const signOut = async (event) => {
     event.preventDefault()
     try {
-        const response = await fetch("/api/v1/user-sessions", {
+      const response = await fetch("/api/v1/user-sessions", {
         method: "delete",
         headers: new Headers({
           "Content-Type": "application/json",
         })
       })
-      if(!response.ok) {
+      if (!response.ok) {
         const errorMessage = `${response.status} (${response.statusText})`
         const error = new Error(errorMessage)
-        throw(error)
+        throw (error)
       }
       const respBody = await response.json()
       setShouldRedirect(true)
       return { status: "ok" }
-    } catch(err) {
+    } catch (err) {
       console.error(`Error in fetch: ${err.message}`)
     }
   }
@@ -31,7 +31,10 @@ const SignOutButton = () => {
   }
 
   return (
-    <button type="button" className="button" onClick={signOut}>
+    <button type="button"
+      className="btn-complement-purple bg-purple ml-sign-out"
+      onClick={signOut}
+    >
       Sign Out
     </button>
   );

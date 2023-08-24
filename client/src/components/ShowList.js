@@ -2,15 +2,15 @@ import React from "react"
 import ShowTile from "./ShowTile.js"
 import { Link } from "react-router-dom"
 
-const ShowList = ({venueId, shows, currentUser}) => {
+const ShowList = ({ venueId, shows, currentUser }) => {
 
     console.log(currentUser)
     const upcomingShows = shows.map((show) => {
         return (
             <div>
-                    <li
-                        key={show.id}
-                    >
+                <li
+                    key={show.id}
+                >
                     <Link to={`/venues/${venueId}/${show.id}`}>
                         <ShowTile
                             hostId={show.hostId}
@@ -21,14 +21,14 @@ const ShowList = ({venueId, shows, currentUser}) => {
                             shows={shows}
                         />
                     </Link>
-                        <hr></hr>
-                    </li>
+                    <hr></hr>
+                </li>
             </div>
         )
     })
 
     return (
-        <div className="callout">
+        <div className="card">
             <ul>
                 {upcomingShows}
             </ul>

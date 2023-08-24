@@ -32,33 +32,35 @@ const VenueShow = (props) => {
     }, [])
 
     const currentUser = props.user
-    
+
     return (
-        <div>
-            <h1>
+        <div className="bg-black text-white">
+            <h1 className="card-title bg-black text-white">
                 {venue.name}
             </h1>
-            <h1>
+            <h1 className="card-body bg-black text-white">
                 {venue.location}
             </h1>
-            <div className="imageShow">
-                <img src={venue.image} />
+            <div>
+                <img src={venue.image} className="imageShow" />
             </div>
             <hr></hr>
-            <>
-                <h1>
-                    Upcoming Shows @{venue.name}
-                </h1>
-                <ShowList
-                    venueId={venueId}
-                    shows={venueShows}
-                    currentUser={currentUser}
-                />
-            </>
-            {currentUser
-                && currentUser.id === venue.hostId
-                && <ShowForm venue={venue} shows={venueShows} setVenueShows={setVenueShows} />
-            }
+            <div className="card container">
+                <>
+                    <h1 className="card">
+                        Upcoming Shows @{venue.name}
+                    </h1>
+                    <ShowList
+                        venueId={venueId}
+                        shows={venueShows}
+                        currentUser={currentUser}
+                    />
+                </>
+                {currentUser
+                    && currentUser.id === venue.hostId
+                    && <ShowForm venue={venue} shows={venueShows} setVenueShows={setVenueShows} />
+                }
+            </div>
         </div>
     )
 }
