@@ -4,7 +4,6 @@ import Artist from "../../../models/Artist.js"
 const artistsRouter = new express.Router()
 
 artistsRouter.get("/", async (req, res) => {
-    console.log(req)
     try{
         const artists = await Artist.query()
         return res.status(200).json({ artists })
@@ -14,9 +13,10 @@ artistsRouter.get("/", async (req, res) => {
 })
 
 artistsRouter.get("/:id", async (req, res) => {
-    console.log(req.body)
     try{
-
+        const artistId = req.params.id
+        const artist = await Artist.query().findById(artistId)
+        return res.status(200).json({artist})
     }catch(error){
         return res.status(500).json({ errors: error })
     }

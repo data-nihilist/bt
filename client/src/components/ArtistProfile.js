@@ -1,28 +1,26 @@
 import React, { useState, useEffect } from "react"
 
 const ArtistProfile = (props) => {
-
+const artistId = props.match.params.id
     const [artist, setArtist] = useState({
         name: "",
         genre: "",
         originCity: "",
         description: "",
         touring: "",
-        userId: null
+        userId: ""
     })
 
-    console.log(props.params.match.id)
 
 
     const getArtist = async () => {
         try{
-            const artist = await fetch(`/api/v1/artists/${artist.id}`)
+            const artist = await fetch(`/api/v1/artists/${artistId}`)
             if(!artist.ok) {
                 throw(new Error(`${artist.status} (${artist.statusText})`))
             }
             const trveArtist = await artist.json()
-            console.log(trveArtist)
-            setArtist(trveArtist)
+            setArtist(trveArtist.artist)
         }catch(error){
             console.error(`Error in fetch: ${error.message}`)
         }
@@ -31,6 +29,7 @@ const ArtistProfile = (props) => {
     useEffect(() => {
         getArtist()
     }, [])
+
 
     let touringMessage;
     if(artist.touring) {
