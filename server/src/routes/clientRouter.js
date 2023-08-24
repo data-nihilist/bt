@@ -12,7 +12,7 @@ const clientRoutes = [
   "/venues/:venueId/:id",
   "/user-sessions/new",
   "/users/new",
-  "/login",
+  // "/login",
   "/refresh",
   "/",
   "/showplayground"
@@ -34,7 +34,7 @@ router.get(clientRoutes, (req, res) => {
 
 //-----------------------------------------SPOTIFY STUFF
 
-router.post('/venues', (req, res) => {
+router.post('/showplayground', (req, res) => {
   const { code } = req.body
   const spotifyApi = new SpotifyWebApi({
     redirectUri: config.redirectUri.key,

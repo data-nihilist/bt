@@ -8,16 +8,16 @@ export default function useAuth(code) {
 
     useEffect(() => {
         axios
-            .post('http://localhost:3000/venues', {
+            .post('http://localhost:3000/showplayground', {
                 code,
             })
             .then(res => {
                 setAccessToken(res.data.accessToken)
                 setRefreshToken(res.data.refreshToken)
                 setExpiresIn(res.data.expiresIn)
-                window.history.pushState({}, null, "/venues")
+                window.history.pushState({}, null, "/showplayground")
             }).catch(() => {
-                window.location = "/venues"
+                window.location = "/showplayground"
             })
     }, [code])
 
@@ -33,7 +33,7 @@ export default function useAuth(code) {
                     setExpiresIn(res.data.expiresIn)
                 })
                 .catch(() => {
-                    window.location = "/venues"
+                    window.location = "/showplayground"
                 })
         }, (expiresIn - 60) * 1000)
 

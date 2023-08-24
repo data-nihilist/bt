@@ -4,7 +4,7 @@ const VenueTile = ({ name, location, shows }) => {
 
     const showFlyers = shows.map((show) => {
         return (
-            <img className = "imageTile" src={show.image} />
+            <img className = "imageTile pl-1" src={show.image} />
         )
     })
 

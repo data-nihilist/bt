@@ -53,10 +53,10 @@ const WelcomePage = (props) => {
         />
     }
 
-    let spotify;
-    if (currentUser) {
-        spotify = <Spotify />
-    }
+    // let spotify;
+    // if (currentUser) {
+    //     spotify = <Spotify />
+    // }
 
     const titleHeader = "Get.To.The.Gig."
 
@@ -66,9 +66,9 @@ const WelcomePage = (props) => {
                 {titleHeader}
             </h1>
             <div className="row gap-2 justify-flex-end">
-                <div>
+                {/* <div>
                     {spotify}
-                </div>
+                </div> */}
                 <div className="card container">
                     <div className="card bg-black text-white">
                         <div className="card card-body">
