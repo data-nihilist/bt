@@ -1,4 +1,5 @@
 import TrackSerializer from "./TrackSerializer.js"
+import ArtistSerializer from "./ArtistSerializer.js"
 
 class ShowSerializer {
     static async summarize(array) {
@@ -40,9 +41,11 @@ class ShowSerializer {
         for (const attribute of requiredAttributes) {
             serializedShow[attribute] = show[attribute]
         }
-        
+
         const tracks = await show.$relatedQuery("tracks")
         serializedShow.tracks = await TrackSerializer.summarize(tracks)
+        const artists = await show.$relatedQuery("artists")
+        serializedShow.artists = await ArtistSerializer.summarize(artists)
 
         return serializedShow
     }

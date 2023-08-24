@@ -98,7 +98,7 @@ const RegistrationForm = () => {
       <div className="card bg-black text-white">
         <h1 className="card-title">Sign Up</h1>
         <form className="card" onSubmit={onSubmit}>
-        <div className="mb-2">
+          <div className="mb-2">
             <label className="card-body">
               Username
               <input
@@ -107,10 +107,10 @@ const RegistrationForm = () => {
                 value={userPayload.username}
                 onChange={onInputChange}
                 className="card bg-black text-white"
-                />
-                <div className="text-info">
-                  <FormError error={errors.username} />
-                </div>
+              />
+              <div className="text-info">
+                <FormError error={errors.username} />
+              </div>
             </label>
           </div>
           <div className="mb-2">
@@ -122,7 +122,7 @@ const RegistrationForm = () => {
                 value={userPayload.email}
                 onChange={onInputChange}
                 className="card bg-black text-white"
-                />
+              />
               <div className="text-info">
                 <FormError error={errors.email} />
               </div>
@@ -158,11 +158,11 @@ const RegistrationForm = () => {
               </div>
             </label>
           </div>
-        <div>
-          <input type="submit" className="special-button bg-green mt-1 mb-2" value="Sign Up" />
-        </div>
-      </form>
-        </div>
+          <div>
+            <input type="submit" className="special-button bg-green mt-1 mb-2" value="Sign Up" />
+          </div>
+        </form>
+      </div>
     </div>
   );
 };

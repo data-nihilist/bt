@@ -12,7 +12,6 @@ exports.up = async (knex) => {
         table.string("genre").notNullable()
         table.string("originCity").notNullable()
         table.string("description").notNullable()
-        table.boolean("touring").defaultTo(false)
         table.bigInteger("userId")
             .notNullable()
             .unsigned()

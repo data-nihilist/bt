@@ -12,11 +12,11 @@ const clientRoutes = [
   "/venues/:venueId/:id",
   "/user-sessions/new",
   "/users/new",
-  // "/login",
   "/refresh",
   "/",
   "/showplayground",
   "/artists",
+  "/artists/new",
   "/artists/:id"
 ];
 

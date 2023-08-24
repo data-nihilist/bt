@@ -14,8 +14,7 @@ class Artist extends Model {
                 genre: { type: "string" },
                 originCity: { type: "string" },
                 description: { type: "string" },
-                touring: { type: "boolean" },
-                userId: { type: ["integer", "string"]}
+                userId: { type: ["integer", "string"] }
             }
         }
     }

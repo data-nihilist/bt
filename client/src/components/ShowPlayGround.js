@@ -2,11 +2,16 @@ import React, { useState, useEffect } from "react"
 import Playlist from "./spotify/Playlist.js"
 import { Link } from "react-router-dom"
 import Spotify from "./Spotify.js"
+import ArtistList from "./ArtistList.js"
 
 const ShowPlayGround = (props) => {
     const [shows, setShows] = useState([])
     const [tracks, setTracks] = useState([])
-    console.log(tracks)
+    const [artists, setArtists] = useState([])
+    const [artistData, setArtistData] = useState("")
+    const [showData, setShowData] = useState("")
+    const [trackData, setTrackData] = useState("")
+
     const getShows = async () => {
         try {
             const response = await fetch("/api/v1/shows")
@@ -19,7 +24,6 @@ const ShowPlayGround = (props) => {
             console.error(`Error in fetch: ${error.message}`)
         }
     }
-
     const getTracks = async () => {
         try {
             const tracks = await fetch(`/api/v1/tracks`)
@@ -30,11 +34,21 @@ const ShowPlayGround = (props) => {
         }
     }
 
+    const getArtists = async () => {
+        try {
+            const artists = await fetch('/api/v1/artists')
+            const artistOptions = await artists.json()
+            setArtists(artistOptions.artists)
+        } catch (error) {
+            console.error(`Error in fetch: ${error.message}`)
+        }
+    }
+
     useEffect(() => {
         getShows()
         getTracks()
+        getArtists()
     }, [])
-
 
     const showOptions = shows.map((show) => {
         return (
@@ -45,6 +59,11 @@ const ShowPlayGround = (props) => {
     })
     showOptions.unshift(<option></option>)
 
+    const showShowData = (event) => {
+        event.preventDefault()
+        setShowData(event.currentTarget.value)
+    }
+
     const trackOptions = tracks.map((track) => {
         return (
             <option key={track.uri}>
@@ -54,15 +73,6 @@ const ShowPlayGround = (props) => {
     })
     trackOptions.unshift(<option></option>)
 
-    const [showData, setShowData] = useState("")
-    const [trackData, setTrackData] = useState("")
-
-    const showShowData = (event) => {
-        event.preventDefault()
-        setShowData(event.currentTarget.value)
-    }
-    console.log(showData)
-    console.log(trackData)
     const showTrackData = (event) => {
         event.preventDefault()
         setTrackData(event.currentTarget.value)
@@ -71,6 +81,25 @@ const ShowPlayGround = (props) => {
     const trueData = {
         showTitle: showData,
         trackTitle: trackData
+    }
+
+    const artistOptions = artists.map((artist) => {
+        return (
+            <option key={artist.id}>
+                {artist.name}
+            </option>
+        )
+    })
+    artistOptions.unshift(<option></option>)
+
+    const showArtistData = (event) => {
+        event.preventDefault()
+        setArtistData(event.currentTarget.value)
+    }
+
+    const nightFlow = {
+        showTitle: showData,
+        artistName: artistData
     }
 
     const setVibe = async () => {
@@ -82,7 +111,23 @@ const ShowPlayGround = (props) => {
                 }),
                 body: JSON.stringify(trueData)
             })
-            console.log(trueData)
+            if (!response.ok) {
+                throw (new Error(`${response.status} (${response.statusText})`))
+            }
+        } catch (error) {
+            console.error(`Error in fetch: ${error.message}`)
+        }
+    }
+
+    const setLineup = async () => {
+        try {
+            const response = await fetch(`/api/v1/lineups`, {
+                method: "POST",
+                headers: new Headers({
+                    "Content-Type": "application/json"
+                }),
+                body: JSON.stringify(nightFlow)
+            })
             if (!response.ok) {
                 throw (new Error(`${response.status} (${response.statusText})`))
             }
@@ -94,6 +139,11 @@ const ShowPlayGround = (props) => {
     const handleSubmit = (event) => {
         event.preventDefault()
         setVibe()
+    }
+
+    const handleLineup = (event) => {
+        event.preventDefault()
+        setLineup()
     }
 
     const showsToDisplay = shows.map(show => {
@@ -116,6 +166,7 @@ const ShowPlayGround = (props) => {
                         <Link to={`/venues/${show.hostId}/${show.id}`} >
                             <img src={show.image} />
                         </Link>
+                        {/* <ArtistList /> */}
                     </li>
                     <div className="card container">
                         <Playlist
@@ -129,19 +180,34 @@ const ShowPlayGround = (props) => {
 
     return (
         <div className="bg-black text-white">
-            <form onSubmit={handleSubmit}>
-                Show Select <select onInput={showShowData} className="card bg-black text-white" >
+            <form onSubmit={handleSubmit} className="card">
+                Show Select <select onInput={showShowData} className="card bg-black text-white mb-1" >
                     {showOptions}
                 </select>
-                Track Select <select onInput={showTrackData} className="card bg-black text-white" >
+                Track Select <select onInput={showTrackData} className="card bg-black text-white mb-1" >
                     {trackOptions}
                 </select>
                 <div className="button-group">
-                    <input className="btn-complement-yellow" type="submit" value="Add Track To Show's Playlist" />
+                    <input className="btn-complement-yellow" type="submit" value="Add To Show's Playlist" />
                 </div>
-            <Spotify />
             </form>
-            {showsToDisplay}
+            <div className="bg-black text-white">
+                <form onSubmit={handleLineup} className="card">
+                    Show Select <select onInput={showShowData} className="card bg-black text-white mb-1" >
+                        {showOptions}
+                    </select>
+                    Artist Select <select onInput={showArtistData} className="card bg-black text-white mb-1" >
+                        {artistOptions}
+                    </select>
+                    <div className="button-group">
+                        <input className="btn-complement-yellow" type="submit" value="Add Artist To Show's Lineup" />
+                    </div>
+                    {showsToDisplay}
+                </form>
+            </div>
+            <div className="card">
+                <Spotify />
+            </div>
         </div>
     )
 }

@@ -7,17 +7,17 @@ import uploadImage from "../../../db/services/uploadImage.js"
 const venuesRouter = new express.Router()
 
 venuesRouter.get("/", async (req, res) => {
-    try{
+    try {
         const venues = await Venue.query()
         const serializedVenues = await VenueSerializer.withShows(venues)
         return res.status(200).json({ venues: serializedVenues })
-    }catch(error){
-        return res.status(500).json({errors: error})
+    } catch (error) {
+        return res.status(500).json({ errors: error })
     }
 })
 
 venuesRouter.post("/", uploadImage.single("image"), async (req, res) => {
-    try{
+    try {
         const body = req.body
         const data = {
             ...body,
@@ -25,19 +25,19 @@ venuesRouter.post("/", uploadImage.single("image"), async (req, res) => {
         }
         const newVenue = await Venue.query().insertAndFetch(data);
         return res.status(201).json({ newVenue })
-    } catch(error) {
+    } catch (error) {
         return res.status(500).json({ errors: error })
     }
 })
 
 venuesRouter.get("/:id", async (req, res) => {
     const venueId = req.params.id
-    try{
+    try {
         const venue = await Venue.query().findById(venueId)
         const serializedVenue = await VenueSerializer.withRelated(venue)
         return res.status(200).json({ venue: serializedVenue })
-    }catch(error){
-        return res.status(500).json({errors: error})
+    } catch (error) {
+        return res.status(500).json({ errors: error })
     }
 })
 
