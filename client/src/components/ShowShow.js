@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react"
 import Playlist from "./spotify/Playlist.js"
 import { Link } from "react-router-dom"
+import ArtistList from "./ArtistList.js"
 
 const ShowShow = (props) => {
     const venueId = props.match.params.venueId
@@ -15,7 +16,7 @@ const ShowShow = (props) => {
     })
 
     const [tracks, setTracks] = useState([])
-
+    const [artists, setArtists] = useState([])
 
     const getShow = async () => {
         try {
@@ -24,6 +25,7 @@ const ShowShow = (props) => {
             const showData = body.serializedShow
             setShow(showData)
             setTracks(showData.tracks)
+            setArtists(showData.artists)
         } catch (error) {
             console.error(`Error in fetch: ${error.message}`)
         }
@@ -34,19 +36,14 @@ const ShowShow = (props) => {
     }, [])
 
     const currentUser = props.user
-    console.log(currentUser)
-    console.log(show.hostId)
 
     const playgroundButton = (
         <div className="mt-4 pb-2">
             <Link to="/showplayground">
-                <input className="special-button" type="button" value="Add Tracks To Your Show!" />
+                <input className="special-button" type="button" value="Build Your Show!" />
             </Link>
         </div>
     )
-
-
-
 
     return (
         <div className="bg-black">
@@ -61,19 +58,24 @@ const ShowShow = (props) => {
                 <div className="container">
                     <img src={show.image} />
                     <div className="card">
-                    <h4>{`${show.title}'s Playlist`}</h4>
+                        <ArtistList
+                            artists={artists}
+                        />
+                    </div>
+                    <div className="card">
+                        <h4>{`${show.title}'s Playlist`}</h4>
                         <Playlist
                             tracks={tracks}
                         />
                     </div>
-                        <>
-                            {currentUser
-                                && currentUser.id === show.hostId
-                                && playgroundButton}
-                        </>
-                    </div>
+                    <>
+                        {currentUser
+                            && currentUser.id === show.hostId
+                            && playgroundButton}
+                    </>
                 </div>
             </div>
+        </div>
     )
 }
 

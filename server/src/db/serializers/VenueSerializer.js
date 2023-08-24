@@ -10,7 +10,7 @@ class VenueSerializer {
                 "hostId",
                 "image"
             ];
-    
+
             let serializedVenue = {};
             for (const attribute of desiredAttributes) {
                 serializedVenue[attribute] = venue[attribute]
@@ -23,23 +23,23 @@ class VenueSerializer {
 
     static async withRelated(venue) {
 
-            const desiredAttributes = [
-                "id",
-                "name",
-                "location",
-                "hostId",
-                "image"
-            ];
-    
-            let serializedVenue = {};
-            for (const attribute of desiredAttributes) {
-                serializedVenue[attribute] = venue[attribute]
-            }
+        const desiredAttributes = [
+            "id",
+            "name",
+            "location",
+            "hostId",
+            "image"
+        ];
 
-            const shows = await venue.$relatedQuery("shows")
-            serializedVenue.shows = await ShowSerializer.summarize(shows)
+        let serializedVenue = {};
+        for (const attribute of desiredAttributes) {
+            serializedVenue[attribute] = venue[attribute]
+        }
 
-            return serializedVenue;
+        const shows = await venue.$relatedQuery("shows")
+        serializedVenue.shows = await ShowSerializer.summarize(shows)
+
+        return serializedVenue;
 
     }
 
@@ -53,7 +53,7 @@ class VenueSerializer {
                     "hostId",
                     "image"
                 ];
-        
+
                 let serializedVenue = {};
                 for (const attribute of desiredAttributes) {
                     serializedVenue[attribute] = venue[attribute]

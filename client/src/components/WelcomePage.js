@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react"
 import VenueList from "./VenueList"
 import VenueForm from "./VenueForm"
-import Spotify from "./Spotify.js"
 import Playlist from "./spotify/Playlist.js"
+import ArtistForm from "./ArtistForm.js"
 
 
 const WelcomePage = (props) => {
@@ -19,7 +19,6 @@ const WelcomePage = (props) => {
             }
             const responseBody = await response.json()
             setTracks(responseBody.tracks)
-            console.log(responseBody.tracks)
         } catch (error) {
             console.error(`Error in fetch: ${error.message}`)
         }
@@ -33,7 +32,6 @@ const WelcomePage = (props) => {
             }
             const responseBody = await response.json()
             setVenues(responseBody.venues)
-            console.table(responseBody.venues[0].shows)
         } catch (error) {
             console.error(`Error in fetch: ${error.message}`)
         }
@@ -52,11 +50,12 @@ const WelcomePage = (props) => {
             venues={venues}
         />
     }
-
-    // let spotify;
-    // if (currentUser) {
-    //     spotify = <Spotify />
-    // }
+    let artistForm = "Sign In to create an Artist Profile B)"
+    if (currentUser) {
+        artistForm = <ArtistForm
+            currentUser={currentUser}
+        />
+    }
 
     const titleHeader = "Get.To.The.Gig."
 
@@ -66,9 +65,6 @@ const WelcomePage = (props) => {
                 {titleHeader}
             </h1>
             <div className="row gap-2 justify-flex-end">
-                {/* <div>
-                    {spotify}
-                </div> */}
                 <div className="card container">
                     <div className="card bg-black text-white">
                         <div className="card card-body">
@@ -78,10 +74,11 @@ const WelcomePage = (props) => {
                         </div>
                         <div className="card">
                             {venueForm}
+                            {artistForm}
                         </div>
                     </div>
                 </div>
-                        <Playlist tracks={tracks} />
+                <Playlist tracks={tracks} />
             </div>
         </div>
     )

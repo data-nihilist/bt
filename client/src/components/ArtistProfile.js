@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react"
 
 const ArtistProfile = (props) => {
-const artistId = props.match.params.id
+    const artistId = props.match.params.id
     const [artist, setArtist] = useState({
         name: "",
         genre: "",
@@ -14,14 +14,14 @@ const artistId = props.match.params.id
 
 
     const getArtist = async () => {
-        try{
+        try {
             const artist = await fetch(`/api/v1/artists/${artistId}`)
-            if(!artist.ok) {
-                throw(new Error(`${artist.status} (${artist.statusText})`))
+            if (!artist.ok) {
+                throw (new Error(`${artist.status} (${artist.statusText})`))
             }
             const trveArtist = await artist.json()
             setArtist(trveArtist.artist)
-        }catch(error){
+        } catch (error) {
             console.error(`Error in fetch: ${error.message}`)
         }
     }
@@ -32,14 +32,14 @@ const artistId = props.match.params.id
 
 
     let touringMessage;
-    if(artist.touring) {
+    if (artist.touring) {
         touringMessage = (
             <h3>
                 We're touring!
             </h3>
         )
     }
-    if(artist.touring === false) {
+    if (artist.touring === false) {
         touringMessage = (
             <h3>
                 No tours scheduled...yet B)
@@ -47,7 +47,7 @@ const artistId = props.match.params.id
         )
     }
 
-    return(
+    return (
         <div>
             <h1>
                 yo yo yo from the artist profile page B)

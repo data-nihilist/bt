@@ -11,11 +11,11 @@ class Lineup extends Model {
             required: ["showId", "artistId"],
             properties: {
                 showId: { type: ["integer", "string"] },
-                artistId: { type: ["integer", "string" ]}
+                artistId: { type: ["integer", "string"] }
             }
         }
     }
-    
+
     static get relationMappins() {
         const { Show, Artist } = require("./index.js")
         return {

@@ -27,9 +27,9 @@ const ActiveArtists = (props) => {
         return (
             <div key={artist.id} className="card">
                 <Link to={`/artists/${artist.id}`}>
-                <h1>
-                    {artist.name}
-                </h1>
+                    <h1>
+                        {artist.name}
+                    </h1>
                 </Link>
                 <h2>
                     {artist.genre}
