@@ -12,6 +12,8 @@ import VenueShow from "./VenueShow";
 import ShowShow from "./ShowShow";
 // import Spotify from "./Spotify";
 import ShowPlayGround from "./ShowPlayGround";
+import ArtistProfile from "./ArtistProfile";
+import ActiveArtists from "./ActiveArtists.js";
 
 const App = (props) => {
   const [currentUser, setCurrentUser] = useState(undefined);
@@ -39,6 +41,9 @@ const App = (props) => {
         <Route exact path="/venues/:venueId/:id" render={(props) => <ShowShow user={currentUser} {...props} />} />
         {/* <Route exact path="/login" render={(props) => <Spotify user={currentUser} {...props} />} /> */}
         <Route exact path="/showplayground" render={(props) => <ShowPlayGround user={currentUser} {...props} />} />
+        <Route exact path="/artists" render={(props) => <ActiveArtists user={currentUser} {...props} />} />
+        <Route exact path="/artists/:id" render={(props) => <ArtistProfile user={currentUser} {...props} />} />
+
       </Switch>
     </Router>
   );
