@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react"
 import Playlist from "./spotify/Playlist.js"
 import { Link } from "react-router-dom"
+import Spotify from "./Spotify.js"
 
 const ShowPlayGround = (props) => {
     const [shows, setShows] = useState([])
@@ -138,6 +139,7 @@ const ShowPlayGround = (props) => {
                 <div className="button-group">
                     <input className="btn-complement-yellow" type="submit" value="Add Track To Show's Playlist" />
                 </div>
+            <Spotify />
             </form>
             {showsToDisplay}
         </div>
