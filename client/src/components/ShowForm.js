@@ -19,18 +19,17 @@ const ShowForm = (props) => {
         const showFormData = new FormData();
         showFormData.append("title", showRecord.title)
         showFormData.append("date", showRecord.date)
-        showFormData.append("doors", showRecord.doors)
         showFormData.append("image", showRecord.image)
+        showFormData.append("doors", showRecord.doors)
 
         try {
             const newShow = await fetch(`/api/v1/venues/${venue.id}/shows`, {
                 method: "POST",
-                heades: {
+                headers: {
                     Accept: "image/jpeg",
                 },
                 body: showFormData
             })
-            console.log(newShow)
             if (!newShow.ok) {
                 if (newShow.status === 422) {
                     const body = await newShow.json()
@@ -72,26 +71,8 @@ const ShowForm = (props) => {
     const handleSubmit = (event) => {
         event.preventDefault()
         addShowToVenue()
-        clearForm()
+        // clearForm()
     }
-    //-----------------------------------------------------DOORS
-    // const times = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12"];
-    // const timeOptionsPM = times.map((time) => {
-    //     return(
-    //         <>
-    //             <option value={`${time}AM`}>{`${time} PM`}</option>
-    //         </>
-    //     )
-    // })
-    // const timeOptionsAM = times.map((time) => {
-    //     return(
-    //         <>
-    //             <option value={`${time}PM`}>{`${time} AM`}</option>
-    //         </>
-    //     )
-    // })
-
-    //----------------------------------------------------------
 
     return (
         <div>

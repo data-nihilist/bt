@@ -62,6 +62,7 @@
     "objection-unique": "^1.2.2",
     "passport": "~0.5.0",
     "passport-local": "^1.0.0",
-    "pg": "^8.11.2"
+    "pg": "^8.11.2",
+    "spotify-web-api-node": "^5.0.2"
   }
 }

@@ -15,7 +15,6 @@ class VenueSerializer {
             for (const attribute of desiredAttributes) {
                 serializedVenue[attribute] = venue[attribute]
             }
-
             return serializedVenue;
         })
 
@@ -42,6 +41,28 @@ class VenueSerializer {
 
             return serializedVenue;
 
+    }
+
+    static async withShows(array) {
+        const serializedVenues = await Promise.all(
+            array.map(async (venue) => {
+                const desiredAttributes = [
+                    "id",
+                    "name",
+                    "location",
+                    "hostId",
+                    "image"
+                ];
+        
+                let serializedVenue = {};
+                for (const attribute of desiredAttributes) {
+                    serializedVenue[attribute] = venue[attribute]
+                }
+                serializedVenue.shows = await venue.$relatedQuery("shows")
+                return serializedVenue;
+            })
+        );
+        return serializedVenues
     }
 }
 

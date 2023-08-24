@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react"
 import VenueList from "./VenueList"
 import VenueForm from "./VenueForm"
+import Spotify from "./Spotify.js"
 
 
 const WelcomePage = (props) => {
@@ -16,6 +17,7 @@ const WelcomePage = (props) => {
             }
             const responseBody = await response.json()
             setVenues(responseBody.venues)
+            console.table(responseBody.venues[0].shows)
         } catch (error) {
             console.error(`Error in fetch: ${error.message}`)
         }
@@ -25,13 +27,18 @@ const WelcomePage = (props) => {
         getVenues()
     }, [])
 
-    let message = "Sign Up or Sign In to create a venue :D"
+    let venueForm = "Sign In to create a venue and/or contribute to GTTG's available tracks :D"
     if (currentUser) {
-        message = <VenueForm
+        venueForm = <VenueForm
             currentUser={currentUser}
             setVenues={setVenues}
             venues={venues}
         />
+    }
+
+    let spotify;
+    if (currentUser) {
+        spotify = <Spotify />
     }
 
     return (
@@ -40,22 +47,20 @@ const WelcomePage = (props) => {
                 <div className="card container">
                     <div className="card bg-black text-white">
                         <h1 className="bg-black text-white card-title">
-                            "yo yo yo from the welcome page"
+                            "Get.To.The.Gig"
                         </h1>
                         <div className="card card-body">
                             <VenueList
-                                currentUser={currentUser}
                                 venues={venues}
-                                setVenues={setVenues}
-                            />                    </div>
+                            />
+                        </div>
+                        <div className="callout">
+                            {spotify}
+                        </div>
                     </div>
                 </div>
-                <h1>
-                    {message}
-                </h1>
             </div>
         </div>
     )
 }
-
 export default WelcomePage
