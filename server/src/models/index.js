@@ -6,5 +6,6 @@ const Show = require("./Show.js")
 const Track = require("./Track.js")
 const Vibe = require("./Vibe.js")
 const Artist = require("./Artist.js")
+const Lineup = require("./Lineup.js")
 
-module.exports = { User, Model, Venue, Show, Track, Vibe, Artist };
+module.exports = { User, Model, Venue, Show, Track, Vibe, Artist, Lineup };
