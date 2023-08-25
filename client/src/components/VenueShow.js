@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react"
 import ShowList from "./ShowList.js"
 import ShowForm from "./ShowForm.js"
+import SimpleJsApiLoaderGoogleMap from "./maps/simpleJsApiLoaderGoogleMap.js"
 
 const VenueShow = (props) => {
     const [venue, setVenue] = useState({
