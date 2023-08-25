@@ -10,7 +10,7 @@ const SimpleJsApiLoaderGoogleMap = ({ venueQuery }) => {
     });
 
     loader.load().then(() => {
-        const massachusetts = { lat: 42.4072, lng: 71.3824 };
+        const massachusetts = { lat: 37.0902, lng: 95.7129 };
 
         const map = new google.maps.Map(document.getElementById("map"), {
             center: massachusetts,

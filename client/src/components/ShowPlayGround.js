@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react"
 import Playlist from "./spotify/Playlist.js"
 import { Link } from "react-router-dom"
 import Spotify from "./Spotify.js"
-import ArtistList from "./ArtistList.js"
 
 const ShowPlayGround = (props) => {
     const [shows, setShows] = useState([])
@@ -166,7 +165,6 @@ const ShowPlayGround = (props) => {
                         <Link to={`/venues/${show.hostId}/${show.id}`} >
                             <img src={show.image} />
                         </Link>
-                        {/* <ArtistList /> */}
                     </li>
                     <div className="card container">
                         <Playlist
