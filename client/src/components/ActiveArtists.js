@@ -25,30 +25,33 @@ const ActiveArtists = (props) => {
 
     const artistsList = artists.map(artist => {
         return (
-            <div key={artist.id} className="card">
-                <Link to={`/artists/${artist.id}`}>
-                    <h1>
-                        {artist.name}
-                    </h1>
-                </Link>
-                <h2>
-                    {artist.genre}
-                </h2>
-                <h3>
-                    {artist.originCity}
-                </h3>
-                <h4>
-                    {artist.description}
-                </h4>
+            <div className="bg-black text-white">
+                <div className="container">
+                    <div key={artist.id} className="card">
+                        <Link to={`/artists/${artist.id}`}>
+                            <h1 className="card-title responsive-test">
+                                {artist.name}
+                            </h1>
+                        </Link>
+                        <h2>
+                            {artist.genre}
+                        </h2>
+                        <h3 className="text-info">
+                            {artist.originCity}
+                        </h3>
+                        <h4>
+                            {artist.description}
+                        </h4>
+                    </div>
+                </div>
             </div>
         )
-
     })
 
     return (
-        <div>
+        <>
             {artistsList}
-        </div>
+        </>
     )
 }
 

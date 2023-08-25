@@ -42,7 +42,7 @@ const WelcomePage = (props) => {
         getTracks()
     }, [])
 
-    let venueForm = "Sign In to create a venue and/or contribute to GTTG's available tracks :D"
+    let venueForm;
     if (currentUser) {
         venueForm = <VenueForm
             currentUser={currentUser}
@@ -50,7 +50,7 @@ const WelcomePage = (props) => {
             venues={venues}
         />
     }
-    let artistForm = "Sign In to create an Artist Profile B)"
+    let artistForm;
     if (currentUser) {
         artistForm = <ArtistForm
             currentUser={currentUser}
@@ -61,24 +61,18 @@ const WelcomePage = (props) => {
 
     return (
         <div className="bg-black">
-            <h1 className="card bg-black text-white">
-                {titleHeader}
-            </h1>
-            <div className="row gap-2 justify-flex-end">
-                <div className="card container">
-                    <div className="card bg-black text-white">
-                        <div className="card card-body">
-                            <VenueList
-                                venues={venues}
-                            />
-                        </div>
-                        <div className="card">
-                            {venueForm}
-                            {artistForm}
-                        </div>
-                    </div>
-                </div>
+            <div className="container bg-black text-white">
+                <h1 className="card-title">
+                    {titleHeader}
+                </h1>
+                <VenueList
+                    venues={venues}
+                />
                 <Playlist tracks={tracks} />
+                <h3>
+                    {venueForm}
+                    {artistForm}
+                </h3>
             </div>
         </div>
     )
