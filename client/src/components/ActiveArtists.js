@@ -12,7 +12,6 @@ const ActiveArtists = (props) => {
                 throw (new Error(`${artists.status} (${artists.statusText})`))
             }
             const allArtists = await artists.json()
-            console.log(allArtists.artists)
             setArtists(allArtists.artists)
         } catch (error) {
             console.error(`Error in fetch: ${error.message}`)
@@ -25,9 +24,9 @@ const ActiveArtists = (props) => {
 
     const artistsList = artists.map(artist => {
         return (
-            <div className="bg-black text-white">
+            <div key={artist.id} className="bg-black text-white">
                 <div className="container">
-                    <div key={artist.id} className="card">
+                    <div className="card">
                         <Link to={`/artists/${artist.id}`}>
                             <h1 className="card-title responsive-test">
                                 {artist.name}

@@ -117,7 +117,7 @@ const ShowForm = (props) => {
                                 <section className="">
                                     <div {...getRootProps()}>
                                         <input {...getInputProps()} />
-                                        <input className="btn-complement-yellow mb-2 mt-2" value="Add Picture (optional)" />
+                                        <p className="btn-complement-yellow mb-2 mt-2" value="Add Picture (optional)" />
                                     </div>
                                 </section>
                             )}

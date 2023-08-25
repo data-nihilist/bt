@@ -7,11 +7,7 @@ const ShowList = ({ venueId, shows, currentUser }) => {
     console.log(currentUser)
     const upcomingShows = shows.map((show) => {
         return (
-            <div>
-                <li
-                    key={show.id}
-                >
-                    <Link to={`/venues/${venueId}/${show.id}`}>
+                    <Link to={`/venues/${venueId}/${show.id}`} key={show.id}>
                         <ShowTile
                             hostId={show.hostId}
                             title={show.title}
@@ -21,9 +17,6 @@ const ShowList = ({ venueId, shows, currentUser }) => {
                             shows={shows}
                         />
                     </Link>
-                    <hr></hr>
-                </li>
-            </div>
         )
     })
 

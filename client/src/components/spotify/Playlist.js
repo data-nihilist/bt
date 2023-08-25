@@ -5,12 +5,10 @@ const Playlist = ({ tracks }) => {
 
     const savedTracks = tracks.map((track) => {
         return (
-            <>
                 <TrackTile
-                    key={track.id}
                     track={track}
+                    key={track.id}
                 />
-            </>
         )
     })
     return (
