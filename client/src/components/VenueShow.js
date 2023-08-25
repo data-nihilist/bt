@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react"
 import ShowList from "./ShowList.js"
 import ShowForm from "./ShowForm.js"
+import SimpleJsApiLoaderGoogleMap from "./maps/simpleJsApiLoaderGoogleMap.js"
 
 const VenueShow = (props) => {
     const [venue, setVenue] = useState({
@@ -35,6 +36,7 @@ const VenueShow = (props) => {
 
     return (
         <div className="bg-black text-white">
+        <div className="container">
             <h1 className="card-title bg-black text-white">
                 {venue.name}
             </h1>
@@ -45,22 +47,25 @@ const VenueShow = (props) => {
                 <img src={venue.image} className="imageShow" />
             </div>
             <hr></hr>
-            <div className="card container">
-                <>
-                    <h1 className="card">
-                        Upcoming Shows @{venue.name}
-                    </h1>
+            <div>
+
+            </div>
+            <div className="card">
                     <ShowList
                         venueId={venueId}
                         shows={venueShows}
                         currentUser={currentUser}
                     />
-                </>
+                <div className="card">
+                    <SimpleJsApiLoaderGoogleMap
+                        venueQuery={`${venue.location}`} />
+                </div>
                 {currentUser
                     && currentUser.id === venue.hostId
                     && <ShowForm venue={venue} shows={venueShows} setVenueShows={setVenueShows} />
                 }
             </div>
+        </div>
         </div>
     )
 }

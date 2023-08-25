@@ -8,7 +8,7 @@
 exports.up = async (knex) => {
     return knex.schema.createTable("artists", (table) => {
         table.bigIncrements("id")
-        table.string("name").notNullable()
+        table.string("name").notNullable().unique()
         table.string("genre").notNullable()
         table.string("originCity").notNullable()
         table.string("description").notNullable()

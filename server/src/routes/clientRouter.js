@@ -17,7 +17,8 @@ const clientRoutes = [
   "/showplayground",
   "/artists",
   "/artists/new",
-  "/artists/:id"
+  "/artists/:id",
+  "/maps"
 ];
 
 const authedClientRoutes = ["/profile"];

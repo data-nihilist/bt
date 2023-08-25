@@ -6,8 +6,7 @@ const ArtistList = ({ artists }) => {
 
     const listOfArtists = artists.map(artist => {
         return (
-            <>
-                <Link to={`/artists/${artist.id}`}>
+                <Link to={`/artists/${artist.id}`} key={artist.name}>
                     <ArtistTile
                         id={artist.id}
                         name={artist.name}
@@ -15,7 +14,6 @@ const ArtistList = ({ artists }) => {
                         originCity={artist.originCity}
                     />
                 </Link>
-            </>
         )
     })
 

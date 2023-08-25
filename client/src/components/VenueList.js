@@ -6,17 +6,15 @@ const VenueList = ({ venues }) => {
 
     const listOfVenues = venues.map(venue => {
         return (
-            <div>
-                <Link to={`/venues/${venue.id}`}>
-                    <VenueTile
-                        id={venue.id}
-                        name={venue.name}
-                        location={venue.location}
-                        image={venue.image}
-                        shows={venue.shows}
-                    />
-                </Link>
-            </div>
+            <Link to={`/venues/${venue.id}`} key={venue.id}>
+                <VenueTile
+                    id={venue.id}
+                    name={venue.name}
+                    location={venue.location}
+                    image={venue.image}
+                    shows={venue.shows}
+                />
+            </Link>
         )
     })
 

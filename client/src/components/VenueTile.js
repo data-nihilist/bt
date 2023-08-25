@@ -10,7 +10,7 @@ const VenueTile = ({ id, name, location, shows }) => {
     })
 
     return (
-        <div key={id}>
+        <div>
             <h2>
                 {name}
             </h2>

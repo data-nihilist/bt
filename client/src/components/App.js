@@ -14,6 +14,7 @@ import ShowPlayGround from "./ShowPlayGround";
 import ArtistProfile from "./ArtistProfile";
 import ActiveArtists from "./ActiveArtists.js";
 import ArtistForm from "./ArtistForm.js"
+import SimpleJsApiLoaderGoogleMap from "./maps/simpleJsApiLoaderGoogleMap.js"
 
 const App = (props) => {
   const [currentUser, setCurrentUser] = useState(undefined);
@@ -43,6 +44,7 @@ const App = (props) => {
         <Route exact path="/artists" render={(props) => <ActiveArtists user={currentUser} {...props} />} />
         <Route exact path="/artists/new" render={(props) => <ArtistForm user={currentUser} {...props} />} />
         <Route exact path="/artists/:id" render={(props) => <ArtistProfile user={currentUser} {...props} />} />
+        <Route exact path="/maps" component={SimpleJsApiLoaderGoogleMap} />
       </Switch>
     </Router>
   );

@@ -101,6 +101,7 @@ const VenueForm = (props) => {
                                 onChange={handleInputChange}
                                 className="card bg-black text-white mb-1"
                             />
+                            <p className="text-info">Be as specific or vague as you'd like</p>
                         </label>
                         <Dropzone onDrop={handleVenueImageUpload} >
                             {({ getRootProps, getInputProps }) => (
