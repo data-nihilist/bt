@@ -9,6 +9,7 @@ class ArtistSerializer {
                     "originCity",
                     "description",
                     "userId",
+                    "image"
                 ]
 
                 let serializedArtist = {}

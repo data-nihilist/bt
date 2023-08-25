@@ -8,7 +8,8 @@ const ArtistProfile = (props) => {
         originCity: "",
         description: "",
         touring: "",
-        userId: ""
+        userId: "",
+        image: ""
     })
 
 
@@ -30,44 +31,24 @@ const ArtistProfile = (props) => {
         getArtist()
     }, [])
 
-
-    let touringMessage;
-    if (artist.touring) {
-        touringMessage = (
-            <h3>
-                We're touring!
-            </h3>
-        )
-    }
-    if (artist.touring === false) {
-        touringMessage = (
-            <h3>
-                No tours scheduled...yet B)
-            </h3>
-        )
-    }
-
     return (
-        <div>
-            <h1>
-                yo yo yo from the artist profile page B)
-            </h1>
-            <div>
-                <h1>
-                    {artist.name}
-                </h1>
-                <h2>
-                    {artist.genre}
-                </h2>
-                <h3>
-                    {artist.originCity}
-                </h3>
-                <h4>
-                    {artist.description}
-                </h4>
-                <>
-                    {touringMessage}
-                </>
+        <div className="bg-black text-white">
+            <div className="container">
+                <div className="card">
+                    <h1 className="card-title responsive-test">
+                        {artist.name}
+                    </h1>
+                    <h2>
+                        {artist.genre}
+                    </h2>
+                    <h3 className="text-info">
+                        {artist.originCity}
+                    </h3>
+                    <h4>
+                        {artist.description}
+                    </h4>
+                    <img src={artist.image} />
+                </div>
             </div>
         </div>
     )
