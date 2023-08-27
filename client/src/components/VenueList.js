@@ -6,15 +6,14 @@ const VenueList = ({ venues }) => {
 
     const listOfVenues = venues.map(venue => {
         return (
-            <Link to={`/venues/${venue.id}`} key={venue.id}>
                 <VenueTile
-                    id={venue.id}
+                    key={venue.id}
                     name={venue.name}
                     location={venue.location}
                     image={venue.image}
                     shows={venue.shows}
+                    venue={venue}
                 />
-            </Link>
         )
     })
 
@@ -23,9 +22,14 @@ const VenueList = ({ venues }) => {
         message = "Aw jeez... looks like nobody is throwing any shows :c"
     }
 
+    const titleHeader = "Get.To.The.Gig."
+
     return (
         <div className="card">
             <h1>{message}</h1>
+            <h1 className="card-title">
+                    {titleHeader}
+                </h1>
             {listOfVenues}
         </div>
     )

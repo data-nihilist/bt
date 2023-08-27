@@ -45,9 +45,6 @@ const WelcomePage = (props) => {
     let venueForm;
     if (currentUser) {
         venueForm = <VenueForm
-            currentUser={currentUser}
-            setVenues={setVenues}
-            venues={venues}
         />
     }
     let artistForm;
@@ -56,24 +53,29 @@ const WelcomePage = (props) => {
             currentUser={currentUser}
         />
     }
-
-    const titleHeader = "Get.To.The.Gig."
-
+    const welcomePagePlaylistHeader = (
+        <h1>
+            All the following tracks have been contributed by GTTG's hosts
+        </h1>
+    )
     return (
-        <div className="bg-black">
-            <div className="container bg-black text-white">
-                <h1 className="card-title">
-                    {titleHeader}
-                </h1>
+        <div className="bg-black text-white">
+            <div className="container playlistHeader">
                 <VenueList
                     venues={venues}
+                    setVenues={setVenues}
                 />
-                <Playlist tracks={tracks} />
                 <h3>
                     {venueForm}
                     {artistForm}
                 </h3>
             </div>
+                <div className="card-title text-info playlistHeader">
+                    {welcomePagePlaylistHeader}
+                </div>
+                    <div>
+            <Playlist tracks={tracks} />
+                    </div>
         </div>
     )
 }

@@ -14,6 +14,8 @@ const ShowForm = (props) => {
     const venue = props.venue
 
     const [errors, setErrors] = useState({})
+    const [isPending, setIsPending] = useState(false)
+
 
     const addShowToVenue = async () => {
         const showFormData = new FormData();
@@ -23,7 +25,7 @@ const ShowForm = (props) => {
         showFormData.append("doors", showRecord.doors)
 
         try {
-            const newShow = await fetch(`/api/v1/venues/${venue.id}/shows`, {
+            const newShow = await fetch(`/api/v1/venues/${venue.name}/shows`, {
                 method: "POST",
                 headers: {
                     Accept: "image/jpeg",
@@ -39,6 +41,8 @@ const ShowForm = (props) => {
                     throw (new Error(`${newShow.status} (${newShow.statusText})`))
                 }
             }
+            setIsPending(true)
+
         } catch (error) {
             console.error(`Error in fetch: ${error.message}`)
         }
@@ -75,34 +79,34 @@ const ShowForm = (props) => {
     }
 
     return (
-        <div className="bg-black">
-            <div className="card bg-black text-white">
+        <div className="bg-black text-white">
+            <form className="card" onSubmit={handleSubmit}>
                 <h1 className="card-title">Add Shows To Your Venue!</h1>
-                <form className="card" onSubmit={handleSubmit}>
+                <label className="card-body" htmlFor="title">
+                    Show title
+                    <input
+                        id="title"
+                        type="text"
+                        name="title"
+                        value={showRecord.title}
+                        onChange={handleInputChange}
+                        className="card bg-black text-white mb-2"
+                    />
+                </label>
+                    <label className="card-body" htmlFor="date">
+                        Show date
+                        <input
+                            id="date"
+                            type="text"
+                            name="date"
+                            value={showRecord.date}
+                            onChange={handleInputChange}
+                            className="card bg-black text-white mb-2"
+                        />
+                    </label>
                     <div className="mb-2">
-
-                        <label className="card-body" htmlFor="title"> Show title
-                            <input
-                                id="title"
-                                type="text"
-                                name="title"
-                                value={showRecord.title}
-                                onChange={handleInputChange}
-                                className="card bg-black text-white mb-2"
-                            />
-                        </label>
-
-                        <label className="card-body" htmlFor="date"> Show date
-                            <input
-                                id="date"
-                                type="text"
-                                name="date"
-                                value={showRecord.date}
-                                onChange={handleInputChange}
-                                className="card bg-black text-white mb-2"
-                            />
-                        </label>
-                        <label className="card-body" htmlFor="doors">DOORS @
+                        <label className="card-body" htmlFor="doors">
+                            DOORS @
                             <input
                                 id="doors"
                                 type="text"
@@ -114,21 +118,21 @@ const ShowForm = (props) => {
                         </label>
                         <Dropzone onDrop={handleShowImageUpload}>
                             {({ getRootProps, getInputProps }) => (
-                                <section className="">
+                                <section>
                                     <div {...getRootProps()}>
                                         <input {...getInputProps()} />
-                                        <p className="btn-complement-yellow mb-2 mt-2" value="Add Picture (optional)" />
+                                        <p className="btn-complement-yellow mt-1 formButtons">Add Picture</p>
                                     </div>
                                 </section>
                             )}
                         </Dropzone>
-                        <div className="button-group">
-                            <input className="btn-complement-purple" type="submit" value="Add Show" />
-                            <input className="btn-complement-red" type="button" onClick={clearForm} value="Reset Fields" />
-                        </div>
                     </div>
-                </form>
-            </div>
+                    <div className="button-group formButtons">
+                        {!isPending && <input className="btn-complement-purple mr-2 mb-1" type="submit" value="Add Show" />}
+                        {isPending && <button className="btn-complement-blue mr-2 mb-1" disabled>Adding show...</button>}
+                        <input className="btn-complement-red ml-2 mb-1" type="button" onClick={clearForm} value="Reset Fields" />
+                    </div>
+            </form>
         </div>
     )
 }

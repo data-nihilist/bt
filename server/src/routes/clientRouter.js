@@ -6,19 +6,18 @@ import config from "../config.js"
 const router = new express.Router();
 
 const clientRoutes = [
-  "/venues",
-  "/venues/:id",
-  "/:venueId/shows",
-  "/venues/:venueId/:id",
-  "/user-sessions/new",
-  "/users/new",
-  "/refresh",
   "/",
+  "/users/new",
+  "/venues",
+  "/venues/:name",
+  "/venues/:name/shows",
+  "/venues/:name/:id",
+  "/user-sessions/new",
+  "/refresh",
   "/showplayground",
   "/artists",
   "/artists/new",
   "/artists/:id",
-  "/maps"
 ];
 
 const authedClientRoutes = ["/profile"];

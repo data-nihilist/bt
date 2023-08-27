@@ -4,7 +4,7 @@ import { Link } from "react-router-dom"
 import ArtistList from "./ArtistList.js"
 
 const ShowShow = (props) => {
-    const venueId = props.match.params.venueId
+    const venueName = props.match.params.name
     const showId = props.match.params.id
 
     const [show, setShow] = useState({
@@ -14,13 +14,13 @@ const ShowShow = (props) => {
         image: "",
         doors: ""
     })
-
+    
     const [tracks, setTracks] = useState([])
     const [artists, setArtists] = useState([])
-
+    
     const getShow = async () => {
         try {
-            const response = await fetch(`/api/v1/venues/${venueId}/${showId}`)
+            const response = await fetch(`/api/v1/venues/${venueName}/${showId}`)
             const body = await response.json()
             const showData = body.serializedShow
             setShow(showData)
@@ -30,13 +30,13 @@ const ShowShow = (props) => {
             console.error(`Error in fetch: ${error.message}`)
         }
     }
-
+    
     useEffect(() => {
         getShow()
     }, [])
-
+    
     const currentUser = props.user
-
+    
     const playgroundButton = (
         <div className="mt-4 pb-2">
             <Link to="/showplayground">
@@ -45,10 +45,22 @@ const ShowShow = (props) => {
         </div>
     )
 
+    const presentedBy = () => {
+        return (
+            <Link to={`/venues/${venueName}`}>
+                <h2>
+                    {venueName} Presents
+                </h2>
+            </Link>
+        )
+    }
+        
+    
     return (
         <div className="bg-black">
             <div className="card bg-black text-white">
-                <div className="card">
+                <div className="card responsive-test">
+                    {presentedBy()}
                     <h1 className="card-title bg-black text-white">
                         {show.title}
                     </h1>

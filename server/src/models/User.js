@@ -68,8 +68,8 @@ class User extends uniqueFunc(Model) {
         relation: Model.HasManyRelation,
         modelClass: Track,
         join: {
-            from: "users.id",
-            to: "tracks.userId"
+          from: "users.id",
+          to: "tracks.userId"
         }
       },
       artists: {

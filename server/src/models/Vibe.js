@@ -18,7 +18,7 @@ class Vibe extends Model {
 
     static get relationMappings() {
         const { Show, Track } = require("./index.js")
-        return{
+        return {
             shows: {
                 relation: Model.HasManyRelation,
                 modelClass: Show,
