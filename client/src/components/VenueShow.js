@@ -52,7 +52,7 @@ const VenueShow = (props) => {
             </div>
             <div className="card">
                     <ShowList
-                        venueId={venueId}
+                        venue={venue}
                         shows={venueShows}
                         currentUser={currentUser}
                     />
@@ -62,8 +62,7 @@ const VenueShow = (props) => {
                 </div>
                 {currentUser
                     && currentUser.id === venue.hostId
-                    && <ShowForm venue={venue} shows={venueShows} setVenueShows={setVenueShows} />
-                }
+                    && <ShowForm venue={venue} shows={venueShows} setVenueShows={setVenueShows} />}
             </div>
         </div>
         </div>

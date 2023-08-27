@@ -25,7 +25,7 @@ const ShowForm = (props) => {
         showFormData.append("doors", showRecord.doors)
 
         try {
-            const newShow = await fetch(`/api/v1/venues/${venue.id}/shows`, {
+            const newShow = await fetch(`/api/v1/venues/${venue.name}/shows`, {
                 method: "POST",
                 headers: {
                     Accept: "image/jpeg",

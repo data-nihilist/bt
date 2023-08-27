@@ -17,7 +17,7 @@ rootRouter.use("/api/v1/users", usersRouter);
 
 //place your server-side routes here
 rootRouter.use("/api/v1/venues", venuesRouter);
-rootRouter.use("/api/v1/venues/:venueId", venueShowsRouter);
+rootRouter.use("/api/v1/venues/:name/:id", venueShowsRouter);
 rootRouter.use("/api/v1/tracks", tracksRouter);
 rootRouter.use("/api/v1/shows", showsRouter)
 rootRouter.use("/api/v1/vibes", vibesRouter)

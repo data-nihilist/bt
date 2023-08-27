@@ -4,8 +4,10 @@ import { Link } from "react-router-dom"
 import ArtistList from "./ArtistList.js"
 
 const ShowShow = (props) => {
-    const venueId = props.match.params.venueId
+    const venueName = props.match.params.name
     const showId = props.match.params.id
+
+    console.log(venueName)
 
     const [show, setShow] = useState({
         hostId: "",
@@ -20,7 +22,7 @@ const ShowShow = (props) => {
     
     const getShow = async () => {
         try {
-            const response = await fetch(`/api/v1/venues/${venueId}/${showId}`)
+            const response = await fetch(`/api/v1/venues/${venueName}/${showId}`) // venueshows router
             const body = await response.json()
             const showData = body.serializedShow
             setShow(showData)
@@ -47,9 +49,9 @@ const ShowShow = (props) => {
 
     const presentedBy = () => {
         return (
-            <Link to={`/venues/${venueId}`}>
+            <Link to={`/venues/${venueName}`}>
                 <h2>
-                    {venueId} Presents
+                    {venueName} Presents
                 </h2>
             </Link>
         )

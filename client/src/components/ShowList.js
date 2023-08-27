@@ -2,11 +2,11 @@ import React from "react"
 import ShowTile from "./ShowTile.js"
 import { Link } from "react-router-dom"
 
-const ShowList = ({ venueId, shows, currentUser }) => {
+const ShowList = ({ venue, shows, currentUser }) => {
 
     const upcomingShows = shows.map((show) => {
         return (
-                    <Link to={`/venues/${venueId}/${show.id}`} key={show.id}>
+                    <Link to={`/venues/${venue.name}/${show.id}`} key={show.id}>
                         <ShowTile
                             hostId={show.hostId}
                             title={show.title}
