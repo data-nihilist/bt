@@ -63,6 +63,11 @@
   max-width: 500px;
 }
 
+.playlistHeader {
+  display: flex;
+  justify-content: center;
+}
+
 .placeContainers {
   display: flex;
   justify-content: flex-start;

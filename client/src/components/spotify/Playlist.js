@@ -12,7 +12,7 @@ const Playlist = ({ tracks }) => {
         )
     })
     return (
-        <div className="card placeSongTiles">
+        <div className="card container placeSongTiles">
             {savedTracks}
         </div>
     )

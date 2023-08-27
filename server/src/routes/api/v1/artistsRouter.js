@@ -25,7 +25,7 @@ artistsRouter.get("/:id", async (req, res) => {
 })
 
 artistsRouter.post("/", uploadImage.single("image"), async (req, res) => {
-    try{
+    try {
         const body = req.body
         const data = {
             ...body,

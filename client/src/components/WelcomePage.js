@@ -53,11 +53,14 @@ const WelcomePage = (props) => {
             currentUser={currentUser}
         />
     }
-
+    const welcomePagePlaylistHeader = (
+        <h1>
+            All the following tracks have been contributed by GTTG's hosts
+        </h1>
+    )
     return (
         <div className="bg-black text-white">
-                    <Playlist tracks={tracks} />
-            <div className="container placeContainers">
+            <div className="container playlistHeader">
                 <VenueList
                     venues={venues}
                     setVenues={setVenues}
@@ -67,6 +70,12 @@ const WelcomePage = (props) => {
                     {artistForm}
                 </h3>
             </div>
+                <div className="card-title text-info playlistHeader">
+                    {welcomePagePlaylistHeader}
+                </div>
+                    <div>
+            <Playlist tracks={tracks} />
+                    </div>
         </div>
     )
 }

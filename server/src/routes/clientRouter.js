@@ -18,7 +18,6 @@ const clientRoutes = [
   "/artists",
   "/artists/new",
   "/artists/:id",
-  // "/maps"
 ];
 
 const authedClientRoutes = ["/profile"];

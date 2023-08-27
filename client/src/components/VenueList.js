@@ -6,7 +6,6 @@ const VenueList = ({ venues }) => {
 
     const listOfVenues = venues.map(venue => {
         return (
-            // <Link to={`/venues/${venue.name}`} key={venue.id}>
                 <VenueTile
                     key={venue.id}
                     name={venue.name}
@@ -15,7 +14,6 @@ const VenueList = ({ venues }) => {
                     shows={venue.shows}
                     venue={venue}
                 />
-            /* </Link> */
         )
     })
 

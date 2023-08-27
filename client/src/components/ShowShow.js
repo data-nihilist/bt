@@ -7,8 +7,6 @@ const ShowShow = (props) => {
     const venueName = props.match.params.name
     const showId = props.match.params.id
 
-    console.log(venueName)
-
     const [show, setShow] = useState({
         hostId: "",
         title: "",
@@ -22,7 +20,7 @@ const ShowShow = (props) => {
     
     const getShow = async () => {
         try {
-            const response = await fetch(`/api/v1/venues/${venueName}/${showId}`) // venueshows router
+            const response = await fetch(`/api/v1/venues/${venueName}/${showId}`)
             const body = await response.json()
             const showData = body.serializedShow
             setShow(showData)

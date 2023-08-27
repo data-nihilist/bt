@@ -7,7 +7,6 @@ import uploadImage from "../../../db/services/uploadImage.js"
 const venueShowsRouter = new express.Router({ mergeParams: true })
 
 venueShowsRouter.get("/", async (req, res) => {
-    console.log(req)
     const showId = req.params.id
     try {
         const show = await Show.query().findById(showId)

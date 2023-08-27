@@ -2,7 +2,7 @@ import React from "react"
 import ShowTile from "./ShowTile.js"
 import { Link } from "react-router-dom"
 
-const ShowList = ({ venue, shows, currentUser }) => {
+const ShowList = ({ venue, shows }) => {
 
     const upcomingShows = shows.map((show) => {
         return (
