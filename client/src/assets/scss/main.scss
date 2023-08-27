@@ -41,19 +41,44 @@
 // import utility partials here
 @import 'utilities';
 
-//------------------------creating custom classes B)
 @keyframes TransitioningBackground {
   0% {
     background-position: 1% 0%;
   }
-
+  
   50% {
     background-position: 99% 100%;
   }
-
+  
   100% {
     background-position: 1% 0%;
   }
+}
+
+//------------------------creating custom classes B)
+
+.placeSongTiles {
+  display: flex;
+  justify-content: flex-start;
+  max-width: 500px;
+}
+
+.placeContainers {
+  display: flex;
+  justify-content: flex-start;
+  max-width: 1200px;
+}
+
+.formButtons {
+  display: flex;
+  justify-content: space-around;
+  align-items: start;
+}
+
+.formButtonsAddImage {
+  display: flex;
+  justify-content: center;
+  align-items: center
 }
 
 .special-button {

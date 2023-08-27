@@ -12,7 +12,7 @@ const VenueShow = (props) => {
     })
     const [venueShows, setVenueShows] = useState([])
 
-    const venueId = props.match.params.id
+    const venueId = props.match.params.name
 
     const getVenue = async () => {
         try {
@@ -21,8 +21,8 @@ const VenueShow = (props) => {
                 throw (new Error(`${response.status} (${response.statusText})`))
             }
             const body = await response.json()
-            setVenue(body.venue)
-            setVenueShows(body.venue.shows)
+            setVenue(body.serializedVenue)
+            setVenueShows(body.serializedVenue.shows)
         } catch (error) {
             console.error(`Error in fetch: ${error.message}`)
         }

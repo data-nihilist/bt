@@ -127,16 +127,16 @@ const ArtistForm = ({ currentUser }) => {
                 </label>
                 <Dropzone onDrop={handleArtistImageUpload} >
                     {({ getRootProps, getInputProps }) => (
-                        <section className="">
+                        <section>
                             <div {...getRootProps()}>
                                 <input {...getInputProps()} />
-                                <p className="btn-complement-yellow mt-1">Add Picture</p>
+                                <p className="btn-complement-yellow mt-1 formButtons">Add Picture</p>
                             </div>
                         </section>
                     )}
                 </Dropzone>
                 </div>
-                <div className="button-group">
+                <div className="button-group formButtons">
                     <input className="btn-complement-purple mr-2 mb-1" type="submit" value="Save Artist Profile" />
                     <input className="btn-complement-red ml-2 mb-1" type="button" onClick={clearForm} value="Reset Fields" />
                 </div>

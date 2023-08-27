@@ -4,7 +4,6 @@ import { Link } from "react-router-dom"
 
 const ShowList = ({ venueId, shows, currentUser }) => {
 
-    console.log(currentUser)
     const upcomingShows = shows.map((show) => {
         return (
                     <Link to={`/venues/${venueId}/${show.id}`} key={show.id}>

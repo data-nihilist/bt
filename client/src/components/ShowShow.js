@@ -14,10 +14,10 @@ const ShowShow = (props) => {
         image: "",
         doors: ""
     })
-
+    
     const [tracks, setTracks] = useState([])
     const [artists, setArtists] = useState([])
-
+    
     const getShow = async () => {
         try {
             const response = await fetch(`/api/v1/venues/${venueId}/${showId}`)
@@ -30,13 +30,13 @@ const ShowShow = (props) => {
             console.error(`Error in fetch: ${error.message}`)
         }
     }
-
+    
     useEffect(() => {
         getShow()
     }, [])
-
+    
     const currentUser = props.user
-
+    
     const playgroundButton = (
         <div className="mt-4 pb-2">
             <Link to="/showplayground">
@@ -45,10 +45,22 @@ const ShowShow = (props) => {
         </div>
     )
 
+    const presentedBy = () => {
+        return (
+            <Link to={`/venues/${venueId}`}>
+                <h2>
+                    {venueId} Presents
+                </h2>
+            </Link>
+        )
+    }
+        
+    
     return (
         <div className="bg-black">
             <div className="card bg-black text-white">
-                <div className="card">
+                <div className="card responsive-test">
+                    {presentedBy()}
                     <h1 className="card-title bg-black text-white">
                         {show.title}
                     </h1>

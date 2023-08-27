@@ -45,9 +45,6 @@ const WelcomePage = (props) => {
     let venueForm;
     if (currentUser) {
         venueForm = <VenueForm
-            currentUser={currentUser}
-            setVenues={setVenues}
-            venues={venues}
         />
     }
     let artistForm;
@@ -57,18 +54,14 @@ const WelcomePage = (props) => {
         />
     }
 
-    const titleHeader = "Get.To.The.Gig."
-
     return (
-        <div className="bg-black">
-            <div className="container bg-black text-white">
-                <h1 className="card-title">
-                    {titleHeader}
-                </h1>
+        <div className="bg-black text-white">
+                    <Playlist tracks={tracks} />
+            <div className="container placeContainers">
                 <VenueList
                     venues={venues}
+                    setVenues={setVenues}
                 />
-                <Playlist tracks={tracks} />
                 <h3>
                     {venueForm}
                     {artistForm}
