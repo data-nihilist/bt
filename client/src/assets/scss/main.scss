@@ -57,6 +57,13 @@
 
 //------------------------creating custom classes B)
 
+.topBarButtons {
+display: flex;
+flex-direction: row;
+justify-content: space-between;
+align-items: flex-end
+}
+
 .placeSongTiles {
   display: flex;
   justify-content: flex-start;
@@ -84,6 +91,25 @@
   display: flex;
   justify-content: center;
   align-items: center
+}
+
+.item-1 {
+  position: absolute;
+  top: 0px;
+  // left: 0px;
+}
+
+.imageShow {
+  object-fit:fill;
+  // height: 1100px;
+  // width: 850px;
+  border-radius: 100px;
+}
+
+.imageTile {
+  object-fit: scale-down;
+  width: 200px;
+  height: 200px;
 }
 
 .special-button {
@@ -143,24 +169,4 @@
       transition: 0.7s;
     }
   }
-}
-
-
-.item-1 {
-  position: absolute;
-  top: 0px;
-  // left: 0px;
-}
-
-.imageShow {
-  object-fit:fill;
-  // height: 1100px;
-  // width: 850px;
-  border-radius: 100px;
-}
-
-.imageTile {
-  object-fit: scale-down;
-  width: 200px;
-  height: 200px;
 }
