@@ -1,5 +1,6 @@
 import express from "express"
 import Track from "../../../models/Track.js"
+import TrackSerializer from "../../../db/serializers/TrackSerializer.js"
 
 const tracksRouter = new express.Router()
 
@@ -17,7 +18,8 @@ tracksRouter.post("/", async (req, res) => {
 tracksRouter.get("/", async (req, res) => {
     try {
         const tracks = await Track.query()
-        return res.status(200).json({ tracks })
+        const serializedTracks = await TrackSerializer.summarize(tracks)
+        return res.status(200).json({ tracks: serializedTracks })
     } catch (error) {
         return res.status(500).json({ errors: error })
     }
