@@ -5,11 +5,13 @@ An app to enrich accessibility for any DIY music scene.
 Any user visiting this web application will be greeted with a list of shows.
 Logged in users can create virtual venues where they post show flyers detailing the flow of the event.
 
+Additionally, you can find my app being hosted on heroku by following this <a href="https://get-to-the-gig-9923dd0273ee.herokuapp.com/">link</a>.
+
 </div>
 
 <h1>SET UP/APPLICATION USE FLOW</h1>
 
-<div align="center">
+<div>
 
 Prerequisites (Follow these steps,in order, to run GTTG locally via your browser)
 

@@ -5,14 +5,17 @@ const Playlist = ({ tracks }) => {
 
     const savedTracks = tracks.map((track) => {
         return (
+            <div key={track.id}
+            >
                 <TrackTile
                     track={track}
                     key={track.id}
                 />
+            </div>
         )
     })
     return (
-        <div className="card container placeSongTiles">
+        <div className="communityPlaylist">
             {savedTracks}
         </div>
     )
