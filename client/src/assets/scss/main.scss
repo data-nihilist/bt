@@ -57,6 +57,12 @@
 
 //------------------------creating custom classes B)
 
+.communityPlaylist {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+
 .topBarButtons {
 display: flex;
 flex-direction: row;
