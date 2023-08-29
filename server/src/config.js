@@ -10,9 +10,11 @@ import getDatabaseUrl from "./config/getDatabaseUrl.cjs";
 // };
 const development = {
   redirectUri: { key: process.env.REDIRECT_URI },
+  redirectUriHeroku: {key: process.env.REDIRECT_URI_HEROKU },
   clientId: { key: process.env.CLIENT_ID },
   clientSecret: { key: process.env.CLIENT_SECRET },
-  authUrl: { key: process.env.AUTH_URL_HEROKU },
+  authUrl: { key: process.env.AUTH_URL },
+  authUrlHeroku: {key: process.env.AUTH_URL_HEROKU },
   awsAccess: { key: process.env.AWS_ACCESS_KEY },
   awsSecret: { key: process.env.AWS_SECRET_KEY },
   s3Bucket: { name: process.env.S3_BUCKET_DEVELOPMENT },
