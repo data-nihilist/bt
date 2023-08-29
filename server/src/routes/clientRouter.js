@@ -36,7 +36,7 @@ router.get(clientRoutes, (req, res) => {
 
 //-----------------------------------------SPOTIFY STUFF
 
-router.post('https://get-to-the-gig-9923dd0273ee.herokuapp.com/showplayground', (req, res) => {
+router.post('/showplayground', (req, res) => {
   const { code } = req.body
   const spotifyApi = new SpotifyWebApi({
     redirectUri: config.redirectUriHeroku.key,
@@ -59,7 +59,7 @@ router.post('https://get-to-the-gig-9923dd0273ee.herokuapp.com/showplayground', 
     })
 })
 
-router.post('https://get-to-the-gig-9923dd0273ee.herokuapp.com/refresh', (req, res) => {
+router.post('/refresh', (req, res) => {
   const refreshToken = req.body.refreshToken
   const spotifyApi = new SpotifyWebApi({
     redirectUri: config.redirectUriHeroku.key,
