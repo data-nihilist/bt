@@ -2,7 +2,7 @@ import React, { useState } from "react"
 import translateServerErrors from "../services/translateServerErrors"
 import Dropzone from "react-dropzone"
 import FormError from "./layout/FormError"
-import Redirect from "react-router-dom"
+import { Redirect } from "react-router-dom"
 
 const ShowForm = (props) => {
     const [showRecord, setShowRecord] = useState({
@@ -89,12 +89,13 @@ const ShowForm = (props) => {
                 doors: "All shows require a start time.",
             }
         }
-        // if (image.trim() === "") {
-        //     newErrors = {
-        //         ...newErrors,
-        //         image: "All shows need an accompanying flyer.",
-        //     }
-        // }
+        if (!image) {
+            newErrors = {
+                ...newErrors,
+                image: "All shows need an accompanying flyer.",
+            }
+        }
+
         setErrors(newErrors);
     }
 

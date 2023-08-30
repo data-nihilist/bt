@@ -46,20 +46,26 @@ $breakpoints: (
 .responsive-test {
     @include xs {
         color: red;
+        background-color: black;
     }
     @include sm {
         color: blue;
+        background-color: black
     }
     @include md {
         color: green;
+        background-color: aquamarine;
     }
     @include lg {
         color: purple;
+        background-color: black
     }
     @include xl {
         color: orange;
+        background-color: black
     }
     @include breakpoint(1400px){
         color: pink;
+        background-color: black
     }
 }

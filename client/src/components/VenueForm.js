@@ -66,21 +66,21 @@ const VenueForm = (props) => {
         if (name.trim() === "") {
             newErrors = {
                 ...newErrors,
-                name: "All venues must be named."
+                name: "*Required*"
             };
         }
         if (location.trim() === "") {
             newErrors = {
                 ...newErrors,
-                location: "The location of your venue is required.",
+                location: "*Required*",
             };
         }
-        // if (image.trim() === "") {
-        //     newErrors = {
-        //         ...newErrors,
-        //         image: "All venues must have an image.",
-        //     }
-        // }
+        if (!image) {
+            newErrors = {
+                ...newErrors,
+                image: "*Required*"
+            }
+        }
         setErrors(newErrors);
     }
 
@@ -125,6 +125,7 @@ const VenueForm = (props) => {
                         <div className="card-body text-info">
                             <FormError error={errors.location} />
                         </div>
+                        <p className="responsive-test">Be as specific or vague as you'd like!</p>
                         <input
                             id="location"
                             type="text"
@@ -133,7 +134,6 @@ const VenueForm = (props) => {
                             onChange={handleInputChange}
                             className="card bg-black text-white mb-1"
                         />
-                        <p className="text-info">Be as specific or vague as you'd like!</p>
                     </label>
                     <Dropzone onDrop={handleVenueImageUpload} >
                         {({ getRootProps, getInputProps }) => (

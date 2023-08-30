@@ -60,7 +60,7 @@ const WelcomePage = (props) => {
     )
     return (
         <div className="bg-black text-white">
-            <div className="container playlistHeader">
+            <div className="container">
                 <VenueList
                     venues={venues}
                     setVenues={setVenues}
@@ -70,11 +70,11 @@ const WelcomePage = (props) => {
                     {artistForm}
                 </h3>
             </div>
-            <div className="card-title text-info playlistHeader">
+            <div className="card card-title text-info playlistHeader">
                 {welcomePagePlaylistHeader}
             </div>
-            <div>
                 <Playlist tracks={tracks} />
+            <div>
             </div>
         </div>
     )

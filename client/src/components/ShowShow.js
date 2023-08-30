@@ -69,17 +69,13 @@ const ShowShow = (props) => {
                 </div>
                 <div className="container">
                     <img src={show.image} />
-                    <div className="card">
                         <ArtistList
                             artists={artists}
                         />
-                    </div>
-                    <div className="card">
                         <h4>{`${show.title}'s Playlist`}</h4>
                         <Playlist
                             tracks={tracks}
                         />
-                    </div>
                     <>
                         {currentUser
                             && currentUser.id === show.hostId

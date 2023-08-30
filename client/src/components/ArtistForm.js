@@ -91,7 +91,7 @@ const ArtistForm = ({ currentUser }) => {
         if (originCity.trim() === "") {
             newErrors = {
                 ...newErrors,
-                originCity: "All artists require an origin city."
+                originCity: "Please indicate the artist's city of origin."
             };
         }
         if (description.trim() === "") {
@@ -106,12 +106,12 @@ const ArtistForm = ({ currentUser }) => {
                 description: "Artist descriptions must be 255 characters or less."
             }
         }
-        // if (image[0].trim() === "") {
-        //     newErrors = {
-        //         ...newErrors,
-        //         image: "Please provide an image of the artist."
-        //     };
-        // }
+        if (!image) {
+            newErrors = {
+                ...newErrors,
+                image: "Please provide an image of the artist."
+            };
+        }
 
         setErrors(newErrors);
     }
@@ -121,8 +121,6 @@ const ArtistForm = ({ currentUser }) => {
         validateInput(artistRecord)
         saveArtist()
     }
-    
-    
     
     if (redirect) {
         return <Redirect push to="/artists" />
