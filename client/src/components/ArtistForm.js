@@ -34,13 +34,10 @@ const ArtistForm = ({ currentUser }) => {
         getArtists()
     }, [])
 
-    console.log(existingArtists)
     const artistNames = []
     existingArtists.forEach(artist => {
         artistNames.push(artist.name)
     })
-
-    console.log(artistNames)
     
     const saveArtist = async () => {
         const artistFormData = new FormData();
