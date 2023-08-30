@@ -1,6 +1,8 @@
 import React, { useState } from "react"
 import translateServerErrors from "../services/translateServerErrors"
 import Dropzone from "react-dropzone"
+import FormError from "./layout/FormError"
+import { Redirect } from "react-router-dom"
 
 const ShowForm = (props) => {
     const [showRecord, setShowRecord] = useState({
@@ -10,11 +12,12 @@ const ShowForm = (props) => {
         image: ""
     })
 
-    const shows = props.shows
     const venue = props.venue
 
-    const [errors, setErrors] = useState({})
     const [isPending, setIsPending] = useState(false)
+    const [redirect, setRedirect] = useState(false)
+    const [errors, setErrors] = useState({})
+
 
 
     const addShowToVenue = async () => {
@@ -41,8 +44,8 @@ const ShowForm = (props) => {
                     throw (new Error(`${newShow.status} (${newShow.statusText})`))
                 }
             }
+            setRedirect(true)
             setIsPending(true)
-
         } catch (error) {
             console.error(`Error in fetch: ${error.message}`)
         }
@@ -64,6 +67,37 @@ const ShowForm = (props) => {
         })
     }
 
+    const validateInput = (payload) => {
+        setErrors({});
+        const { title, date, doors, image } = payload;
+        let newErrors = {};
+        if (title.trim() === "") {
+            newErrors = {
+                ...newErrors,
+                title: "All shows require a title."
+            };
+        }
+        if (date.trim() === "") {
+            newErrors = {
+                ...newErrors,
+                date: "All shows require a date.",
+            };
+        }
+        if (doors.trim() === "") {
+            newErrors = {
+                ...newErrors,
+                doors: "All shows require a start time.",
+            }
+        }
+        if (!image) {
+            newErrors = {
+                ...newErrors,
+                image: "All shows need an accompanying flyer.",
+            }
+        }
+
+        setErrors(newErrors);
+    }
 
     const handleShowImageUpload = (acceptedShowImage) => {
         setShowRecord({
@@ -74,16 +108,22 @@ const ShowForm = (props) => {
 
     const handleSubmit = (event) => {
         event.preventDefault()
+        validateInput(showRecord)
         addShowToVenue()
-        // clearForm()
+    }
+
+    if (redirect) {
+        return <Redirect push to="/showplayground" />
     }
 
     return (
         <div className="bg-black text-white">
             <form className="card" onSubmit={handleSubmit}>
                 <h1 className="card-title">Add Shows To Your Venue!</h1>
-                <label className="card-body" htmlFor="title">
-                    Show title
+                <label className="card-body" htmlFor="title"> Show title
+                    <div className="card-body text-info">
+                        <FormError error={errors.title} />
+                    </div>
                     <input
                         id="title"
                         type="text"
@@ -93,8 +133,10 @@ const ShowForm = (props) => {
                         className="card bg-black text-white mb-2"
                     />
                 </label>
-                    <label className="card-body" htmlFor="date">
-                        Show date
+                    <label className="card-body" htmlFor="date"> Show date
+                        <div className="card-body text-info">
+                        <FormError error={errors.date} />
+                    </div>
                         <input
                             id="date"
                             type="text"
@@ -105,8 +147,10 @@ const ShowForm = (props) => {
                         />
                     </label>
                     <div className="mb-2">
-                        <label className="card-body" htmlFor="doors">
-                            DOORS @
+                        <label className="card-body" htmlFor="doors"> DOORS @
+                            <div className="card-body text-info">
+                        <FormError error={errors.doors} />
+                    </div>
                             <input
                                 id="doors"
                                 type="text"
@@ -126,6 +170,9 @@ const ShowForm = (props) => {
                                 </section>
                             )}
                         </Dropzone>
+                        <div className="card-body text-info">
+                        <FormError error={errors.image} />
+                    </div>
                     </div>
                     <div className="button-group formButtons">
                         {!isPending && <input className="btn-complement-purple mr-2 mb-1" type="submit" value="Add Show" />}

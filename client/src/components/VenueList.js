@@ -1,6 +1,5 @@
 import React from "react"
 import VenueTile from "./VenueTile.js"
-import { Link } from "react-router-dom";
 
 const VenueList = ({ venues }) => {
 

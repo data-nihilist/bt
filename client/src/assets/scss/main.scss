@@ -59,8 +59,9 @@
 
 .communityPlaylist {
   display: flex;
-  justify-content: center;
-  flex-direction: column;
+  justify-content: space-between;
+  flex-direction: row;
+  max-width: 1000;
 }
 
 .topBarButtons {
@@ -72,8 +73,8 @@ align-items: flex-end
 
 .placeSongTiles {
   display: flex;
-  justify-content: flex-start;
-  max-width: 500px;
+  justify-content: space-between;
+  max-width: 720px;
 }
 
 .playlistHeader {
@@ -101,7 +102,7 @@ align-items: flex-end
 
 .item-1 {
   position: absolute;
-  top: 0px;
+  // top: 0px;
   // left: 0px;
 }
 

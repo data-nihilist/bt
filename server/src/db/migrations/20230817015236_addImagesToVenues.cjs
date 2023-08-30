@@ -7,7 +7,7 @@
  */
 exports.up = async (knex) => {
     return knex.schema.table("venues", (table) => {
-        table.string("image")
+        table.string("image").defaultTo("https://express-file-uploading-part-2-production.s3.amazonaws.com/1691601293862")
     })
 }
 

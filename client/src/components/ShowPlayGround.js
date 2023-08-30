@@ -111,6 +111,7 @@ const ShowPlayGround = (props) => {
                 }),
                 body: JSON.stringify(trueData)
             })
+            console.log(response)
             if (!response.ok) {
                 throw (new Error(`${response.status} (${response.statusText})`))
             }
@@ -149,7 +150,6 @@ const ShowPlayGround = (props) => {
     const showsToDisplay = shows.map(show => {
         return (
             <div className="bg-black text-white card container">
-
                 <ul>
                     <li
                         key={show.id}
@@ -163,21 +163,26 @@ const ShowPlayGround = (props) => {
                         <h3>
                             {show.doors}
                         </h3>
+                    <div>
                         <Link to={`/venues/${show.venue.name}/${show.id}`} >
                             <img src={show.image} />
                         </Link>
-                    </li>
-                    <div className="card container">
+                    <div className="placeSongTiles">
                         <Playlist
                             tracks={show.tracks}
-                        />
+                            />
                     </div>
+                    </div>
+                            </li>
                 </ul>
             </div>
         )
     })
 
     return (
+        <div className="responsive-test">
+            <div className="container">
+
         <div className="bg-black text-white">
             <form onSubmit={handleSubmit} className="card">
                 Show Select <select onInput={showShowData} className="card bg-black text-white mb-1" >
@@ -201,12 +206,17 @@ const ShowPlayGround = (props) => {
                     <div className="button-group">
                         <input className="btn-complement-yellow" type="submit" value="Add Artist To Show's Lineup" />
                     </div>
-                    {showsToDisplay}
                 </form>
             </div>
-            <div className="card">
+            <div className="communityPlaylist">
                 <Spotify />
             </div>
+            <div className="card container">
+            <h3 className="card-title responsive-test">Your Shows</h3>
+                    {showsToDisplay}
+            </div>
+            </div>
+        </div>
         </div>
     )
 }
