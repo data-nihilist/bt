@@ -2,6 +2,7 @@ import React, { useState } from "react"
 import translateServerErrors from "../services/translateServerErrors";
 import Dropzone from "react-dropzone"
 import FormError from "./layout/FormError"
+import { Redirect } from "react-router-dom"
 
 const ArtistForm = ({ currentUser }) => {
     const [artistRecord, setArtistRecord] = useState({
@@ -12,9 +13,8 @@ const ArtistForm = ({ currentUser }) => {
         userId: currentUser.id,
         image: ""
     })
-
-    const [errors, setErrors] = useState({})
     const [redirect, setRedirect] = useState(false)
+    const [errors, setErrors] = useState({})
 
     const saveArtist = async () => {
         const artistFormData = new FormData();
@@ -32,7 +32,6 @@ const ArtistForm = ({ currentUser }) => {
                 },
                 body: artistFormData
             })
-            console.log(response)
             if (!response.ok) {
                 if (response.status === 422) {
                     const body = await response.json()
@@ -54,10 +53,16 @@ const ArtistForm = ({ currentUser }) => {
             ...artistRecord,
             [event.currentTarget.name]: event.currentTarget.value
         })
-        console.log(artistRecord.description.length + 1)
     }
 
-    const clearForm = (event) => {
+    const handleArtistImageUpload = (acceptedArtistImage) => {
+        setArtistRecord({
+            ...artistRecord,
+            image: acceptedArtistImage[0],
+        })
+    }
+
+    const clearForm = () => {
         setArtistRecord({
             name: "",
             genre: "",
@@ -66,7 +71,7 @@ const ArtistForm = ({ currentUser }) => {
             image: ""
         })
     }
-
+    
     const validateInput = (payload) => {
         setErrors({});
         const { name, genre, originCity, description, image } = payload
@@ -101,20 +106,14 @@ const ArtistForm = ({ currentUser }) => {
                 description: "Artist descriptions must be 255 characters or less."
             }
         }
-        if (image.trim() === "") {
-            newErrors = {
-                ...newErrors,
-                image: "Please provide an image of the artist."
-            };
-        }
-        setErrors(newErrors);
-    }
+        // if (image[0].trim() === "") {
+        //     newErrors = {
+        //         ...newErrors,
+        //         image: "Please provide an image of the artist."
+        //     };
+        // }
 
-    const handleArtistImageUpload = (acceptedArtistImage) => {
-        setArtistRecord({
-            ...artistRecord,
-            image: acceptedArtistImage[0],
-        })
+        setErrors(newErrors);
     }
 
     const handleSubmit = (event) => {
@@ -122,9 +121,11 @@ const ArtistForm = ({ currentUser }) => {
         validateInput(artistRecord)
         saveArtist()
     }
-
+    
+    
+    
     if (redirect) {
-        location.href = `/artists`;
+        return <Redirect push to="/artists" />
     }
 
     return (
