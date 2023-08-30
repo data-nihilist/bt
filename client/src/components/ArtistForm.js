@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React, { useState, useEffect } from "react"
 import translateServerErrors from "../services/translateServerErrors";
 import Dropzone from "react-dropzone"
 import FormError from "./layout/FormError"
@@ -13,9 +13,32 @@ const ArtistForm = ({ currentUser }) => {
         userId: currentUser.id,
         image: ""
     })
+    const [existingArtists, setExistingArtists] = useState([])
     const [redirect, setRedirect] = useState(false)
     const [errors, setErrors] = useState({})
 
+    const getArtists = async () => {
+        try{
+            const response = await fetch("/api/v1/artists")
+            if(!response.ok) {
+                throw (new Error(`${response.status} (${response.statusText})`))
+            }
+            const body = await response.json()
+            setExistingArtists(body.artists)
+        }catch(error){
+            console.error(`Error in fetch: ${error.message}`)
+        }
+    }
+
+    useEffect(() => {
+        getArtists()
+    }, [])
+
+    const artistNames = []
+    existingArtists.forEach(artist => {
+        artistNames.push(artist.name)
+    })
+    
     const saveArtist = async () => {
         const artistFormData = new FormData();
         artistFormData.append("name", artistRecord.name)
@@ -82,6 +105,14 @@ const ArtistForm = ({ currentUser }) => {
                 name: "Every artist needs a name."
             };
         }
+        artistNames.forEach(artistName => {
+            if(name === artistName) {
+                return newErrors = {
+                    ...newErrors,
+                    name: "That name has been taken."
+                }
+            }
+        })
         if (genre.trim() === "") {
             newErrors = {
                 ...newErrors,
