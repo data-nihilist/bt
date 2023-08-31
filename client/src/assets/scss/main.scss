@@ -58,10 +58,15 @@
 //------------------------creating custom classes B)
 
 .communityPlaylist {
+  display: grid;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.tracks {
   display: flex;
-  justify-content: space-between;
-  flex-direction: row;
-  max-width: 1000;
+  justify-content: flex-start;
+  flex-direction: column-reverse;
 }
 
 .topBarButtons {

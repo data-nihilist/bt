@@ -3,6 +3,8 @@ import translateServerErrors from "../services/translateServerErrors";
 import Dropzone from "react-dropzone"
 import { Redirect } from "react-router-dom"
 import FormError from "./layout/FormError";
+import ShowPlayGround from "./ShowPlayGround.js"
+
 
 const VenueForm = (props) => {
     const [venueRecord, setVenueRecord] = useState({
@@ -155,6 +157,7 @@ const VenueForm = (props) => {
                     <input className="btn-complement-red ml-2 mb-1" type="button" onClick={clearForm} value="Reset Fields" />
                 </div>
             </form>
+            <ShowPlayGround />
         </div>
     )
 }

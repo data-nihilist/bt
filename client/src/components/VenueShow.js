@@ -50,16 +50,16 @@ const VenueShow = (props) => {
             <div>
 
             </div>
+                <div className="card">
+                    <SimpleJsApiLoaderGoogleMap
+                        venueQuery={`${venue.location}`} />
+                </div>
             <div className="card">
                     <ShowList
                         venue={venue}
                         shows={venueShows}
                         currentUser={currentUser}
                     />
-                <div className="card">
-                    <SimpleJsApiLoaderGoogleMap
-                        venueQuery={`${venue.location}`} />
-                </div>
                 {currentUser
                     && currentUser.id === venue.hostId
                     && <ShowForm venue={venue} shows={venueShows} setVenueShows={setVenueShows} />}

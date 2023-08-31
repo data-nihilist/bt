@@ -1,6 +1,8 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import SignOutButton from "../authentication/SignOutButton";
+import ArtistsPortalButton from "../authentication/ArtistsPortalButton"
+import VenuesPortalButton from "../authentication/VenuesPortalButton";
 
 const TopBar = ({ user }) => {
   const unauthenticatedListItems = [
@@ -19,10 +21,22 @@ const TopBar = ({ user }) => {
   ];
 
   const authenticatedListItems = [
+    <div className="topBarButtons">
+    <li key="artists-portal">
+      <Link to="/artists/new">
+        <ArtistsPortalButton />
+      </Link>
+    </li>
+    <li key="venues-portal">
+      <Link to="/venues/new">
+        <VenuesPortalButton />
+      </Link>
+    </li>
     <li key="sign-out"
       className="">
       <SignOutButton />
-    </li>,
+    </li>
+      </div>
   ];
 
   return (
