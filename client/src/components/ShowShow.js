@@ -44,7 +44,7 @@ const ShowShow = (props) => {
             </Link>
         </div>
     )
-
+    
     const presentedBy = () => {
         return (
             <Link to={`/venues/${venueName}`}>
@@ -54,7 +54,8 @@ const ShowShow = (props) => {
             </Link>
         )
     }
-        
+    
+    console.log(show)
     
     return (
         <div className="bg-black">

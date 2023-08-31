@@ -226,7 +226,7 @@ class ArtistSeeder {
                 originCity: "Toronto, Ontario, Canada",
                 description: "Gender identity is one theme of Peaches' music, often playing with traditional notions of gender roles representation. Her lyrics and live shows consciously blur the distinction between male and female. -Wikipedia",
                 image: "https://breakable-toy-bucket-production.s3.amazonaws.com/peachJames.jpeg",
-                userId: james.id
+                userId: zank.id
             },
             {
                 name: "RKL (Rich Kids on LSD)",
@@ -243,28 +243,32 @@ class ArtistSeeder {
                 description: "Meh.",
                 image: "https://breakable-toy-bucket-production.s3.amazonaws.com/smashFashionGarrett.jpeg",
                 userId: garrett.id
-            },            {
+            },
+            {
                 name: "Sonic Youth",
                 genre: "Alt Rock/Post-Punk",
                 originCity: "New York, NY",
                 description: "Sonic Youth emerged from the experimental no wave art and music scene in New York before evolving into a more conventional rock band and becoming a prominent member of the American noise rock scene. -Wikipedia",
                 image: "https://breakable-toy-bucket-production.s3.amazonaws.com/sonicYouthPad.jpeg",
                 userId: pad.id
-            },            {
+            },
+            {
                 name: "The Subverts",
                 genre: "Old School Punk",
                 originCity: "Dekalb",
                 description: "The Subverts were one of the earlier Chicago punk bands around, forming in 1979.",
                 image: "https://breakable-toy-bucket-production.s3.amazonaws.com/subvertsJesse.jpeg",
                 userId: jesse.id
-            },            {
+            },
+            {
                 name: "Trap A Poodle",
                 genre: "Punk?",
                 originCity: "Sonoma County, California",
                 description: "Little is known about this group. Come support them!",
                 image: "https://breakable-toy-bucket-production.s3.amazonaws.com/trapapoodleCharlie.jpeg",
                 userId: charlie.id
-            },            {
+            },
+            {
                 name: "WIMP",
                 genre: "Hardcore Punk",
                 originCity: "Boston, MA",
