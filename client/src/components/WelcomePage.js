@@ -49,7 +49,6 @@ const WelcomePage = (props) => {
             <div className="container">
                 <VenueList
                     venues={venues}
-                    setVenues={setVenues}
                 />
             <div className="card card-title text-info playlistHeader">
                 {welcomePagePlaylistHeader}

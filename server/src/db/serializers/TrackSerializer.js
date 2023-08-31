@@ -3,7 +3,7 @@ class TrackSerializer {
         const serializedTracks = await Promise.all(
             array.map(async (track) => {
                 const requiredAttributes = [
-                    // "id",
+                    "id",
                     "artist",
                     "title",
                     "uri",
