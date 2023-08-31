@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import FormError from "../layout/FormError";
 import config from "../../config";
+import WelcomePage from "../WelcomePage.js"
+
 
 const RegistrationForm = () => {
   const [userPayload, setUserPayload] = useState({
@@ -94,7 +96,6 @@ const RegistrationForm = () => {
   }
 
   return (
-    <div className="bg-black">
       <div className="card bg-black text-white">
         <h1 className="card-title">Sign Up</h1>
         <form className="card" onSubmit={onSubmit}>
@@ -162,8 +163,8 @@ const RegistrationForm = () => {
             <input type="submit" className="special-button bg-green mt-1 mb-2" value="Sign Up" />
           </div>
         </form>
+        <WelcomePage />
       </div>
-    </div>
   );
 };
 

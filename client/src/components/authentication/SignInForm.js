@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import config from "../../config";
 import FormError from "../layout/FormError";
+import WelcomePage from "../WelcomePage.js"
 
 const SignInForm = () => {
   const [userPayload, setUserPayload] = useState({ email: "", password: "" });
@@ -66,7 +67,6 @@ const SignInForm = () => {
   }
 
   return (
-    <div className="bg-black">
       <div className="card bg-black text-white">
         <h1 className="card-title">Sign In</h1>
         <form className="card" onSubmit={onSubmit}>
@@ -104,8 +104,8 @@ const SignInForm = () => {
             <input type="submit" className="special-button bg-green mt-1 mb-2" value="Sign In" />
           </div>
         </form>
+        <WelcomePage />
       </div>
-    </div>
   );
 };
 

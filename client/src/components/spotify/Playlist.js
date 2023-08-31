@@ -16,7 +16,9 @@ const Playlist = ({ tracks }) => {
         )
     })
     return (
-        <div className="card communityPlaylist">
+        <div
+        className="tracks"
+        >
             {savedTracks}
         </div>
     )

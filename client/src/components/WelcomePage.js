@@ -1,12 +1,9 @@
 import React, { useState, useEffect } from "react"
 import VenueList from "./VenueList"
-import VenueForm from "./VenueForm"
 import Playlist from "./spotify/Playlist.js"
-import ArtistForm from "./ArtistForm.js"
 
 
 const WelcomePage = (props) => {
-    const currentUser = props.user
 
     const [venues, setVenues] = useState([])
     const [tracks, setTracks] = useState([])
@@ -42,17 +39,6 @@ const WelcomePage = (props) => {
         getTracks()
     }, [])
 
-    let venueForm;
-    if (currentUser) {
-        venueForm = <VenueForm
-        />
-    }
-    let artistForm;
-    if (currentUser) {
-        artistForm = <ArtistForm
-            currentUser={currentUser}
-        />
-    }
     const welcomePagePlaylistHeader = (
             <h1>
                 GTTG's host-added spotify tracks
@@ -65,16 +51,12 @@ const WelcomePage = (props) => {
                     venues={venues}
                     setVenues={setVenues}
                 />
-                <h3>
-                    {venueForm}
-                    {artistForm}
-                </h3>
-            </div>
             <div className="card card-title text-info playlistHeader">
                 {welcomePagePlaylistHeader}
             </div>
+            <div className="card communityPlaylist">
                 <Playlist tracks={tracks} />
-            <div>
+            </div>
             </div>
         </div>
     )

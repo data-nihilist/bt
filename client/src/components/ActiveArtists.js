@@ -48,9 +48,10 @@ const ActiveArtists = (props) => {
     })
 
     return (
-        <>
+        <div className="container tracks">
             {artistsList}
-        </>
+            <h1 className="card container">GTTG's Host Submitted Artist Profiles</h1>
+        </div>
     )
 }
 

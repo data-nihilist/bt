@@ -24,7 +24,7 @@ const VenueList = ({ venues }) => {
     const titleHeader = "Get.To.The.Gig."
 
     return (
-        <div className="card">
+        <div className="card tracks">
             <h1>{message}</h1>
             <h1 className="card-title">
                     {titleHeader}

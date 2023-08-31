@@ -3,14 +3,14 @@ import translateServerErrors from "../services/translateServerErrors";
 import Dropzone from "react-dropzone"
 import FormError from "./layout/FormError"
 import { Redirect } from "react-router-dom"
+import ActiveArtists from "./ActiveArtists.js"
 
-const ArtistForm = ({ currentUser }) => {
+const ArtistForm = (props) => {
     const [artistRecord, setArtistRecord] = useState({
         name: "",
         genre: "",
         originCity: "",
         description: "",
-        userId: currentUser.id,
         image: ""
     })
     const [existingArtists, setExistingArtists] = useState([])
@@ -233,6 +233,7 @@ const ArtistForm = ({ currentUser }) => {
                     <input className="btn-complement-red ml-2 mb-1" type="button" onClick={clearForm} value="Reset Fields" />
                 </div>
             </form>
+            <ActiveArtists />
         </div>
     )
 }

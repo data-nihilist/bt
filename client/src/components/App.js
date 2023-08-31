@@ -13,7 +13,7 @@ import ShowPlayGround from "./ShowPlayGround";
 import ArtistProfile from "./ArtistProfile";
 import ActiveArtists from "./ActiveArtists.js";
 import ArtistForm from "./ArtistForm.js"
-import SimpleJsApiLoaderGoogleMap from "./maps/simpleJsApiLoaderGoogleMap.js"
+import VenueForm from "./VenueForm.js";
 
 const App = (props) => {
   const [currentUser, setCurrentUser] = useState(undefined);
@@ -38,13 +38,13 @@ const App = (props) => {
         <Route exact path="/users/new" component={RegistrationForm} />
         <Route exact path="/user-sessions/new" component={SignInForm} />
         <Route exact path="/venues" render={(props) => <WelcomePage user={currentUser} {...props} />} />
+        <Route exact path="/venues/new" render={(props) => <VenueForm user={currentUser} {...props} />} />
         <Route exact path="/venues/:name" render={(props) => <VenueShow user={currentUser} {...props} />} />
         <Route exact path="/venues/:name/:id" render={(props) => <ShowShow user={currentUser} {...props} />} />
         <Route exact path="/showplayground" render={(props) => <ShowPlayGround user={currentUser} {...props} />} />
         <Route exact path="/artists" render={(props) => <ActiveArtists user={currentUser} {...props} />} />
         <Route exact path="/artists/new" render={(props) => <ArtistForm user={currentUser} {...props} />} />
         <Route exact path="/artists/:id" render={(props) => <ArtistProfile user={currentUser} {...props} />} />
-        <Route exact path="/maps" component={SimpleJsApiLoaderGoogleMap} />
       </Switch>
     </Router>
   );
