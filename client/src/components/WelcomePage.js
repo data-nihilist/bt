@@ -4,7 +4,7 @@ import Playlist from "./spotify/Playlist.js"
 
 
 const WelcomePage = (props) => {
-
+const currentUser = props.user
     const [venues, setVenues] = useState([])
     const [tracks, setTracks] = useState([])
 
@@ -39,6 +39,23 @@ const WelcomePage = (props) => {
         getTracks()
     }, [])
 
+    const deleteVenue = async (venueName) => {
+        try{
+            const response = await fetch(`/api/v1/venues/${venueName}`, {
+                method: 'DELETE',
+                headers: {
+                    Accept: "application/json",
+                },
+            })
+            if(!response.ok){
+                throw(new Error(`${response.status} (${response.statusText})`))
+            }
+            const updatedVenues = venues.filter(venue => venue.name !== venueName);
+            setVenues(updatedVenues)
+        }catch(error){
+            console.error(`Error in fetch: ${error.message}`)
+        }
+    }
     const welcomePagePlaylistHeader = (
             <h1>
                 GTTG's host-added spotify tracks
@@ -49,6 +66,8 @@ const WelcomePage = (props) => {
             <div className="container">
                 <VenueList
                     venues={venues}
+                    currentUser={currentUser}
+                    deleteVenue={deleteVenue}
                 />
             <div className="card card-title text-info playlistHeader">
                 {welcomePagePlaylistHeader}

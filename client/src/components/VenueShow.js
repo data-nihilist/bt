@@ -11,8 +11,12 @@ const VenueShow = (props) => {
         image: ""
     })
     const [venueShows, setVenueShows] = useState([])
+    // const [venues, setVenues] = useState([])
+    // console.log(venues)
 
+    
     const venueId = props.match.params.name
+    const currentUser = props.user
 
     const getVenue = async () => {
         try {
@@ -28,11 +32,27 @@ const VenueShow = (props) => {
         }
     }
 
+    // const getVenues = async () => {
+    //     try {
+    //         const response = await fetch("/api/v1/venues")
+    //         if (!response.ok) {
+    //             throw (new Error(`${response.status} (${response.statusText})`))
+    //         }
+    //         const responseBody = await response.json()
+    //         setVenues(responseBody.venues)
+    //     } catch (error) {
+    //         console.error(`Error in fetch: ${error.message}`)
+    //     }
+    // }
+    
+    
+    
+
     useEffect(() => {
         getVenue()
+        // getVenues()
     }, [])
 
-    const currentUser = props.user
 
     return (
         <div className="bg-black text-white">

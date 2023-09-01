@@ -1,8 +1,7 @@
 import React from "react"
 import { Link } from "react-router-dom"
 
-const VenueTile = ({ name, location, shows, venue }) => {
-
+const VenueTile = ({ name, location, shows, venue, currentUser, deleteVenue }) => {
     const showFlyers = shows.map((show) => {
         return (
             <Link to={`/venues/${venue.name}/${show.id}`} key={show.id}>
@@ -11,6 +10,18 @@ const VenueTile = ({ name, location, shows, venue }) => {
         )
     })
 
+    const handleDeleteClick = (event) => {
+        event.preventDefault()
+        console.log(venue)
+        if(window.confirm("Are you sure you want to delete this venue?")) {
+            deleteVenue(venue.name)
+        }
+    }
+    
+    const deleteButton = currentUser && currentUser.id === venue.hostId ? (
+        <input className="btn-complement-red" type="button" value="Delete Venue" onClick={handleDeleteClick} />
+    ) : null;
+
     return (
         <div>
             <Link to={`/venues/${venue.name}`} >
@@ -18,6 +29,7 @@ const VenueTile = ({ name, location, shows, venue }) => {
                 {name}
             </h2>
             </Link>
+            {deleteButton}
             <p>
                 {location}
             </p>
