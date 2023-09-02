@@ -208,9 +208,9 @@ const ShowPlayGround = (props) => {
                     </div>
                 </form>
             </div>
-            <div className="communityPlaylist">
-                <Spotify />
-            </div>
+            {shows
+                        && shows.length >= 1
+                            && <div><Spotify /></div>}
             <div className="card container">
             <h3 className="card-title responsive-test">Your Shows</h3>
                     {showsToDisplay}
