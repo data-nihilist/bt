@@ -1,7 +1,8 @@
 import React from "react"
 import VenueTile from "./VenueTile.js"
 
-const VenueList = ({ venues }) => {
+const VenueList = ({ venues, currentUser, deleteVenue }) => {
+
 
     const listOfVenues = venues.map(venue => {
         return (
@@ -12,6 +13,8 @@ const VenueList = ({ venues }) => {
                     image={venue.image}
                     shows={venue.shows}
                     venue={venue}
+                    currentUser={currentUser}
+                    deleteVenue={deleteVenue}
                 />
         )
     })
