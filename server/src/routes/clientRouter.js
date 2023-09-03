@@ -39,7 +39,7 @@ router.get(clientRoutes, (req, res) => {
 router.post('/showplayground', (req, res) => {
   const { code } = req.body
   const spotifyApi = new SpotifyWebApi({
-    redirectUri: config.redirectUriHeroku.key,
+    redirectUri: config.redirectUri.key,
     clientId: config.clientId.key,
     clientSecret: config.clientSecret.key
   })
@@ -62,7 +62,7 @@ router.post('/showplayground', (req, res) => {
 router.post('/refresh', (req, res) => {
   const refreshToken = req.body.refreshToken
   const spotifyApi = new SpotifyWebApi({
-    redirectUri: config.redirectUriHeroku.key,
+    redirectUri: config.redirectUri.key,
     clientId: config.clientId.key,
     clientSecret: config.clientSecret.key,
     refreshToken,

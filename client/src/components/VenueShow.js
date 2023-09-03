@@ -11,9 +11,7 @@ const VenueShow = (props) => {
         image: ""
     })
     const [venueShows, setVenueShows] = useState([])
-    // const [venues, setVenues] = useState([])
-    // console.log(venues)
-
+    const [venueAnnouncements, setVenueAnnouncements] = useState([])
     
     const venueId = props.match.params.name
     const currentUser = props.user
@@ -27,32 +25,25 @@ const VenueShow = (props) => {
             const body = await response.json()
             setVenue(body.serializedVenue)
             setVenueShows(body.serializedVenue.shows)
+            setVenueAnnouncements(body.serializedVenue.announcements)
         } catch (error) {
             console.error(`Error in fetch: ${error.message}`)
         }
     }
 
-    // const getVenues = async () => {
-    //     try {
-    //         const response = await fetch("/api/v1/venues")
-    //         if (!response.ok) {
-    //             throw (new Error(`${response.status} (${response.statusText})`))
-    //         }
-    //         const responseBody = await response.json()
-    //         setVenues(responseBody.venues)
-    //     } catch (error) {
-    //         console.error(`Error in fetch: ${error.message}`)
-    //     }
-    // }
-    
-    
-    
-
     useEffect(() => {
         getVenue()
-        // getVenues()
     }, [])
-
+    let i = 0;
+    const bulletin = venueAnnouncements.map((announcement) => {
+        i++;
+        return (
+            <div className="card">
+                <h3> {venue.name} ANNOUNCEMENTS </h3>
+                <h6>{i}.) {announcement.update}</h6>
+            </div>
+        )
+    })
 
     return (
         <div className="bg-black text-white">
@@ -68,7 +59,7 @@ const VenueShow = (props) => {
             </div>
             <hr></hr>
             <div>
-
+                {bulletin}
             </div>
                 <div className="card">
                     <SimpleJsApiLoaderGoogleMap

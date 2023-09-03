@@ -9,6 +9,8 @@ import showsRouter from "./api/v1/showsRouter.js"
 import vibesRouter from "./api/v1/vibesRouter.js"
 import artistsRouter from "./api/v1/artistsRouter.js"
 import lineupsRouter from "./api/v1/lineupsRouter.js"
+import announcementsRouter from "./api/v1/announcementsRouter.js"
+import rulesRouter from "./api/v1/rulesRouter.js"
 
 const rootRouter = new express.Router();
 rootRouter.use("/", clientRouter);
@@ -23,5 +25,7 @@ rootRouter.use("/api/v1/shows", showsRouter)
 rootRouter.use("/api/v1/vibes", vibesRouter)
 rootRouter.use("/api/v1/artists", artistsRouter)
 rootRouter.use("/api/v1/lineups", lineupsRouter)
+rootRouter.use("/api/v1/announcements", announcementsRouter)
+rootRouter.use("/api/v1/rules", rulesRouter)
 
 export default rootRouter;

@@ -7,6 +7,7 @@ const Playlist = ({ tracks }) => {
         return (
             <div
             key={track.id}
+            className="tracks"
             >
                 <TrackTile
                     track={track}
@@ -16,9 +17,7 @@ const Playlist = ({ tracks }) => {
         )
     })
     return (
-        <div
-        className="tracks"
-        >
+        <div>
             {savedTracks}
         </div>
     )

@@ -7,7 +7,7 @@ import React from 'react'
 export default function Login() {
     return (
         <div className="btn-green text-black">
-            <a className="button" href={AUTH_URL_HEROKU} value="Login With Spotify">
+            <a className="button" href={AUTH_URL} value="Login With Spotify">
                 Login With Spotify
             </a>
         </div>
