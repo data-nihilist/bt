@@ -8,7 +8,7 @@ export default function useAuth(code) {
 // uncertain of these post routes as of now
     useEffect(() => {
         axios
-            .post('https://get-to-the-gig-9923dd0273ee.herokuapp.com/showplayground', {
+            .post('http://localhost:3000/showplayground', {
                 code,
             })
             .then(res => {
@@ -25,7 +25,7 @@ export default function useAuth(code) {
         if (!refreshToken || !expiresIn) return
         const interval = setInterval(() => {
             axios
-                .post('https://get-to-the-gig-9923dd0273ee.herokuapp.com/refresh', {
+                .post('http://localhost:3000/refresh', {
                     refreshToken,
                 })
                 .then(res => {

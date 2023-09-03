@@ -10,8 +10,8 @@ class Vibe extends Model {
             type: "object",
             required: ["showId", "trackId"],
             properties: {
-                showId: { type: "string" },
-                trackId: { type: "string" }
+                showId: { type: ["integer", "string"] },
+                trackId: { type: ["integer", "string"] }
             }
         }
     }

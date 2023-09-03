@@ -38,6 +38,8 @@ class VenueSerializer {
 
         const shows = await venue.$relatedQuery("shows")
         serializedVenue.shows = await ShowSerializer.summarize(shows)
+        const announcements = await venue.$relatedQuery("announcements")
+        serializedVenue.announcements = announcements
 
         return serializedVenue;
 
