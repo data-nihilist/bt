@@ -111,7 +111,6 @@ const ShowPlayGround = (props) => {
                 }),
                 body: JSON.stringify(trueData)
             })
-            console.log(response)
             if (!response.ok) {
                 throw (new Error(`${response.status} (${response.statusText})`))
             }

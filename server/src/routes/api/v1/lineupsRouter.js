@@ -18,9 +18,7 @@ lineupsRouter.get("/", async (req, res) => {
 lineupsRouter.post("/", async (req, res) => {
     const { showTitle, artistName } = req.body
     const show = await Show.query().where({ title: showTitle })
-    console.log(show)
     const artist = await Artist.query().where({ name: artistName })
-    console.log(artist)
     try {
         const newLineup = await Lineup.query().insertAndFetch({ showId: show[0].id, artistId: artist[0].id })
         return res.status(201).json({ newLineup })

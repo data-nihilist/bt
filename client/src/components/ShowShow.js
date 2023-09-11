@@ -54,9 +54,7 @@ const ShowShow = (props) => {
             </Link>
         )
     }
-    
-    console.log(show)
-    
+        
     return (
         <div className="bg-black">
             <div className="card bg-black text-white">
