@@ -48,10 +48,8 @@ venuesRouter.get("/:name", async (req, res) => {
 
 venuesRouter.delete("/:name", async (req, res) => {
     const venueName = req.params.name
-    console.log("venue name from req.params: ", venueName)
     try{
         const venueToDelete = await Venue.query().findOne({name: venueName})
-        console.log("venue to delete: ", venueToDelete)
         await venueToDelete.$query().delete()
         return res.json({ message: 'Venue successfully deleted' });
     }catch(error){

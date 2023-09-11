@@ -36,5 +36,16 @@ venueShowsRouter.post("/", uploadImage.single("image"), async (req, res) => {
     }
 })
 
+venueShowsRouter.delete("/", async (req, res) => {
+    const showTitle = req.params.id;
+    try{
+        const showToDelete = await Show.query().findOne({title: showTitle})
+        await showToDelete.$query().delete();
+        return res.json({ message: 'Show successfully deleted' });
+    }catch(error){
+        console.error(error)
+        return res.status(500).json({ errors: error })
+    }
+})
 
 export default venueShowsRouter

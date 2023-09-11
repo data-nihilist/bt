@@ -15,6 +15,7 @@ const VenueShow = (props) => {
     
     const venueId = props.match.params.name
     const currentUser = props.user
+    const venueName = venue.name;
 
     const getVenue = async () => {
         try {
@@ -34,6 +35,25 @@ const VenueShow = (props) => {
     useEffect(() => {
         getVenue()
     }, [])
+
+    const deleteShow = async (showId) => {
+        try {
+            const response = await fetch(`/api/v1/venues/${venueName}/${showId}`, {
+                method: 'DELETE',
+                headers: {
+                    Accept: "application/json",
+                },
+            })
+            if(!response.ok){
+                throw(new Error(`${response.status} (${response.statusText})`));
+            }
+            const updatedVenueShows = venueShows.filter(show => show.title !== showId);
+            setVenueShows(updatedVenueShows);
+        } catch (error) {
+            console.error(`Error in fetch: ${error.message}`);
+        }
+    }
+
     let i = 0;
     const bulletin = venueAnnouncements.map((announcement) => {
         i++;
@@ -70,6 +90,7 @@ const VenueShow = (props) => {
                         venue={venue}
                         shows={venueShows}
                         currentUser={currentUser}
+                        deleteShow={deleteShow}
                     />
                 {currentUser
                     && currentUser.id === venue.hostId

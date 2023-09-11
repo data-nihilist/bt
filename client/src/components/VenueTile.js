@@ -12,7 +12,6 @@ const VenueTile = ({ name, location, shows, venue, currentUser, deleteVenue }) =
 
     const handleDeleteClick = (event) => {
         event.preventDefault()
-        console.log(venue)
         if(window.confirm("Are you sure you want to delete this venue?")) {
             deleteVenue(venue.name)
         }
