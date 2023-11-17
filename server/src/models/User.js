@@ -1,7 +1,7 @@
 /* eslint-disable import/no-extraneous-dependencies */
-const Bcrypt = require("bcrypt");
-const unique = require("objection-unique");
-const Model = require("./Model");
+import Bcrypt from 'bcrypt'
+import unique from 'objection-unique'
+import Model from './Model.js'
 
 const saltRounds = 10;
 
@@ -44,44 +44,6 @@ class User extends uniqueFunc(Model) {
 
     return serializedJson;
   }
-
-  static get relationMappings() {
-    const { Venue, Show, Track, Artist } = require("./index.js")
-    return {
-      venues: {
-        relation: Model.HasManyRelation,
-        modelClass: Venue,
-        join: {
-          from: "users.id",
-          to: "venues.hostId"
-        }
-      },
-      shows: {
-        relation: Model.HasManyRelation,
-        modelClass: Show,
-        join: {
-          from: "users.id",
-          to: "shows.hostId"
-        }
-      },
-      tracks: {
-        relation: Model.HasManyRelation,
-        modelClass: Track,
-        join: {
-          from: "users.id",
-          to: "tracks.userId"
-        }
-      },
-      artists: {
-        relation: Model.HasManyRelation,
-        modelClass: Artist,
-        join: {
-          from: "users.id",
-          to: "artists.userId"
-        }
-      }
-    }
-  }
 }
 
-module.exports = User;
+export default User

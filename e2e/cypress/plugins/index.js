@@ -1,10 +1,10 @@
-const { insert, truncate, find, deleteRecords, update } = require("./db");
+import { insert, truncate, find, deleteRecords, update } from "./db"
 
 /// <reference types="cypress" />
 /**
  * @type {Cypress.PluginConfig}
  */
-module.exports = (on, config) => {
+export default (on, config) => {
   on("task", {
     "db:truncate"(models) {
       return truncate(models);

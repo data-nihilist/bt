@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import config from "../../config";
 import FormError from "../layout/FormError";
-import WelcomePage from "../WelcomePage.js"
 
 const SignInForm = () => {
   const [userPayload, setUserPayload] = useState({ email: "", password: "" });
@@ -47,7 +46,6 @@ const SignInForm = () => {
           const error = new Error(errorMessage)
           throw (error)
         }
-        const userData = await response.json()
         setShouldRedirect(true)
       }
     } catch (err) {
@@ -63,22 +61,23 @@ const SignInForm = () => {
   };
 
   if (shouldRedirect) {
-    location.href = "/venues";
+    location.href = "/";
   }
 
   return (
-      <div className="card bg-black text-white">
-        <h1 className="card-title">Sign In</h1>
+      <div className="card container bg-gray text-white">
+        <h1 className="card-title">
+          Sign In
+        </h1>
         <form className="card" onSubmit={onSubmit}>
           <div className="mb-2">
-            <label className="card-body">
-              Email
+            <label className="card-body">Email
               <input
                 type="text"
                 name="email"
                 value={userPayload.email}
                 onChange={onInputChange}
-                className="card bg-black text-white"
+                className="card bg-white text-black"
               />
               <div className="text-info">
                 <FormError error={errors.email} />
@@ -86,14 +85,13 @@ const SignInForm = () => {
             </label>
           </div>
           <div className="mb-2">
-            <label className="card-body">
-              Password
+            <label className="card-body">Password
               <input
                 type="password"
                 name="password"
                 value={userPayload.password}
                 onChange={onInputChange}
-                className="card bg-black text-white"
+                className="card bg-white text-black"
               />
               <div className="text-info">
                 <FormError error={errors.password} />
@@ -101,10 +99,9 @@ const SignInForm = () => {
             </label>
           </div>
           <div>
-            <input type="submit" className="special-button bg-green mt-1 mb-2" value="Sign In" />
+            <input type="submit" className="btn-complement-orange mt-1 mb-2" value="Sign In" />
           </div>
         </form>
-        <WelcomePage />
       </div>
   );
 };

@@ -6,17 +6,12 @@ import "../assets/scss/main.scss";
 import RegistrationForm from "./registration/RegistrationForm";
 import SignInForm from "./authentication/SignInForm";
 import TopBar from "./layout/TopBar";
-import WelcomePage from "./WelcomePage";
-import VenueShow from "./VenueShow";
-import ShowShow from "./ShowShow";
-import ShowPlayGround from "./ShowPlayGround";
-import ArtistProfile from "./ArtistProfile";
-import ActiveArtists from "./ActiveArtists.js";
-import ArtistForm from "./ArtistForm.js"
-import VenueForm from "./VenueForm.js";
+import WelcomePage from './WelcomePage'
 
 const App = (props) => {
+  
   const [currentUser, setCurrentUser] = useState(undefined);
+
   const fetchCurrentUser = async () => {
     try {
       const user = await getCurrentUser()
@@ -32,19 +27,11 @@ const App = (props) => {
 
   return (
     <Router>
-      <TopBar user={currentUser} />
+      <TopBar user={currentUser}/>
+      <WelcomePage user={currentUser}/>
       <Switch>
-        <Route exact path="/"><Redirect push to="/venues"/></Route>
         <Route exact path="/users/new" component={RegistrationForm} />
         <Route exact path="/user-sessions/new" component={SignInForm} />
-        <Route exact path="/venues" render={(props) => <WelcomePage user={currentUser} {...props} />} />
-        <Route exact path="/venues/new" render={(props) => <VenueForm user={currentUser} {...props} />} />
-        <Route exact path="/venues/:name" render={(props) => <VenueShow user={currentUser} {...props} />} />
-        <Route exact path="/venues/:name/:id" render={(props) => <ShowShow user={currentUser} {...props} />} />
-        <Route exact path="/showplayground" render={(props) => <ShowPlayGround user={currentUser} {...props} />} />
-        <Route exact path="/artists" render={(props) => <ActiveArtists user={currentUser} {...props} />} />
-        <Route exact path="/artists/new" render={(props) => <ArtistForm user={currentUser} {...props} />} />
-        <Route exact path="/artists/:id" render={(props) => <ArtistProfile user={currentUser} {...props} />} />
       </Switch>
     </Router>
   );

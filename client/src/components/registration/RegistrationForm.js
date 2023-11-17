@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import FormError from "../layout/FormError";
 import config from "../../config";
-import WelcomePage from "../WelcomePage.js"
 
 
 const RegistrationForm = () => {
@@ -76,7 +75,6 @@ const RegistrationForm = () => {
           const error = new Error(errorMessage);
           throw error;
         }
-        const userData = await response.json();
         setShouldRedirect(true);
       }
     } catch (err) {
@@ -92,22 +90,21 @@ const RegistrationForm = () => {
   };
 
   if (shouldRedirect) {
-    location.href = "/venues";
+    location.href = "/";
   }
 
   return (
-      <div className="card bg-black text-white">
+      <div className="card container bg-gray text-white">
         <h1 className="card-title">Sign Up</h1>
         <form className="card" onSubmit={onSubmit}>
           <div className="mb-2">
-            <label className="card-body">
-              Username
+            <label className="card-body">Username
               <input
                 type="text"
                 name="username"
                 value={userPayload.username}
                 onChange={onInputChange}
-                className="card bg-black text-white"
+                className="card bg-white text-black"
               />
               <div className="text-info">
                 <FormError error={errors.username} />
@@ -115,14 +112,13 @@ const RegistrationForm = () => {
             </label>
           </div>
           <div className="mb-2">
-            <label className="card-body">
-              Email
+            <label className="card-body">Email
               <input
                 type="text"
                 name="email"
                 value={userPayload.email}
                 onChange={onInputChange}
-                className="card bg-black text-white"
+                className="card bg-white text-black"
               />
               <div className="text-info">
                 <FormError error={errors.email} />
@@ -130,14 +126,13 @@ const RegistrationForm = () => {
             </label>
           </div>
           <div className="mb-2">
-            <label className="card-body">
-              Password
+            <label className="card-body">Password
               <input
                 type="password"
                 name="password"
                 value={userPayload.password}
                 onChange={onInputChange}
-                className="card bg-black text-white"
+                className="card bg-white text-black"
               />
               <div className="text-info">
                 <FormError error={errors.password} />
@@ -145,14 +140,13 @@ const RegistrationForm = () => {
             </label>
           </div>
           <div className="mb-2">
-            <label className="card-body">
-              Confirm Password
+            <label className="card-body">Confirm Password
               <input
                 type="password"
                 name="passwordConfirmation"
                 value={userPayload.passwordConfirmation}
                 onChange={onInputChange}
-                className="card bg-black"
+                className="card bg-white text-black"
               />
               <div className="text-info">
                 <FormError error={errors.passwordConfirmation} />
@@ -160,10 +154,9 @@ const RegistrationForm = () => {
             </label>
           </div>
           <div>
-            <input type="submit" className="special-button bg-green mt-1 mb-2" value="Sign Up" />
+            <input type="submit" className="btn-complement-orange mt-1 mb-2" value="Sign Up" />
           </div>
         </form>
-        <WelcomePage />
       </div>
   );
 };

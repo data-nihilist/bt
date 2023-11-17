@@ -1,7 +1,6 @@
 import local from "passport-local";
-
 import User from "../models/User.js";
-
+// import User from '../models/User'
 const authHandler = (email, password, done) => {
   User.query()
     .findOne({ email })

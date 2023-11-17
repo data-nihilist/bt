@@ -1,5 +1,5 @@
 // eslint-disable-next-line import/no-extraneous-dependencies
-const ObjectionModel = require("objection").Model;
+import { Model as ObjectionModel } from "objection";
 
 /**
  * Abstract model for Transporter ORM
@@ -20,4 +20,4 @@ class Model extends ObjectionModel {
   }
 }
 
-module.exports = Model;
+export default Model;

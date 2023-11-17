@@ -18,7 +18,6 @@ const SignOutButton = () => {
         const error = new Error(errorMessage)
         throw (error)
       }
-      const respBody = await response.json()
       setShouldRedirect(true)
       return { status: "ok" }
     } catch (err) {
@@ -27,15 +26,15 @@ const SignOutButton = () => {
   }
 
   if (shouldRedirect) {
-    location.href = "/venues";
+    location.href = "/";
   }
 
   return (
-    <button type="button"
-      className="btn-complement-purple bg-purple ml-sign-out"
+    <button
+      type="button"
+      className="btn-complement-orange ml-sign-out"
       onClick={signOut}
-    >
-      Sign Out
+    >Sign Out
     </button>
   );
 };

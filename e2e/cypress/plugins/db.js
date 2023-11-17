@@ -1,6 +1,6 @@
-const truncateModel = require("../../../server/test/utils/truncateModel.cjs");
-const connection = require("../../../server/src/boot/model.cjs");
-const modelList = require("../../../server/src/models");
+import truncateModel from "../../../server/test/utils/truncateModel.cjs"
+import connection from "../../../server/src/boot/model.cjs"
+import modelList from "../../../server/src/models"
 
 const truncate = async (models) => {
   let modelsToTruncate = models;
@@ -39,7 +39,7 @@ const deleteRecords = async ({ modelName, conditions = {} }) => {
   return result;
 };
 
-module.exports = {
+export {
   find,
   deleteRecords,
   insert,
